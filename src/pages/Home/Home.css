@@ -1,0 +1,50 @@
+.layout-content {
+  width: 100%;
+  display: inline-block;
+  vertical-align: top;
+  padding: 16px;
+}
+
+.layout-ontent @media screen and (min-width: @desktop) {
+  padding: 24px 32px;
+}
+
+.layout-content h1 {
+  color: white;
+  border-bottom: 2px solid #5d82bb;
+  margin-bottom: 16px;
+}
+
+.layout-content .column {
+  width: 400px;
+  padding: 8px;
+  display: inline-block;
+  text-align: center;
+}
+
+.layout-content .column a {
+  border: 2px solid #5d82bb;
+  border-radius: 10px;
+  margin-right: 16px;
+  margin-bottom: 16px;
+  display: block;
+  text-decoration: none;
+  color: white;
+  background-color: #333333;
+  overflow: hidden;
+}
+
+.layout-content .column a:hover {
+  background-color: #3d4f7b;
+}
+
+.layout-content .column img {
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+}
+
+.layout-content .column h3 {
+  line-height: 40px;
+  text-align: center;
+}

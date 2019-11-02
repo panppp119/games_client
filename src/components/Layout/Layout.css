@@ -1,0 +1,55 @@
+/* layout */
+.layout {
+  display: flex;
+  height: 100vh;
+}
+
+/* content */
+.layout .content {
+  width: calc(100% - 200px);
+  padding: 16px;
+}
+
+.layout .content h1 {
+  font-size: 2em;
+  padding: 0;
+  margin: 0;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--primary_dark);
+  color: var(--white);
+}
+
+/* frame */
+.frame {
+  margin-top: 16px;
+  width: 980px;
+  height: 653px;
+  position: relative;
+  padding: 24px;
+}
+
+.frame p,
+.frame a,
+.frame h4,
+.frame li {
+  font-size: 30px;
+  color: var(--black);
+}
+
+.frame h3 {
+  font-size: 40px;
+  color: var(--black);
+  margin-bottom: 24px;
+}
+
+.frame h2 {
+  font-size: 50px;
+  color: var(--black);
+  margin-bottom: 24px;
+}
+
+.frame h1 {
+  font-size: 60px;
+  color: var(--black);
+  margin-bottom: 24px;
+}

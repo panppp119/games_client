@@ -1,0 +1,22 @@
+import React from 'react'
+
+import Layout from 'components/Layout'
+import './Provider.css'
+
+class Provider extends React.Component {
+  render () {
+    return (
+      <Layout>
+        <h1>Provider</h1>
+
+        <p>ชื่อ-นามสกุล : นางสาวสุคนธ์ฑา พันธเสน</p>
+        <p>วัน เดือน ปีเกิด : 26 มิถุนายน 2530</p>
+        <p>สถานที่เกิด : จังหวัดสมุทรสาคร</p>
+        <p>สถานที่ทำงาน : โรงเรียนกระทุ่มแบน "วิเศษสมุทคุณ"</p>
+        <p>ตำแหน่ง : ครู คศ.1</p>
+      </Layout>
+    )
+  }
+}
+
+export default Provider

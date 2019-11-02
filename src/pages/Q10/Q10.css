@@ -1,0 +1,83 @@
+.frame {
+  background-color: #eeeeee;
+}
+
+.frame h3 {
+  text-align: center;
+}
+
+/* input name */
+.input-name {
+  margin-top: 150px;
+}
+
+.input-name input {
+  display: block;
+  width: 500px;
+  height: 70px;
+  font-size: 40px;
+  text-align: center;
+  padding: 0 16px;
+  margin: auto;
+  border: none;
+}
+
+.input-name button {
+  background-color: var(--primary_dark);
+  display: block;
+  width: auto;
+  height: 60px;
+  font-size: 40px;
+  color: var(--white);
+  padding: 0 16px;
+  margin: auto;
+  margin-top: 24px;
+  border: none;
+}
+.input-name button:hover {
+  background-color: var(--primary);
+  display: block;
+  width: auto;
+  height: 60px;
+  font-size: 40px;
+  color: var(--white);
+  padding: 0 16px;
+  margin: auto;
+  margin-top: 24px;
+  border: none;
+}
+
+/* list */
+.list .columns {
+  display: flex;
+  position: relative;
+}
+
+.list span {
+  color: var(--primary);
+  font-size: 14px;
+}
+
+.list .actions {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+}
+
+.list .actions button {
+  margin-right: 8px;
+  padding: 0 8px;
+  height: 40px;
+}
+.list .actions button:last-child {
+  margin-right: 0;
+}
+
+.list ul {
+  list-style: circle;
+}
+
+.list ul li {
+  line-height: 70px;
+  text-align: center;
+}
