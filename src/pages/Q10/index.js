@@ -6,7 +6,7 @@ import questions from './questions'
 import './Q10.css'
 
 // Connect Socket.io
-const server = `localhost:${process.env.REACT_APP_SERVER_PORT}`
+const server = `${process.env.REACT_APP_SERVER}`
 const socket = socketIOClient(server)
 
 // Initial State
