@@ -11,5 +11,5 @@ export {
   CyberShoot,
   ADayWithPeePo,
   CyberAdventure,
-  Provider
+  Provider,
 }

@@ -6,7 +6,7 @@ import g1 from './imgs/g1.png'
 import g2 from './imgs/g2.png'
 import g3 from './imgs/g3.png'
 import g4 from './imgs/g4.png'
-import './Home.css'
+import './Home.scss'
 
 class Home extends React.Component {
   render () {
