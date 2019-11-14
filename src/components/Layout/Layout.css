@@ -26,6 +26,8 @@
   height: 653px;
   position: relative;
   padding: 24px;
+  position: relative;
+  overflow: hidden;
 }
 
 .frame p,

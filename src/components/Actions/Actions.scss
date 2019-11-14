@@ -1,0 +1,50 @@
+.scene-actions {
+  display: inline-block;
+  position: absolute;
+
+  &.bottom-right {
+    bottom: 16px;
+    right: 16px;
+  }
+
+  &.bottom-left {
+    bottom: 16px;
+    left: 16px;
+  }
+
+  &.top-left {
+    top: 16px;
+    left: 16px;
+  }
+
+  &.top-right {
+    top: 16px;
+    right: 16px;
+  }
+
+  &.bottom-center {
+    bottom: 16px;
+    margin: auto;
+  }
+
+  button {
+    margin-right: 8px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--black);
+    outline: none;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:hover svg {
+      font-size: 20px;
+    }
+
+    svg {
+      font-size: 16px;
+      color: var(--white);
+    }
+  }
+}
