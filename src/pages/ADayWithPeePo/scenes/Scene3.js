@@ -167,7 +167,7 @@ class Scene3 extends React.Component {
         <img src={char5} alt='char' className='char' />
         <h2 className='zoom'>ZOOM!</h2>
         <h2 className='countdown'>{timer}</h2>
-        <button className='choice' onClick={this.inorrectAnswer}>CORRECT</button>
+        <button className='choice' onClick={this.incorrectAnswer}>CORRECT</button>
         <button className='choice incorrect' onClick={this.correctAnswer}>INCORRECT</button>
       </div>
     )
@@ -177,7 +177,7 @@ class Scene3 extends React.Component {
         <img src={item6} alt='item' className='item' />
         <img src={char6} alt='char' className='char' />
         <h2 className='countdown'>{timer}</h2>
-        <button className='choice' onClick={this.inorrectAnswer}>CORRECT</button>
+        <button className='choice' onClick={this.incorrectAnswer}>CORRECT</button>
         <button className='choice incorrect' onClick={this.correctAnswer}>INCORRECT</button>
       </div>
     )
