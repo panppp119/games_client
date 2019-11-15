@@ -1,7 +1,7 @@
-.a-day-with-peepo {
+.q10 {
   padding: 0;
-  background: radial-gradient(circle, rgba(0,161,194,1) 0%, rgba(1,65,135,1) 85%);
-  
+  background-color: var(--white);
+
   .scene-1,
   .scene-2,
   .scene-3,
@@ -54,7 +54,7 @@
     }
 
     h1, h2, h3, h4, p {
-      color: var(--secondary);
+      color: var(--black);
     }
 
     .scene-actions {
@@ -72,26 +72,27 @@
   .scene-1 {
     .char {
       bottom: 0;
-      left: 0;
+      right: 0;
     }
 
     .name {
-      right: 50px;
+      left: 50px;
       top: 50px;
+      width: 500px;
     }
 
     .start {
-      border-color: red;
+      border-color: var(--black);
       bottom: 100px;
-      right: 80px;
-      color: red;
+      left: 80px;
+      color: var(--black);
     }
 
     .lesson {
-      border-color: red;
+      border-color: var(--black);
       bottom: 220px;
-      right: 115px;
-      color: red;
+      left: 115px;
+      color: var(--black);
     }
   }
 
@@ -99,14 +100,14 @@
     .title {
       position: absolute;
       top: 25px;
-      background-color: var(--black);
+      background-color: white;
       padding: 40px 0;
       width: 100%;
 
       h1, p {
         text-align: center;
         border-bottom: none;
-        color: var(--secondary);
+        color: var(--black);
       }
 
       p {
@@ -166,9 +167,9 @@
         top: 235px;
         left: 350px;
         padding: 20px 30px;
-        background-color: var(--white);
-        border: 6px solid var(--secondary);
-        color: var(--black);
+        background-color: white;
+        border: 6px solid var(--primary);
+        color: var(--primary);
         border-radius: 20px;
         z-index: 2;
       }
@@ -183,10 +184,14 @@
 
         li {
           color: var(--white);
-          background-color: var(--black);
+          background-color: grey;
           padding-left: 8px;
           margin-bottom: 10px;
           padding: 5px 10px;
+
+          p {
+            color: var(--white);
+          }
         }
       }
 
@@ -199,23 +204,36 @@
         text-align: center;
       }
 
+      p.meaning {
+        bottom: 20px;
+        width: 500px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        font-size: 20px;
+      }
+
       div.content1 {
-        top: 235px;
-        left: 40px;
-        width: 510px;
+        top: 200px;
+        right: 100px;
+        width: 600px;
         color: var(--black);
         background-color: var(--white);
         padding: 20px;
-        border: 6px solid var(--secondary);
+        border: 6px solid var(--primary);
         border-radius: 20px;
 
         h4 {
           margin-bottom: 20px;
-          color: var(--secondary);
+          color: var(--primary);
 
           &:last-child {
             margin-bottom: 0;
           }
+        }
+
+        p {
+          color: var(--black);
         }
 
         span {
@@ -224,27 +242,17 @@
           padding-left: 20px;
           color: var(--black);
         }
-      }
 
-      ul.content2 {
-        top: 235px;
-        left: 620px;
-        width: 300px;
-        padding: 0;
-        padding-left: 20px;
-        list-style: square;
-        margin: 0;
+        ul {
+          list-style: square;
+          padding-left: 30px;
+          width: 100%;
 
-        li {
-          font-size: 20px;
-          color: var(--black);
-          background-color: var(--white);
-          padding: 5px 10px;
-          margin-bottom: 16px;
-          border: 6px solid var(--secondary);
-
-          &:last-child {
-            margin-bottom: 0;
+          li {
+            font-size: 20px;
+            background: none;
+            padding-right: 30px;
+            color: var(--black);
           }
         }
       }
@@ -256,11 +264,16 @@
       }
     }
 
-    .page-11 .content1, .page-13 .content1, .page-14 .content1, .page-15 .content1 {
+    .page-10 .content1 {
+      top: 140px !important;
+    }
+
+    .page-11 .content1 {
       width: 85% !important;
       margin: auto;
       left: 0 !important;
-      right: 0;
+      right: 0 !important;
+      top: 160px !important;
 
       h4 ul {
         margin: 0;
@@ -282,7 +295,7 @@
       }
 
       p {
-        color: var(--secondary);
+        color: var(--primary);
         font-size: 20px;
       }
     }
@@ -325,8 +338,8 @@
         left: 0;
         right: 0;
         margin: auto;
-        border-color: red;
-        color: red;
+        border-color: var(--black);
+        color: var(--black);
 
         &:disabled {
           border-color: #DDD;
@@ -377,23 +390,6 @@
           background-color: var(--black);
           overflow: hidden;
         }
-
-        &.zoom {
-          right: 200px;
-          left: auto;
-          top: 160px;
-          width: 150px;
-          transform: rotate(-20deg);
-          font-size: 90px;
-        }
-      }
-
-      .item {
-        top: 20px;
-        right: 20px;
-        max-width: 440px;
-        height: auto;
-        animation: fadeRight 1s ease-in-out;
       }
 
       .choice {
@@ -409,8 +405,8 @@
       }
 
       .play-again {
-        border-color: red;
-        color: red;
+        border-color: var(--black);
+        color: var(--black);
         bottom: 150px;
         right: 50px;
       }
@@ -485,8 +481,8 @@
         right: 0;
         margin: auto;
         position: absolute;
-        border-color: red;
-        color: red;
+        border-color: var(--black);
+        color: var(--black);
       }
     }
   }

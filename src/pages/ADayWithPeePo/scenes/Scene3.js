@@ -64,7 +64,7 @@ class Scene3 extends React.Component {
           this.changePage(this.state.page + 1)
         }
       }
-    }, this.state.time * 100);
+    }, 1000);
   }
 
   changePause = () => {

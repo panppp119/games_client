@@ -8,11 +8,7 @@ import './ADayWithPeePo.scss'
 
 class ADayWithPeePo extends React.Component {
   state = {
-    scene: 1,
-    question: 1,
-    time: 10,
-    score: 0,
-    playerName: '',
+    scene: 1
   }
 
   changeScene = (scene) => {
@@ -20,7 +16,7 @@ class ADayWithPeePo extends React.Component {
   }
 
   render () {
-    const { scene, question, time, score, playerName } = this.state
+    const { scene } = this.state
 
     var pause = true, prev = true, sound = true, next = true
 
