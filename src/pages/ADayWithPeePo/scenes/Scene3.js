@@ -214,8 +214,8 @@ class Scene3 extends React.Component {
         <img src={item9} alt='item' className='item' />
         <img src={char9} alt='char' className='char' />
         <p className='label'>ปีโป้โพสต์ฝากร้านค้าในอินสตาแกรม(IG) <br />ของณเดชน์ คูกิมิยะ</p>
-        <button className='choice' onClick={this.correctAnswer}>CORRECT</button>
-        <button className='choice incorrect' onClick={this.incorrectAnswer}>INCORRECT</button>
+        <button className='choice' onClick={this.incorrectAnswer}>CORRECT</button>
+        <button className='choice incorrect' onClick={this.correctAnswer}>INCORRECT</button>
       </div>
     )
 
