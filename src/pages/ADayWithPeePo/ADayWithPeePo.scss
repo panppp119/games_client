@@ -178,6 +178,22 @@
   }
 
   .scene-3 {
+    .countdown {
+      top: 20px;
+      left: 20px;
+      right: auto;
+      font-size: 40px;
+      color: var(--white);
+    }
+
+    .score {
+      top: 20px;
+      left: 200px;
+      right: auto;
+      font-size: 40px;
+      color: var(--white);
+    }
+
     .gscene-1, .gscene-2, .gscene-3,
     .gscene-4, .gscene-5, .gscene-6,
     .gscene-7, .gscene-8, .gscene-9,
@@ -194,7 +210,18 @@
       .char {
         bottom: 0;
         left: 0;
+        width: 500px;
         animation: fadeLeft 1s ease-in-out;
+      }
+
+      .label {
+        top: 110px;
+        left: 45px;
+        width: 450px;
+        text-align: center;
+        color: var(--white);
+        background-color: var(--black);
+        padding: 8px;
       }
 
       .submit-name {
@@ -292,7 +319,7 @@
         right: 50px;
       }
 
-      .score {
+      .txt-score {
         top: 50px;
         right: 50px;
       }
@@ -345,6 +372,12 @@
 
       .c7 {
         top: 542px;
+      }
+    }
+
+    .gscene-13 {
+      .char {
+        width: auto;
       }
     }
 

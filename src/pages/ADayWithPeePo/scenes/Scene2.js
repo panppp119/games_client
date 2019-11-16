@@ -1,4 +1,5 @@
 import React from 'react'
+import Sound from 'react-sound'
 
 import Actions from 'components/Actions'
 
@@ -27,14 +28,20 @@ import slide20 from '../imgs/slide20.JPG'
 import slide21 from '../imgs/slide21.JPG'
 import slide22 from '../imgs/slide22.JPG'
 import text1 from '../imgs/N1.png'
+import audio from '../bg-audio.wav'
 
 class Scene2 extends React.Component {
   state = {
     page: 1,
+    sound: 'PLAYING'
   }
 
   changePage = (page) => {
     this.setState({ page })
+  }
+
+  handlePause = (status) => {
+    this.setState({ sound: status })
   }
 
   render () {
@@ -103,6 +110,11 @@ class Scene2 extends React.Component {
       </div>
     )
 
+    const controls = {
+      pause: this.state.sound === Sound.status.PLAYING,
+      resume: this.state.sound === Sound.status.PAUSED
+    }
+
     return (
       <div className='scene-2'>
         {page === 1 && page1}
@@ -141,9 +153,18 @@ class Scene2 extends React.Component {
               changeScene={page === 1 ? changeScene : this.changePage}
               changePage={this.changePage}
               history={this.props.history}
+              handlePause={this.handlePause}
+              controls={controls}
             />
           )
         }
+        
+        <Sound
+          autoLoad
+          loop
+          url={audio}
+          playStatus={this.state.sound}
+        />
       </div>
     )
   }

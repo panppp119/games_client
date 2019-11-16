@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+import Sound from 'react-sound'
 
 import Actions from 'components/Actions'
 
-import score from '../imgs/score.png'
+import txtScore from '../imgs/score.png'
 import char1 from '../imgs/char1.png'
 import char2 from '../imgs/char2.png'
 import char3 from '../imgs/char3.png'
@@ -24,6 +25,7 @@ import item7 from '../imgs/item7.png'
 import item8 from '../imgs/item8.png'
 import item9 from '../imgs/item9.png'
 import item10 from '../imgs/item10.png'
+import audio from '../bg-audio.wav'
 
 var myInterval
 
@@ -34,7 +36,8 @@ class Scene3 extends React.Component {
     score: 0,
     time: 10,
     timer: 10,
-    pause: false
+    pause: false,
+    sound: 'PLAYING'
   }
 
   changePage = (page) => {
@@ -48,6 +51,10 @@ class Scene3 extends React.Component {
 
   handleChangeName = (name) => {
     this.setState({ playerName: name })
+  }
+
+  handlePause = (status) => {
+    this.setState({ sound: status })
   }
 
   countdown = () => {
@@ -84,12 +91,12 @@ class Scene3 extends React.Component {
   }
 
   playAgain = () => {
-    this.props.changeScene(2)
+    this.props.changePage(4)
   }
 
   render () {
     const { changeScene } = this.props
-    const { page, playerName, timer } = this.state
+    const { page, playerName, timer, score } = this.state
     const scene = 2
 
     const overlay = (
@@ -125,7 +132,7 @@ class Scene3 extends React.Component {
       <div className='gscene-3'>
         <img src={item1} alt='item' className='item' />
         <img src={char1} alt='char' className='char' />
-        <h2 className='countdown'>{timer}</h2>
+        <p className='label'>ปีโป้ต้องการส่งจดหมายอิเล็กทรอนิกส์<br />(E-mail) ไปให้จีจี้</p>
         <button className='choice' onClick={this.correctAnswer}>CORRECT</button>
         <button className='choice incorrect' onClick={this.incorrectAnswer}>INCORRECT</button>
       </div>
@@ -135,7 +142,7 @@ class Scene3 extends React.Component {
       <div className='gscene-4'>
         <img src={item2} alt='item' className='item' />
         <img src={char2} alt='char' className='char' />
-        <h2 className='countdown'>{timer}</h2>
+        <p className='label'>ปีโป้กำลังจะสั่งซื้อก๊อตซิล่าผ่าน<br />เว็บไซต์ออนไลน์ซึ่งกำลังลดราคา 10%</p>
         <button className='choice' onClick={this.correctAnswer}>CORRECT</button>
         <button className='choice incorrect' onClick={this.incorrectAnswer}>INCORRECT</button>
       </div>
@@ -145,7 +152,7 @@ class Scene3 extends React.Component {
       <div className='gscene-5'>
         <img src={item3} alt='item' className='item' />
         <img src={char3} alt='char' className='char' />
-        <h2 className='countdown'>{timer}</h2>
+        <p className='label'>ปีโป้โพสต์ข้อความในเฟซบุ๊ค(Facebook) <br />ว่า เจนนี่นิสัยแบบนี้ต้องเลิกคบ</p>
         <button className='choice' onClick={this.incorrectAnswer}>CORRECT</button>
         <button className='choice incorrect' onClick={this.correctAnswer}>INCORRECT</button>
       </div>
@@ -155,7 +162,7 @@ class Scene3 extends React.Component {
       <div className='gscene-6'>
         <img src={item4} alt='item' className='item' />
         <img src={char4} alt='char' className='char' />
-        <h2 className='countdown'>{timer}</h2>
+        <p className='label'>ปีโป้กำลังเล่นเกมออนไลน์ในโทรศัพท์มือถือ</p>
         <button className='choice' onClick={this.correctAnswer}>CORRECT</button>
         <button className='choice incorrect' onClick={this.incorrectAnswer}>INCORRECT</button>
       </div>
@@ -165,8 +172,8 @@ class Scene3 extends React.Component {
       <div className='gscene-7'>
         <img src={item5} alt='item' className='item' />
         <img src={char5} alt='char' className='char' />
+        <p className='label'>ปีโป้กำลังจะดาวน์โหลดภาพยนตร์ที่มีลิขสิทธิ์ หรือหนังซูม จากเว็บไซต์หนึ่ง</p>
         <h2 className='zoom'>ZOOM!</h2>
-        <h2 className='countdown'>{timer}</h2>
         <button className='choice' onClick={this.incorrectAnswer}>CORRECT</button>
         <button className='choice incorrect' onClick={this.correctAnswer}>INCORRECT</button>
       </div>
@@ -176,7 +183,7 @@ class Scene3 extends React.Component {
       <div className='gscene-8'>
         <img src={item6} alt='item' className='item' />
         <img src={char6} alt='char' className='char' />
-        <h2 className='countdown'>{timer}</h2>
+        <p className='label'>ปีโป้ต้องการจะแฮกข้อมูลผู้ใช้และ<br />รหัสผ่าน(Username and Password) ในการเข้าสู่ระบบของเฟซบุ๊คของแอมมี่เพื่อดูข้อมูลส่วนตัว</p>
         <button className='choice' onClick={this.incorrectAnswer}>CORRECT</button>
         <button className='choice incorrect' onClick={this.correctAnswer}>INCORRECT</button>
       </div>
@@ -186,7 +193,7 @@ class Scene3 extends React.Component {
       <div className='gscene-9'>
         <img src={item7} alt='item' className='item' />
         <img src={char7} alt='char' className='char' />
-        <h2 className='countdown'>{timer}</h2>
+        <p className='label'>ปีโป้ได้ทำการตัดต่อรูปภาพในลักษณะ<br />ภาพโป๊ของซูซี่ แล้วนำภาพมาโพสต์ลง<br />อินสตาแกรม(Instagram)</p>
         <button className='choice' onClick={this.incorrectAnswer}>CORRECT</button>
         <button className='choice incorrect' onClick={this.correctAnswer}>INCORRECT</button>
       </div>
@@ -196,7 +203,7 @@ class Scene3 extends React.Component {
       <div className='gscene-10'>
         <img src={item8} alt='item' className='item' />
         <img src={char8} alt='char' className='char' />
-        <h2 className='countdown'>{timer}</h2>
+        <p className='label'>ปีโป้เข้าเว็บไซต์ของโรงเรียนเพื่อค้นหาชื่อและนามสกุลของคุณครูที่ปรึกษา</p>
         <button className='choice' onClick={this.incorrectAnswer}>CORRECT</button>
         <button className='choice incorrect' onClick={this.correctAnswer}>INCORRECT</button>
       </div>
@@ -206,7 +213,7 @@ class Scene3 extends React.Component {
       <div className='gscene-11'>
         <img src={item9} alt='item' className='item' />
         <img src={char9} alt='char' className='char' />
-        <h2 className='countdown'>{timer}</h2>
+        <p className='label'>ปีโป้โพสต์ฝากร้านค้าในอินสตาแกรม(IG) <br />ของณเดชน์ คูกิมิยะ</p>
         <button className='choice' onClick={this.correctAnswer}>CORRECT</button>
         <button className='choice incorrect' onClick={this.incorrectAnswer}>INCORRECT</button>
       </div>
@@ -216,7 +223,7 @@ class Scene3 extends React.Component {
       <div className='gscene-12'>
         <img src={item10} alt='item' className='item' />
         <img src={char10} alt='char' className='char' />
-        <h2 className='countdown'>{timer}</h2>
+        <p className='label'>ปีโป้กดปุ่มแชร์คลิปวิดีโอโป๊ให้เจนนี่</p>
         <button className='choice' onClick={this.incorrectAnswer}>CORRECT</button>
         <button className='choice incorrect' onClick={this.correctAnswer}>INCORRECT</button>
       </div>
@@ -224,15 +231,27 @@ class Scene3 extends React.Component {
 
     const page13 = (
       <div className='gscene-13'>
-        <img src={score} alt='score' className='score' />
+        <img src={txtScore} alt='score' className='txt-score' />
         <img src={char11} alt='char' className='char' />
         <h2 className='total-score'>{this.state.score}</h2>
         <button className='play-again' onClick={this.playAgain}>PLAY AGAIN</button>
       </div>
     )
 
+    const controls = {
+      pause: this.state.sound === Sound.status.PLAYING,
+      resume: this.state.sound === Sound.status.PAUSED
+    }
+
     return (
       <div className='scene-3'>
+        {page > 2 && page < 13 && (
+          <Fragment>
+            <h2 className='countdown'>TIME: {timer}</h2>
+            <h2 className='score'>SCORE: {score}</h2>
+          </Fragment>
+        )}
+
         {page === 1 && page1}
         {page === 2 && page2}
         {page === 3 && page3}
@@ -248,19 +267,30 @@ class Scene3 extends React.Component {
         {page === 13 && page13}
 
         <Actions
+          home={page === 2 ? 'page' : 'scene'}
           next={page === 1 && page !== 13}
-          prev={page === 1 || page === 2}
+          prev={page === 2}
           sound
-          pause={page !== 1 && page !== 2}
+          pause={page !== 1 && page !== 2 && page !== 13}
           scene={page === 1 ? 3 : page}
           page={page}
           changePause={this.changePause}
-          changeScene={page === 1 ? changeScene : this.changePage}
+          changeScene={changeScene}
           changePage={this.changePage}
           history={this.props.history}
+          handlePause={this.handlePause}
+          controls={controls}
+          pauseStatus={this.state.pause}
         />
 
         {this.state.pause && overlay}
+
+        <Sound
+          autoLoad
+          loop
+          url={audio}
+          playStatus={this.state.sound}
+        />
       </div>
     )
   }
