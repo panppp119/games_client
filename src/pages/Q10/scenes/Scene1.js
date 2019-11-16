@@ -12,7 +12,6 @@ class Scene1 extends React.Component {
         <img src={char} alt='char' className='char' />
         <img src={name} alt='name' className='name' />
 
-        <button className='lesson' onClick={() => changeScene(scene + 1)}>บทเรียน</button>
         <button className='start' onClick={() => changeScene(3)}>START GAME</button>
       </div>
     )

@@ -4,15 +4,14 @@
 
   .scene-1,
   .scene-2,
-  .scene-3,
-  .scene-4,
-  .scene-5,
-  .scene-10 {
+  .scene-3{
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    width:100%;
+    height: 100%;
 
     > * {
       position: absolute;
@@ -69,247 +68,66 @@
     }
   }
 
-  .scene-1 {
-    .char {
-      bottom: 0;
-      right: 0;
-    }
-
-    .name {
-      left: 50px;
-      top: 50px;
-      width: 500px;
-    }
-
-    .start {
-      border-color: var(--black);
-      bottom: 100px;
-      left: 80px;
-      color: var(--black);
-    }
-
-    .lesson {
-      border-color: var(--black);
-      bottom: 220px;
-      left: 115px;
-      color: var(--black);
-    }
-  }
-
   .scene-2 {
-    .title {
-      position: absolute;
-      top: 25px;
-      background-color: white;
-      padding: 40px 0;
+    position: relative;
+
+    .page {
+      height: 100%;
       width: 100%;
-
-      h1, p {
-        text-align: center;
-        border-bottom: none;
-        color: var(--black);
-      }
-
-      p {
-        margin-top: 16px;
-      }
+      background-position: center;
+      background-size: cover;
     }
 
-    .char {
+    .page-1 button {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 380px;
-      height: auto;
+      bottom: 120px;
+      right: 195px;
+      border-color: var(--black);
     }
 
-    .char2 {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 150px;
-      height: auto;
-    }
-
-    .page-1 {
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-
-      .start {
-        position: absolute;
-        bottom: 170px;
-        right: 200px;
-        border-color: var(--black);
-        color: var(--black);
-      }
-    }
-
-    .page-2, .page-3, .page-4,
-    .page-5, .page-6, .page-7,
-    .page-8, .page-9, .page-10,
-    .page-11, .page-12, .page-13,
-    .page-14, .page-15, .page-16,
-    .page-16, .page-17, .page-18,
-    .page-19, .page-20, .page-21,
-    .page-22, .page-23 {
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-
+    .page-12 {
       > * {
         position: absolute;
       }
 
-      h3 {
-        top: 235px;
-        left: 350px;
-        padding: 20px 30px;
-        background-color: white;
-        border: 6px solid var(--primary);
-        color: var(--primary);
-        border-radius: 20px;
-        z-index: 2;
+      .char {
+        bottom: 0;
+        right: -1px;
       }
 
-      ul {
-        top: 340px;
-        left: 410px;
-        list-style: none;
-        z-index: 1;
+      .name {
+        left: 35px;
+        top: 50px;
         width: 500px;
-        padding: 0;
-
-        li {
-          color: var(--white);
-          background-color: grey;
-          padding-left: 8px;
-          margin-bottom: 10px;
-          padding: 5px 10px;
-
-          p {
-            color: var(--white);
-          }
-        }
-      }
-
-      p.content {
-        top: 340px;
-        left: 410px;
-        background-color: var(--black);
-        padding: 10px;
-        width: 500px;
-        text-align: center;
-      }
-
-      p.meaning {
-        bottom: 20px;
-        width: 500px;
-        left: 0;
-        right: 0;
-        margin: auto;
-        font-size: 20px;
-      }
-
-      div.content1 {
-        top: 200px;
-        right: 100px;
-        width: 600px;
-        color: var(--black);
-        background-color: var(--white);
-        padding: 20px;
-        border: 6px solid var(--primary);
-        border-radius: 20px;
-
-        h4 {
-          margin-bottom: 20px;
-          color: var(--primary);
-
-          &:last-child {
-            margin-bottom: 0;
-          }
-        }
-
-        p {
-          color: var(--black);
-        }
-
-        span {
-          font-size: 20px;
-          font-weight: normal;
-          padding-left: 20px;
-          color: var(--black);
-        }
-
-        ul {
-          list-style: square;
-          padding-left: 30px;
-          width: 100%;
-
-          li {
-            font-size: 20px;
-            background: none;
-            padding-right: 30px;
-            color: var(--black);
-          }
-        }
       }
 
       .start {
-        bottom: 200px;
-        right: 150px;
         border-color: var(--black);
+        bottom: 200px;
+        left: 80px;
+        color: var(--black);
       }
     }
 
-    .page-10 .content1 {
-      top: 140px !important;
-    }
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      position: absolute;
+      top: 30px;
+      left: 0;
+      right: 0;
+      padding: 0 20px;
 
-    .page-11 .content1 {
-      width: 85% !important;
-      margin: auto;
-      left: 0 !important;
-      right: 0 !important;
-      top: 160px !important;
+      button {
+        font-size: 25px;
+        height: 65px;
+        border: none;
+        background-color: #95B3D7;
 
-      h4 ul {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        list-style: square;
-        padding-left: 20px;
-
-        li {
-          background: none;
-          font-size: 20px;
-          color:var(--black);
-          font-weight: normal;
-
-          &:last-child {
-            margin-bottom: 0;
-          }
+        &:hover {
+          background-color: var(--primary);
         }
       }
-
-      p {
-        color: var(--primary);
-        font-size: 20px;
-      }
-    }
-
-    .page-13 .content1 {
-      top: 40px !important;
-
-      li {
-        font-size: 18px !important;
-      }
-    }
-
-    .page-22 .content1 h4 span {
-      font-size: 18px !important;
     }
   }
 

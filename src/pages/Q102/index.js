@@ -15,7 +15,7 @@ const initial = {
   timer: 20,
   players: [],
   player: {},
-  scene: 1,
+  scene: 2,
   question: 1,
   join: false
 }

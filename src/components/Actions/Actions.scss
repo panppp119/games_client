@@ -24,7 +24,10 @@
 
   &.bottom-center {
     bottom: 16px;
+    left: 0;
+    right: 0;
     margin: auto;
+    text-align: center;
   }
 
   button {

@@ -14,31 +14,31 @@ class Home extends React.Component {
       <Layout>
         <h1>Games</h1>
 
-        <div class="layout-content">
-          <div class="column">
-            <Link to="/q10">
-              <img src={g1} alt="q10" />
+        <div className='layout-content'>
+          <div className='column'>
+            <Link to='/q10'>
+              <img src={g1} alt='q10' />
               <h3>Q10</h3>
             </Link>
           </div>
 
-          <div class="column">
-            <Link to="/cyber_shoot">
-              <img src={g2} alt="cyber-shoot" />
+          <div className='column'>
+            <Link to='/cyber_shoot'>
+              <img src={g2} alt='cyber-shoot' />
               <h3>Cyber Shoot</h3>
             </Link>
           </div>
 
-          <div class="column">
-            <Link to="/a_day_with_peepo">
-              <img src={g3} alt="a-day-with-peepo" />
+          <div className='column'>
+            <Link to='/a_day_with_peepo'>
+              <img src={g3} alt='a-day-with-peepo' />
               <h3>A Day with PeePo</h3>
             </Link>
           </div>
 
-          <div class="column">
-            <Link to="/cyber_adventure">
-              <img src={g4} alt="cyber-adventure" />
+          <div className='column'>
+            <Link to='/cyber_adventure'>
+              <img src={g4} alt='cyber-adventure' />
               <h3>Cyber Adventure</h3>
             </Link>
           </div>

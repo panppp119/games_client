@@ -8,7 +8,7 @@ import './Q10.scss'
 
 class Q10 extends React.Component {
   state = {
-    scene: 1
+    scene: 2
   }
 
   changeScene = (scene) => {
@@ -22,7 +22,7 @@ class Q10 extends React.Component {
 
     return (
       <Layout>
-        <h1>A Day With PeePo</h1>
+        <h1>Q10</h1>
 
         <div className='frame q10'>
           {scene === 1 && <Scene1 changeScene={this.changeScene} scene={scene} {...this.props} />}

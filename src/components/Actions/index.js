@@ -19,11 +19,15 @@ class Actions extends React.Component {
   }
 
   handleClick = (type) => {
-    const { scene, changeScene, changePause, stopSound, history, changePage, page } = this.props
+    const { scene, changeScene, changePause, stopSound, history, changePage, page, home } = this.props
 
     if (scene > 1 ) {
       switch (type) {
-        case 'home': history.push('/')
+        case 'home': home === 'page' ?
+          changePage(1)
+          : home === 'scene' ?
+            changeScene(1)
+            : history.push('/')
           break
         case 'pause': changePause()
           break
