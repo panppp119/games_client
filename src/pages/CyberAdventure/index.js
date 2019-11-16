@@ -18,8 +18,6 @@ class CyberAdventure extends React.Component {
   render () {
     const { scene } = this.state
 
-    var pause = true, prev = true, sound = true, next = true
-
     return (
       <Layout>
         <h1>Cyber Adventure</h1>

@@ -8,7 +8,7 @@ import './CyberShoot.scss'
 
 class CyberShoot extends React.Component {
   state = {
-    scene: 1
+    scene: 2
   }
 
   changeScene = (scene) => {
@@ -17,8 +17,6 @@ class CyberShoot extends React.Component {
 
   render () {
     const { scene } = this.state
-
-    var pause = true, prev = true, sound = true, next = true
 
     return (
       <Layout>
