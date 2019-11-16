@@ -33,6 +33,15 @@ class Scene2 extends React.Component {
     const { scene, changeScene } = this.props
     const { page } = this.state
 
+    const actions = (
+      <div className='top-nav'>
+        <button onClick={() => this.changePage(1)}>หน้าแรก</button>
+        <button onClick={() => this.changePage(2)}>แนะนำการใช้งาน</button>
+        <button onClick={() => this.changePage(3)}>จุดประสงค์การเรียนรู้</button>
+        <button onClick={() => this.changePage(4)}>เนื้อหาบทเรียน</button>
+      </div>
+    )
+
     const page1 = (
       <div className='page-1 page' style={{ backgroundImage: `url(${slide1})`}}>
         <button onClick={() => this.changePage(2)}>START</button>
@@ -41,23 +50,13 @@ class Scene2 extends React.Component {
 
     const page2 = (
       <div className='page-2 page' style={{ backgroundImage: `url(${slide2})`}}>
-        <div className='top-nav'>
-          <button onClick={() => this.changePage(1)}>หน้าแรก</button>
-          <button onClick={() => this.changePage(2)}>แนะนำการใช้งาน</button>
-          <button onClick={() => this.changePage(3)}>จุดประสงค์การเรียนรู้</button>
-          <button onClick={() => this.changePage(4)}>เนื้อหาบทเรียน</button>
-        </div>
+        {actions}
       </div>
     )
 
     const page3 = (
       <div className='page-3 page' style={{ backgroundImage: `url(${slide3})`}}>
-        <div className='top-nav'>
-          <button onClick={() => this.changePage(1)}>หน้าแรก</button>
-          <button onClick={() => this.changePage(2)}>แนะนำการใช้งาน</button>
-          <button onClick={() => this.changePage(3)}>จุดประสงค์การเรียนรู้</button>
-          <button onClick={() => this.changePage(4)}>เนื้อหาบทเรียน</button>
-        </div>
+        {actions}
       </div>
     )
 
@@ -66,12 +65,7 @@ class Scene2 extends React.Component {
         <img src={text1} alt='text' className='text1' onClick={() => this.changePage(5)} />
         <img src={text2} alt='text' className='text2' onClick={() => this.changePage(6)} />
         <img src={text3} alt='text' className='text3' onClick={() => this.changePage(10)} />
-        <div className='top-nav'>
-          <button onClick={() => this.changePage(1)}>หน้าแรก</button>
-          <button onClick={() => this.changePage(2)}>แนะนำการใช้งาน</button>
-          <button onClick={() => this.changePage(3)}>จุดประสงค์การเรียนรู้</button>
-          <button onClick={() => this.changePage(4)}>เนื้อหาบทเรียน</button>
-        </div>
+        {actions}
       </div>
     )
 
@@ -87,7 +81,8 @@ class Scene2 extends React.Component {
       <div className='page-12 page'>
         <img src={char} alt='char' className='char' />
         <img src={name} alt='name' className='name' />
-        <img src={start} alt='start' className='start' onClick={() => changeScene(3)} />
+
+        <button className='start' onClick={() => changeScene(3)}>START</button>
       </div>
     )
 
