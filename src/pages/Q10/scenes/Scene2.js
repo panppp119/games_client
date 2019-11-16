@@ -15,6 +15,10 @@ import slide10 from '../imgs/Slide10.JPG'
 import slide11 from '../imgs/Slide11.JPG'
 import char from '../imgs/char.png'
 import name from '../imgs/name.png'
+import start from '../imgs/start.png'
+import text1 from '../imgs/N1.png'
+import text2 from '../imgs/N2.png'
+import text3 from '../imgs/N3.png'
 
 class Scene2 extends React.Component {
   state = {
@@ -59,6 +63,9 @@ class Scene2 extends React.Component {
 
     const page4 = (
       <div className='page-4 page' style={{ backgroundImage: `url(${slide4})`}}>
+        <img src={text1} alt='text' className='text1' onClick={() => this.changePage(5)} />
+        <img src={text2} alt='text' className='text2' onClick={() => this.changePage(6)} />
+        <img src={text3} alt='text' className='text3' onClick={() => this.changePage(10)} />
         <div className='top-nav'>
           <button onClick={() => this.changePage(1)}>หน้าแรก</button>
           <button onClick={() => this.changePage(2)}>แนะนำการใช้งาน</button>
@@ -80,8 +87,7 @@ class Scene2 extends React.Component {
       <div className='page-12 page'>
         <img src={char} alt='char' className='char' />
         <img src={name} alt='name' className='name' />
-
-        <button className='start' onClick={() => changeScene(3)}>START GAME</button>
+        <img src={start} alt='start' className='start' onClick={() => changeScene(3)} />
       </div>
     )
 

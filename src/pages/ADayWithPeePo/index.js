@@ -8,7 +8,7 @@ import './ADayWithPeePo.scss'
 
 class ADayWithPeePo extends React.Component {
   state = {
-    scene: 1
+    scene: 2
   }
 
   changeScene = (scene) => {

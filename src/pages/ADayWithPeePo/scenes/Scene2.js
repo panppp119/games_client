@@ -3,6 +3,7 @@ import React from 'react'
 import Actions from 'components/Actions'
 
 import char from '../imgs/char.png'
+import name from '../imgs/title.png'
 
 class Scene2 extends React.Component {
   state = {
@@ -402,11 +403,11 @@ class Scene2 extends React.Component {
     )
 
     const page23 = (
-      <div className='page-22'>
-        {title}
+      <div className='page-23'>
         <img src={char} alt='char' className='char' />
+        <img src={name} alt='name' className='name' />
 
-        <button className='start' onClick={() => changeScene(scene + 1)}>START GAME</button>
+        <button className='start' onClick={() => changeScene(3)}>START GAME</button>
       </div>
     )
 
@@ -437,7 +438,7 @@ class Scene2 extends React.Component {
         {page === 23 && page23}
 
         {
-          page > 0 && page <= 23 && (
+          page > 1 && page <= 23 && (
             <Actions
               next={page !== 23}
               prev

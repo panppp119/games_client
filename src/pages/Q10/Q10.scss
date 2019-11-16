@@ -85,6 +85,37 @@
       border-color: var(--black);
     }
 
+    .page-4 {
+      > * {
+        position: absolute;
+      }
+
+      img {
+        height: 51px;
+        width: 349px;
+
+        &:hover {
+          height: 53px;
+          width: 351px;
+        }
+      }
+
+      .text1 {
+        left: 431px;
+        bottom: 215px;
+      }
+
+      .text2 {
+        left: 431px;
+        bottom: 157px;
+      }
+
+      .text3 {
+        left: 431px;
+        bottom: 100px;
+      }
+    }
+
     .page-12 {
       > * {
         position: absolute;
@@ -102,10 +133,16 @@
       }
 
       .start {
-        border-color: var(--black);
-        bottom: 200px;
-        left: 80px;
-        color: var(--black);
+        border: none;
+        bottom: 190px;
+        left: 125px;
+        width: 272px;
+        height: 80px;
+
+        &:hover {
+          width: 274px;
+          height: 82px;
+        }
       }
     }
 

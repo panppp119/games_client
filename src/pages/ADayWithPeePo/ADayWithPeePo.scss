@@ -1,7 +1,7 @@
 .a-day-with-peepo {
   padding: 0;
   background: radial-gradient(circle, rgba(0,161,194,1) 0%, rgba(1,65,135,1) 85%);
-  
+
   .scene-1,
   .scene-2,
   .scene-3,
@@ -297,6 +297,26 @@
 
     .page-22 .content1 h4 span {
       font-size: 18px !important;
+    }
+
+    .page-23 {
+      .char {
+        bottom: 0;
+        left: 0;
+        width: auto;
+      }
+
+      .name {
+        right: 35px;
+        top: 50px;
+      }
+
+      .start {
+        border-color: red;
+        bottom: 170px;
+        right: 80px;
+        color: red;
+      }
     }
   }
 

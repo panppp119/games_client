@@ -48,9 +48,9 @@ class Actions extends React.Component {
     return (
       <div className={`scene-actions ${position}`}>
         {home && <button onClick={() => this.handleClick('home')}><FaHome /></button>}
+        {sound && <button onClick={() => this.handleClick('sound')}><FaVolumeMute /></button>}
         {prev && <button onClick={() => this.handleClick('prev')}><FaChevronLeft /></button>}
         {pause && <button onClick={() => this.handleClick('pause')}><FaPause /></button>}
-        {sound && <button onClick={() => this.handleClick('sound')}><FaVolumeMute /></button>}
         {next && <button onClick={() => this.handleClick('next')}><FaChevronRight /></button>}
       </div>
     )
