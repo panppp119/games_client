@@ -132,6 +132,8 @@ class Scene2 extends React.Component {
         {
           page > 1 && page <= 23 && (
             <Actions
+              home='page'
+              sound
               next={page !== 23}
               prev
               scene={page === 1 ? scene : page}

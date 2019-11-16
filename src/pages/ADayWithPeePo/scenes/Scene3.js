@@ -84,7 +84,7 @@ class Scene3 extends React.Component {
   }
 
   playAgain = () => {
-    this.props.changeScene(1)
+    this.props.changeScene(2)
   }
 
   render () {

@@ -64,7 +64,7 @@ class Scene2 extends React.Component {
       <div className='page-4 page' style={{ backgroundImage: `url(${slide4})`}}>
         <img src={text1} alt='text' className='text1' onClick={() => this.changePage(5)} />
         <img src={text2} alt='text' className='text2' onClick={() => this.changePage(6)} />
-        <img src={text3} alt='text' className='text3' onClick={() => this.changePage(10)} />
+        <img src={text3} alt='text' className='text3' onClick={() => this.changePage(9)} />
         {actions}
       </div>
     )

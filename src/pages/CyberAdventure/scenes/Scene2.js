@@ -63,7 +63,7 @@ class Scene2 extends React.Component {
     const page4 = (
       <div className='page-4 page' style={{ backgroundImage: `url(${slide4})`}}>
         <img src={text1} alt='text' className='text1' onClick={() => this.changePage(5)} />
-        <img src={text2} alt='text' className='text2' onClick={() => this.changePage(6)} />
+        <img src={text2} alt='text' className='text2' onClick={() => this.changePage(9)} />
         {actions}
       </div>
     )
@@ -106,8 +106,10 @@ class Scene2 extends React.Component {
         {
           page > 1 && page <= 13 && (
             <Actions
+              home='page'
               next={page !== 13}
               prev
+              sound
               scene={page === 1 ? scene : page}
               page={page}
               changeScene={page === 1 ? changeScene : this.changePage}
