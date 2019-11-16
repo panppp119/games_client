@@ -134,7 +134,7 @@ class Scene3 extends React.Component {
           prev={page === 1 || page === 2}
           sound
           pause={page !== 1 && page !== 2}
-          scene={page === 1 ? 2 : page}
+          scene={page === 1 ? 3 : page}
           page={page}
           changePause={this.changePause}
           changeScene={page === 1 ? changeScene : this.changePage}
