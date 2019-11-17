@@ -8,7 +8,7 @@ import name from '../imgs/name.png'
 import slide1 from '../imgs/slide1.JPG'
 import slide2 from '../imgs/slide2.JPG'
 import slide3 from '../imgs/slide3.JPG'
-// import slide4 from '../imgs/slide4.JPG'
+import slide4 from '../imgs/slide4.JPG'
 import slide5 from '../imgs/slide5.JPG'
 import slide6 from '../imgs/slide6.JPG'
 import slide7 from '../imgs/slide7.JPG'
@@ -68,8 +68,7 @@ class Scene2 extends React.Component {
     )
 
     const page4 = (
-      // <div className='page-4 page' style={{ backgroundImage: `url(${slide4})`}}>
-      <div className='page-4 page'>
+      <div className='page-4 page' style={{ backgroundImage: `url(${slide4})`}}>
         <img src={text1} alt='text' className='text1' onClick={() => this.changePage(5)} />
         <img src={text2} alt='text' className='text2' onClick={() => this.changePage(6)} />
         <img src={text3} alt='text' className='text3' onClick={() => this.changePage(9)} />
