@@ -271,9 +271,9 @@
         }
 
         &.total-score {
-          font-size: 80px;
-          width: 400px;
-          right: 20px;
+          font-size: 54px;
+          width: 300px;
+          right: 57px;
           top: 261px;
           left: auto;
           text-align: center;
@@ -304,11 +304,11 @@
         border-color: var(--primary_dark);
         color: var(--primary_dark);
         bottom: 190px;
-        right: 80px;
+        right: 86px;
+        width: 255px;
 
         &.incorrect {
           bottom: 85px;
-          right: 58px;
         }
       }
 
@@ -372,6 +372,26 @@
 
       .c7 {
         top: 542px;
+      }
+    }
+
+    .gscene-6 {
+      .item {
+        width: 300px;
+        right: 70px;
+      }
+    }
+
+    .gscene-8 {
+      .label {
+        top: 90px;
+      }
+    }
+
+    .gscene-11 {
+      .item {
+        right: 48px;
+        width: 350px;
       }
     }
 

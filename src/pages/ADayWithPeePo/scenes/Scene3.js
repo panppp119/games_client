@@ -91,7 +91,7 @@ class Scene3 extends React.Component {
   }
 
   playAgain = () => {
-    this.changePage(4)
+    this.changePage(3)
   }
 
   render () {
