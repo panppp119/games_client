@@ -39,11 +39,18 @@ class Scene3 extends React.Component {
     ...initial,
   }
 
+  reset () {
+    this.setState(initial)
+  }
+
   addPlayer () {
+    var players = this.state.players
     const player = { ...this.state.player, score: 0 }
 
+    players.push(player)
+
     socket.emit('add player', player, this.state.scene)
-    this.setState({ join: true })
+    this.setState({ join: true, players })
   }
 
   removePlayer () {
@@ -107,16 +114,15 @@ class Scene3 extends React.Component {
     const { changeScene } = this.props
     const { page, playerName, timer, question, players, join, player } = this.state
     const scene = 2
+    const split = 2
+    const list = players.length > 0
+    var hasPlayer = player && player.name
 
     const overlay = (
       <div className='overlay'>
         <button onClick={this.changePause}>RESUME</button>
       </div>
     )
-
-    const split = 2
-    const list = players.length > 0
-    var hasPlayer = player && player.name
 
     hasPlayer && socket.on('update players', (data) => {
       this.setState({ players: data })
@@ -128,6 +134,10 @@ class Scene3 extends React.Component {
 
     var firstCol = players.slice(0, split)
     var secondCol = players.slice(split)
+
+    socket.on('update players', (players) => {
+      this.setState({ players })
+    })
 
     const page1 = (
       <div className='gscene-1'>
@@ -143,7 +153,7 @@ class Scene3 extends React.Component {
     const page2 = (
       <div className='gscene-2'>
         <h2>ENTER NAME</h2>
-        <input type='text' onChange={(e) => this.handleChangeName(e.target.value)} />
+        {!join && <input type='text' onChange={(e) => this.handleChangeName(e.target.value)} />}
         <button className='submit-name'
           disabled={playerName === ''}
           onClick={() => this.changePage(page + 1)}>ENTER</button>
@@ -152,7 +162,7 @@ class Scene3 extends React.Component {
 
     const page3 = (
       <div className='gscene-3'>
-        <h2>รอการเข้าร่วม</h2>
+        <h2 style={{ top: 50 }}>รอการเข้าร่วม</h2>
         <ul>
           {
             players.map((player, i) => {
@@ -169,6 +179,8 @@ class Scene3 extends React.Component {
         </ul>
       </div>
     )
+
+    console.log(this.state)
 
     const page4 = (
       <div className='gscene-3'>
@@ -266,7 +278,7 @@ class Scene3 extends React.Component {
         <Actions
           next={page === 1 && page !== 13}
           prev={page === 1 || page === 2}
-          sound
+          // sound
           pause={page !== 1 && page !== 2}
           scene={page === 1 ? 3 : page}
           page={page}

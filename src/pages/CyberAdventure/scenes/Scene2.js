@@ -127,7 +127,6 @@ class Scene2 extends React.Component {
               changeScene={page === 1 ? changeScene : this.changePage}
               changePage={this.changePage}
               history={this.props.history}
-              history={this.props.history}
               handlePause={this.handlePause}
               controls={controls}
             />

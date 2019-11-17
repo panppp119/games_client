@@ -1,4 +1,5 @@
 import React from 'react'
+// import Sound from 'react-sound'
 
 import Actions from 'components/Actions'
 
@@ -19,15 +20,21 @@ import start from '../imgs/start.png'
 import text1 from '../imgs/N1.png'
 import text2 from '../imgs/N2.png'
 import text3 from '../imgs/N3.png'
+// import audio from '../bg-audio.wav'
 
 class Scene2 extends React.Component {
   state = {
     page: 1,
+    sound: 'PLAYING'
   }
 
   changePage = (page) => {
     this.setState({ page })
   }
+
+  // handlePause = (status) => {
+  //   this.setState({ sound: status })
+  // }
 
   render () {
     const { scene, changeScene } = this.props
@@ -81,8 +88,7 @@ class Scene2 extends React.Component {
       <div className='page-12 page'>
         <img src={char} alt='char' className='char' />
         <img src={name} alt='name' className='name' />
-
-        <button className='start' onClick={() => changeScene(3)}>START</button>
+        <img src={start} alt='start' className='start' onClick={() => changeScene(3)} />
       </div>
     )
 
@@ -93,6 +99,11 @@ class Scene2 extends React.Component {
     else if (page === 7 || page === 9 || page === 12) {
       position = 'bottom-left'
     }
+
+    // const controls = {
+    //   pause: this.state.sound === Sound.status.PLAYING,
+    //   resume: this.state.sound === Sound.status.PAUSED
+    // }
 
     return (
       <div className='scene-2'>
@@ -115,16 +126,25 @@ class Scene2 extends React.Component {
               home='page'
               next={page !== 12}
               prev
-              sound
+              // sound
               scene={page === 1 ? scene : page}
               page={page}
               changeScene={page === 1 ? changeScene : this.changePage}
               changePage={this.changePage}
               history={this.props.history}
               position={position}
+              handlePause={this.handlePause}
+              // controls={controls}
             />
           )
         }
+
+        {/* <Sound
+          autoLoad
+          loop
+          url={audio}
+          playStatus={this.state.sound}
+        /> */}
       </div>
     )
   }

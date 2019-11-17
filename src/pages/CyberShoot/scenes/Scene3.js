@@ -1,4 +1,5 @@
 import React from 'react'
+import Sound from 'react-sound'
 
 import Actions from 'components/Actions'
 
@@ -12,6 +13,8 @@ import target_w from '../imgs/target_w.png'
 import target_p from '../imgs/target_p.png'
 import target_g from '../imgs/target_g.png'
 import gun from '../imgs/gun.png'
+import audio from '../bg-audio.mp3'
+import life from '../imgs/life.png'
 
 var myInterval
 
@@ -22,7 +25,8 @@ class Scene3 extends React.Component {
     score: 0,
     time: 100,
     timer: 100,
-    pause: false
+    pause: false,
+    sound: 'PLAYING'
   }
 
   changePage = (page) => {
@@ -36,6 +40,10 @@ class Scene3 extends React.Component {
 
   handleChangeName = (name) => {
     this.setState({ playerName: name })
+  }
+
+  handlePause = (status) => {
+    this.setState({ sound: status })
   }
 
   countdown = () => {
@@ -105,6 +113,11 @@ class Scene3 extends React.Component {
       <div className='gscene-2'>
         <h2>ENTER NAME</h2>
         <input type='text' onChange={(e) => this.handleChangeName(e.target.value)} />
+        <div className='actors'>
+          <img src={head_w} alt='white' />
+          <img src={head_p} alt='pink' />
+          <img src={head_g} alt='grey' />
+        </div>
         <button className='submit-name'
           disabled={playerName === ''}
           onClick={() => this.changePage(page + 1)}>ENTER</button>
@@ -114,6 +127,7 @@ class Scene3 extends React.Component {
     const page3 = (
       <div className='gscene-3'>
         <h2 className='time'>{timer}</h2>
+        {/* <div className='life'>{heart}</div> */}
       </div>
     )
 
@@ -121,6 +135,11 @@ class Scene3 extends React.Component {
       <div className='gscene-4'>
       </div>
     )
+
+    const controls = {
+      pause: this.state.sound === Sound.status.PLAYING,
+      resume: this.state.sound === Sound.status.PAUSED
+    }
 
     return (
       <div className='scene-3'>
@@ -130,6 +149,7 @@ class Scene3 extends React.Component {
         {page === 4 && page4}
 
         <Actions
+          home={page === 2 ? 'page' : 'scene'}
           next={page === 1 && page !== 4}
           prev={page === 1 || page === 2}
           sound
@@ -137,12 +157,22 @@ class Scene3 extends React.Component {
           scene={page === 1 ? 3 : page}
           page={page}
           changePause={this.changePause}
-          changeScene={page === 1 ? changeScene : this.changePage}
+          changeScene={changeScene}
           changePage={this.changePage}
           history={this.props.history}
+          handlePause={this.handlePause}
+          controls={controls}
+          pauseStatus={this.state.pause}
         />
 
         {this.state.pause && overlay}
+
+        <Sound
+          autoLoad
+          loop
+          url={audio}
+          playStatus={this.state.sound}
+        />
       </div>
     )
   }
