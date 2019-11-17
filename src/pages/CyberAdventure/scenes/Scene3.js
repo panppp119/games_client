@@ -3,6 +3,7 @@ import Sound from 'react-sound'
 
 import Actions from 'components/Actions'
 
+import city from '../imgs/cyber_city.jpg'
 import s2_1 from '../imgs/s2-1.png'
 import s2_2 from '../imgs/s2-2.png'
 import s3_1 from '../imgs/s3-1.png'
@@ -185,11 +186,13 @@ class Scene3 extends React.Component {
 
     const page3 = (
       <div className='gscene-3'>
-        <h2>ENTER NAME</h2>
+        <h2 style={{ width: 300, left: 'auto', right: 100, top: 100}}>ENTER NAME</h2>
+        <img src={s2_1} alt='char' style={{ left: 0, bottom: 0, height: '90%' }}/>
+        <img src={s2_2} alt='char' style={{ left: 'auto', top: 290, right: 170, height: 150 }}/>
         <input type='text' onChange={(e) => this.handleChangeName(e.target.value)} />
         <button className='submit-name'
           disabled={playerName === ''}
-          onClick={() => this.changePage(page + 1)}>ENTER</button>
+          onClick={() => this.changePage(page + 1)}>LET'S GO</button>
       </div>
     )
 
@@ -283,10 +286,10 @@ class Scene3 extends React.Component {
 
     const page10 = (
       <div className='gscene-10'>
-        <img src={s9_1} alt='char' className='i-1' style={{bottom: 0, right: -10, width: 600}} />
-        <img src={s9_2} alt='char' className='i-2' style={{bottom: 0, left: 0, width: 300}} />
-        <img src={s9_3} alt='char' className='i-3' style={{top: 50, left: 200, width: 300, zIndex: 0}} />
-        <img src={s9_4} alt='char' className='i-4' style={{top: 100, right: 20, width: 150, zIndex: 0}} />
+        <img src={s9_1} alt='char' className='i-1' />
+        <img src={s9_2} alt='char' className='i-2' />
+        <img src={s9_3} alt='char' className='i-3' />
+        <img src={s9_4} alt='char' className='i-4' />
         <Sound
           autoLoad
           url={audio9}
@@ -298,9 +301,9 @@ class Scene3 extends React.Component {
 
     const page11 = (
       <div className='gscene-11'>
-        <img src={s10_1} alt='char' className='i-1' style={{bottom: 150, right: 0, width: 400}} />
-        <img src={s10_2} alt='char' className='i-2' style={{bottom: 150, left: 0, width: '58%'}}/>
-        <img src={s10_3} alt='char' className='i-3' style={{top: 68, right: 0, left:-141, margin: 'auto', width: 250}}/>
+        <img src={s10_1} alt='char' className='i-1' />
+        <img src={s10_2} alt='char' className='i-2' />
+        <img src={s10_3} alt='char' className='i-3' />
 
         <img src={icon_1} alt='char' className={`icon1 ${!icon1 && 'unactive'}`} onClick={() => icon1 && this.incorrect(13, 'icon1')}
           style={{bottom: 20, left: 10}} />
@@ -329,7 +332,8 @@ class Scene3 extends React.Component {
 
     const page12 = (
       <div className='gscene-12'>
-        <img src={s11_1} alt='char' className='i-1' style={{ width: '74%', bottom: 0}} />
+        <img src={s11_1} alt='char' className='i-1' />
+        <img src={s11_2} alt='char' className='i-2' />
         <Sound
           autoLoad
           url={audio11}
@@ -341,7 +345,8 @@ class Scene3 extends React.Component {
 
     const page13 = (
       <div className='gscene-13'>
-        <img src={s12_1} alt='char' className='i-1' style={{ width: '100%', bottom: 0}} />
+        <img src={s12_1} alt='char' className='i-1' />
+        <img src={s12_2} alt='char' className='i-2' />
         <Sound
           autoLoad
           url={audio12}
@@ -353,8 +358,8 @@ class Scene3 extends React.Component {
 
     const page14 = (
       <div className='gscene-14'>
-        <img src={s13_1} alt='char' className='i-1' style={{ height: '80%', bottom: 0, left: 0}} />
-        <img src={s13_2} alt='char' className='i-2' style={{ height: '80%', bottom: 50, right: 20}} />
+        <img src={s13_1} alt='char' className='i-1' />
+        <img src={s13_2} alt='char' className='i-2' />
         <Sound
           autoLoad
           url={audio13}
@@ -366,38 +371,38 @@ class Scene3 extends React.Component {
 
     const page15 = (
       <div className='gscene-15'>
-        <img src={s14_1} alt='char' className='i-1' style={{ width: '80%', bottom: 0, right: 0}} />
+        <img src={s14_1} alt='char' className='i-1'/>
 
         <img src={icon_1} alt='char' className={`icon1 ${!icon1 && 'unactive'}`}
-          onClick={() => icon1 && this.incorrect(9, 'icon1')}
+          onClick={() => icon1 && this.incorrect(17, 'icon1')}
           style={{ top: 10, left: 10 }}
         />
         <img src={icon_2} alt='char' className={`icon2 ${!icon2 && 'unactive'}`}
-          onClick={() => icon2 && this.icorrect(8, 'icon2')}
+          onClick={() => icon2 && this.icorrect(16, 'icon2')}
           style={{ top: 24, left: 130}}
         />
         <img src={icon_3} alt='char' className={`icon3 ${!icon3 && 'unactive'}`}
-          onClick={() => icon3 && this.correct(9, 'icon3')}
+          onClick={() => icon3 && this.correct(17, 'icon3')}
           style={{ top: 24, left: 240}}
         />
         <img src={icon_4} alt='char' className={`icon4 ${!icon4 && 'unactive'}`}
-          onClick={() => icon4 && this.incorrect(9, 'icon4')}
+          onClick={() => icon4 && this.incorrect(17, 'icon4')}
           style={{ top: 24, left: 350}}
         />
         <img src={icon_5} alt='char' className={`icon5 ${!icon5 && 'unactive'}`}
-          onClick={() => icon5 && this.incorrect(9, 'icon5')}
+          onClick={() => icon5 && this.incorrect(17, 'icon5')}
           style={{ top: 150, left: 10}}
         />
         <img src={icon_6} alt='char' className={`icon6 ${!icon6 && 'unactive'}`}
-          onClick={() => icon6 && this.incorrect(9, 'icon6')}
+          onClick={() => icon6 && this.incorrect(17, 'icon6')}
           style={{ top: 150, left: 130}}
         />
         <img src={icon_7} alt='char' className={`icon7 ${!icon7 && 'unactive'}`}
-          onClick={() => icon7 && this.incorrect(9, 'icon7')}
+          onClick={() => icon7 && this.incorrect(17, 'icon7')}
           style={{ top: 150, left: 240}}
         />
         <img src={icon_8} alt='char' className={`icon8 ${!icon8 && 'unactive'}`}
-          onClick={() => icon8 && this.incorrect(9, 'icon8')}
+          onClick={() => icon8 && this.incorrect(17, 'icon8')}
           style={{ top: 150, left: 350}}
         />
 
@@ -436,7 +441,7 @@ class Scene3 extends React.Component {
 
     const page18 = (
       <div className='gscene-18'>
-        <img src={s17_1} alt='char' className='i-1' style={{ height: '100%', bottom: 0}} />
+        <img src={s17_1} alt='char' className='i-1' />
         <Sound
           autoLoad
           url={audio17}
@@ -448,23 +453,23 @@ class Scene3 extends React.Component {
 
     const page19 = (
       <div className='gscene-19'>
-        <img src={s18_1} alt='char' className='i-1' style={{ width: '100%', top: 0}} />
+        <img src={s18_1} alt='char' className='i-1' />
 
-        <img src={icon_1} alt='char' className={`icon1 ${!icon1 && 'unactive'}`} onClick={() => icon1 && this.incorrect(13, 'icon1')}
+        <img src={icon_1} alt='char' className={`icon1 ${!icon1 && 'unactive'}`} onClick={() => icon1 && this.incorrect(21, 'icon1')}
           style={{bottom: 20, left: 10}} />
-        <img src={icon_2} alt='char' className={`icon2 ${!icon2 && 'unactive'}`} onClick={() => icon2 && this.incorrect(13, 'icon2')}
+        <img src={icon_2} alt='char' className={`icon2 ${!icon2 && 'unactive'}`} onClick={() => icon2 && this.incorrect(21, 'icon2')}
           style={{bottom: 20, left: 120}} />
-        <img src={icon_3} alt='char' className={`icon3 ${!icon3 && 'unactive'}`} onClick={() => icon3 && this.incorrect(13, 'icon3')}
+        <img src={icon_3} alt='char' className={`icon3 ${!icon3 && 'unactive'}`} onClick={() => icon3 && this.incorrect(21, 'icon3')}
           style={{bottom: 20, left: 220}}/>
-        <img src={icon_4} alt='char' className={`icon4 ${!icon4 && 'unactive'}`} onClick={() => icon4 && this.incorrect(13, 'icon4')}
+        <img src={icon_4} alt='char' className={`icon4 ${!icon4 && 'unactive'}`} onClick={() => icon4 && this.correct(20, 'icon4')}
           style={{ bottom: 20, left: 320}}/>
-        <img src={icon_5} alt='char' className={`icon5 ${!icon5 && 'unactive'}`} onClick={() => icon5 && this.incorrect(13, 'icon5')}
+        <img src={icon_5} alt='char' className={`icon5 ${!icon5 && 'unactive'}`} onClick={() => icon5 && this.incorrect(21, 'icon5')}
           style={{bottom: 20, left: 420}}/>
-        <img src={icon_6} alt='char' className={`icon6 ${!icon6 && 'unactive'}`} onClick={() => icon6 && this.correct(12, 'icon6')}
+        <img src={icon_6} alt='char' className={`icon6 ${!icon6 && 'unactive'}`} onClick={() => icon6 && this.incorrect(21, 'icon6')}
           style={{bottom: 20, left: 520}}/>
-        <img src={icon_7} alt='char' className={`icon7 ${!icon7 && 'unactive'}`} onClick={() => icon7 && this.incorrect(13, 'icon7')}
+        <img src={icon_7} alt='char' className={`icon7 ${!icon7 && 'unactive'}`} onClick={() => icon7 && this.incorrect(21, 'icon7')}
           style={{bottom: 20, left: 620}}/>
-        <img src={icon_8} alt='char' className={`icon8 ${!icon8 && 'unactive'}`} onClick={() => icon8 && this.incorrect(13, 'icon8')}
+        <img src={icon_8} alt='char' className={`icon8 ${!icon8 && 'unactive'}`} onClick={() => icon8 && this.incorrect(21, 'icon8')}
           style={{bottom: 20, left: 720}}/>
 
         <Sound
@@ -502,7 +507,9 @@ class Scene3 extends React.Component {
 
     const page22 = (
       <div className='gscene-22'>
-        <img src={s21_1} alt='char' className='i-1' style={{ height: '75%', bottom: 0}} />
+        <img src={s21_1} alt='char' className='i-1' />
+        <img src={s21_2} alt='char' className='i-2' />
+        <img src={s21_3} alt='char' className='i-3' />
         <Sound
           autoLoad
           url={audio21}
@@ -514,38 +521,39 @@ class Scene3 extends React.Component {
 
     const page23 = (
       <div className='gscene-23'>
-        <img src={s22_1} alt='char' className='i-1' style={{ height: '70%', top: 0, left: 0, right: 0, bottom: 0, margin: 'auto'}} />
+        <img src={s22_1} alt='char' className='i-1'/>
+        <img src={s22_2} alt='char' className='i-2'/>
 
         <img src={icon_1} alt='char' className={`icon1 ${!icon1 && 'unactive'}`}
-          onClick={() => icon1 && this.incorrect(9, 'icon1')}
+          onClick={() => icon1 && this.incorrect(25, 'icon1')}
           style={{ top: 20, left: 50 }}
         />
         <img src={icon_2} alt='char' className={`icon2 ${!icon2 && 'unactive'}`}
-          onClick={() => icon2 && this.icorrect(8, 'icon2')}
+          onClick={() => icon2 && this.incorrect(25, 'icon2')}
           style={{ top: 150, left: 50}}
         />
         <img src={icon_3} alt='char' className={`icon3 ${!icon3 && 'unactive'}`}
-          onClick={() => icon3 && this.correct(9, 'icon3')}
+          onClick={() => icon3 && this.incorrect(25, 'icon3')}
           style={{ top: 300, left: 50}}
         />
         <img src={icon_4} alt='char' className={`icon4 ${!icon4 && 'unactive'}`}
-          onClick={() => icon4 && this.incorrect(9, 'icon4')}
+          onClick={() => icon4 && this.incorrect(25, 'icon4')}
           style={{ top: 450, left: 50}}
         />
         <img src={icon_5} alt='char' className={`icon5 ${!icon5 && 'unactive'}`}
-          onClick={() => icon5 && this.incorrect(9, 'icon5')}
+          onClick={() => icon5 && this.incorrect(25, 'icon5')}
           style={{ top: 20, right: 50}}
         />
         <img src={icon_6} alt='char' className={`icon6 ${!icon6 && 'unactive'}`}
-          onClick={() => icon6 && this.incorrect(9, 'icon6')}
+          onClick={() => icon6 && this.incorrect(25, 'icon6')}
           style={{ top: 150, right: 50}}
         />
         <img src={icon_7} alt='char' className={`icon7 ${!icon7 && 'unactive'}`}
-          onClick={() => icon7 && this.incorrect(9, 'icon7')}
+          onClick={() => icon7 && this.incorrect(25, 'icon7')}
           style={{ top: 300, right: 50}}
         />
         <img src={icon_8} alt='char' className={`icon8 ${!icon8 && 'unactive'}`}
-          onClick={() => icon8 && this.incorrect(9, 'icon8')}
+          onClick={() => icon8 && this.correct(24, 'icon8')}
           style={{ top: 450, right: 50}}
         />
         <Sound
@@ -558,11 +566,11 @@ class Scene3 extends React.Component {
     )
 
     const page24 = (
-      <div className='gscene-24'>
-        <img src={s23_1} alt='char' className='i-1' style={{ height: '80%', bottom: 0}} />
+      <div className='gscene-24' style={{ backgroundImage: `url(${city})`}}>
+        <img src={s23_1} alt='char' className='i-1' />
 
-        <h3 style={{top: 50, right: 170, color: 'var(--black)'}}>SCORE</h3>
-        <h2 className="score" style={{top: 120, right: 100, left: 'auto', backgroundColor: 'white', fontSize: 60, width: 230}}>{score}</h2>
+        <h3 style={{top: 50, right: 170, color: 'var(--white)'}}>SCORE</h3>
+        <h2 className='score' style={{top: 120, right: 100, left: 'auto', backgroundColor: 'white', fontSize: 60, width: 230}}>{score}</h2>
 
         <button className='play-again' onClick={this.playAgain}>PLAY AGAIN</button>
         <Sound
@@ -578,7 +586,7 @@ class Scene3 extends React.Component {
         <img src={s24_1} alt='char' className='i-1' style={{ height: '100%', bottom: 0, right: 0}} />
 
         <h3 style={{top: 50, right: 170, color: 'var(--black)'}}>SCORE</h3>
-        <h2 className="score" style={{top: 120, right: 100, left: 'auto', backgroundColor: 'white', fontSize: 60, width: 230}}>{score}</h2>
+        <h2 className='score' style={{top: 120, right: 100, left: 'auto', backgroundColor: 'white', fontSize: 60, width: 230}}>{score}</h2>
 
         <button className='play-again' onClick={this.playAgain} style={{ right: 59 }}>PLAY AGAIN</button>
         <Sound
@@ -592,7 +600,7 @@ class Scene3 extends React.Component {
     const controls = {
       pause: this.state.sound === Sound.status.PLAYING,
       resume: this.state.sound === Sound.status.PAUSED,
-      stop: this.state.sound !== Sound.status.STOPPED
+      stop: this.state.sound === Sound.status.STOPPED
     }
 
     return (
@@ -625,7 +633,7 @@ class Scene3 extends React.Component {
 
         <Actions
           home={page === 2 ? 'page' : 'scene'}
-          next={(page === 1 || page === 2) && page !== 24}
+          next={(page === 1 || page === 2) && page !== 24 && page !== 25}
           // next
           prev={page === 1 && page === 2 && page === 3}
           sound

@@ -8,7 +8,7 @@ import './CyberAdventure.scss'
 
 class CyberAdventure extends React.Component {
   state = {
-    scene: 2
+    scene: 3
   }
 
   changeScene = (scene) => {

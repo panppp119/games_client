@@ -52,7 +52,7 @@ class Actions extends React.Component {
         {home && <button onClick={() => this.handleClick('home')}><FaHome /></button>}
         {sound && controls.pause && <button onClick={() => this.props.handlePause('PAUSED')}><FaVolumeMute /></button>}
         {sound && controls.resume && <button onClick={() => this.props.handlePause('PLAYING')}><FaVolumeDown /></button>}
-        {/* {sound && controls.stop && <button onClick={() => this.props.handlePause('PLAYING')}><FaVolumeDown /></button>} */}
+        {sound && controls.stop && <button onClick={() => this.props.handlePause('PLAYING')}><FaVolumeDown /></button>}
         {prev && <button onClick={() => this.handleClick('prev')}><FaChevronLeft /></button>}
         {pause && pauseStatus && <button onClick={() => this.handleClick('pause')}><FaPlay /></button>}
         {pause && !pauseStatus && <button onClick={() => this.handleClick('pause')}><FaPause /></button>}

@@ -14,7 +14,7 @@ import target_p from '../imgs/target_p.png'
 import target_g from '../imgs/target_g.png'
 import gun from '../imgs/gun.png'
 import audio from '../bg-audio.mp3'
-import life from '../imgs/life.png'
+import heart from '../imgs/life.png'
 
 var myInterval
 
@@ -26,7 +26,9 @@ class Scene3 extends React.Component {
     time: 100,
     timer: 100,
     pause: false,
-    sound: 'PLAYING'
+    sound: 'PLAYING',
+    type: 'white',
+    life: 5
   }
 
   changePage = (page) => {
@@ -68,6 +70,10 @@ class Scene3 extends React.Component {
     !this.state.pause && this.countdown()
   }
 
+  changeType = (type) => {
+    this.setState({ type })
+  }
+
   correctAnswer = () => {
     this.setState({ score: this.state.score + this.state.timer })
     clearInterval(myInterval)
@@ -85,9 +91,7 @@ class Scene3 extends React.Component {
 
   render () {
     const { changeScene } = this.props
-    const { page, playerName, timer } = this.state
-    const scene = 2
-
+    const { page, playerName, timer, type, score, life } = this.state
     const overlay = (
       <div className='overlay'>
         <button onClick={this.changePause}>RESUME</button>
@@ -114,9 +118,15 @@ class Scene3 extends React.Component {
         <h2>ENTER NAME</h2>
         <input type='text' onChange={(e) => this.handleChangeName(e.target.value)} />
         <div className='actors'>
-          <img src={head_w} alt='white' />
-          <img src={head_p} alt='pink' />
-          <img src={head_g} alt='grey' />
+          <img src={head_w} alt='white'
+            className={type === 'white' && 'active'}
+            onClick={() => this.changeType('white')} />
+          <img src={head_p} alt='pink'
+            className={type === 'pink' && 'active'}
+            onClick={() => this.changeType('pink')} />
+          <img src={head_g} alt='grey'
+            className={type === 'grey' && 'active'}
+            onClick={() => this.changeType('grey')} />
         </div>
         <button className='submit-name'
           disabled={playerName === ''}
@@ -126,8 +136,15 @@ class Scene3 extends React.Component {
 
     const page3 = (
       <div className='gscene-3'>
-        <h2 className='time'>{timer}</h2>
-        {/* <div className='life'>{heart}</div> */}
+        <h2 className='time'>TIME: {timer}</h2>
+        <h2 className='score'>SCORE: {score}</h2>
+        <div className='life'>
+          {life >= 1 && <img src={heart} alt='life'/>}
+          {life >= 2 && <img src={heart} alt='life'/>}
+          {life >= 3 && <img src={heart} alt='life'/>}
+          {life >= 4 && <img src={heart} alt='life'/>}
+          {life === 5 && <img src={heart} alt='life'/>}
+        </div>
       </div>
     )
 

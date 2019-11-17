@@ -235,12 +235,12 @@ $red: #c90000;
       }
 
       .submit-name {
-        bottom: 150px;
-        left: 0;
-        right: 0;
+        bottom: 105px;
         margin: auto;
         border-color: $red;
         color: $red;
+        left: auto;
+        right: 140px;
 
         &:disabled {
           border-color: #DDD;
@@ -252,15 +252,15 @@ $red: #c90000;
         height: 60px;
         outline: none;
         text-align: center;
-        width: 60%;
         margin: auto;
-        left: 0;
-        right: 0;
-        top: 250px;
         padding: 10px;
         box-shadow: 2px 2px 4px var(--black);
         border: none;
         font-size: 40px;
+        width: 300px;
+        left: auto;
+        right: 85px;
+        top: 180px;
       }
 
       h2 {
@@ -442,7 +442,6 @@ $red: #c90000;
       bottom: 0px;
       height: 100%;
       transform: translateX(-156px);
-
       animation: s81 5s linear;
     }
 
@@ -476,6 +475,31 @@ $red: #c90000;
       &:hover {
         width: 112px;
       }
+    }
+  }
+
+  .gscene-10 {
+    .i-1 {
+      bottom: 0; right: -10px; width: 600px;
+      animation: fadeRight 2s linear;
+    }
+    .i-2 {
+      opacity: 0;
+      bottom: 0; left: 0; width: 300px;
+      animation: fadeLeft 3s linear forwards;
+      animation-delay: 2s;
+    }
+    .i-3 {
+      opacity: 0;
+      top: 50px; left: 200px; width: 300px; z-index: 0;
+      animation: fadeRight 1s linear forwards;
+      animation-delay: 5s;
+    }
+    .i-4 {
+      opacity: 0;
+      top: 100px; right: 20px; width: 150px; z-index: 0;
+      animation: fadeLeft 1s linear forwards;
+      animation-delay: 6s;
     }
   }
 
@@ -524,6 +548,159 @@ $red: #c90000;
     }
   }
 
+  .gscene-11 {
+    .i-1 {
+      bottom: 150px; right: 0; width: 400px;
+      animation: fadeRight 1s linear;
+    }
+    .i-2 {
+      bottom: 150px; left: 0; width: 58%;
+      opacity: 0;
+      animation: fadeLeft 1s linear forwards;
+      animation-delay: 2s;
+    }
+    .i-3 {
+      top: 68px; right: 0; left: -141px; margin: auto; width: 250px;
+      opacity: 0;
+      animation: fadeLeft 1s linear forwards;
+      animation-delay: 4s;
+    }
+  }
+
+  .gscene-12 {
+    .i-1 {
+      width: 74%;
+      bottom: 0;
+      animation: fadeLeft 2s linear;
+    }
+    .i-2 {
+      opacity: 0;
+      right: 50px;
+      top: 50px;
+      width: 28%;
+      animation: fadeLeft 2s linear forwards;
+      animation-delay: 6s;
+    }
+  }
+
+  .gscene-13 {
+    .i-1 {
+       width: 100%;
+       bottom: 0;
+       animation: fadeUp 2s linear;
+    }
+    .i-2 {
+      left: 0;
+      right: 0;
+      top: 238px;
+      width: 20%;
+      margin: auto;
+      opacity: 0;
+      animation: fadeDown 2s linear forwards;
+      animation-delay: 2s;
+    }
+  }
+
+  .gscene-14 {
+    .i-1 {
+       height: 80%;
+       bottom: 0;
+       left: 0;
+       animation: fadeLeft 2s linear;
+    }
+    .i-2 {
+       height: 80%;
+       bottom: 50px;
+       right: 20px;
+       opacity: 0;
+       animation: fadeLeft 2s linear forwards;
+       animation-delay: 4s;
+    }
+  }
+
+  .gscene-15 {
+    .i-1 {
+      width: 80%; bottom: 0; right: 0;
+      animation: fadeRight 5s linear;
+    }
+  }
+
+  .gscene-18 {
+    .i-1 {
+      height: 110%;
+      bottom: -20px;
+      left: -20px; right: 0; margin: auto;
+      animation: sun 0.5s linear infinite;
+    }
+  }
+
+  .gscene-19 {
+    .i-1 {
+      width: 100%; top: 0;
+      animation: fadeDown 5s linear;
+    }
+  }
+
+  .gscene-22 {
+    .i-1 {
+      height: 88%; bottom: 0; left: -20px;
+      animation: fadeLeft 1s linear;
+      z-index: 1;
+    }
+    .i-2 {
+      height: 100%; top: 0; right: -128px;
+      opacity: 0;
+      animation: fadeLeft 2s linear forwards;
+      animation-delay: 2s;
+      z-index: 0;
+    }
+    .i-3 {
+      height: 120px; top: 20px; left: 200px; opacity: 0;
+      animation: fadeLeft 1s linear forwards;
+      animation-delay: 5s;
+      z-index: 0;
+    }
+  }
+
+  .gscene-23 {
+    .i-1 {
+      height: 70%; top: 0; left: 0; right: 0; bottom: 0; margin: auto;
+      animation: fadeUp 3s linear;
+      z-index: 1;
+    }
+    .i-2 {
+      height: 100%; bottom: 0; opacity: 0; left: 0; right: 0; margin: auto;
+      animation: fade 3s linear forwards;
+      animation-delay: 2s;
+      z-index: 0;
+    }
+  }
+
+  .gscene-24 {
+    background-position: center;
+    background-size: cover;
+
+    h3 {
+      color: var(--white);
+    }
+
+    .i-1 {
+      animation: fadeRight 5s linear;
+      height: 80%; bottom: -10px;
+    }
+  }
+
+  @keyframes sun {
+    0% { transform: rotate(2deg) }
+    50%{ transform: rotate(-2deg) }
+    100%{ transform: rotate(0deg) }
+  }
+
+  @keyframes fade {
+    0% { opacity: 0; }
+    100%{ opacity: 1; }
+  }
+
   @keyframes left {
     0% { transform: translateX(0); }
     100%{ transform: translateX(20px); }
@@ -541,6 +718,16 @@ $red: #c90000;
 
   @keyframes fadeLeft {
     0% { transform: translateX(-100px); opacity: 0; }
-    60%{ transform: translateX(0); opacity: 1; }
+    100%{ transform: translateX(0); opacity: 1; }
+  }
+
+  @keyframes fadeUp{
+    0% { transform: translateY(100px); opacity: 0; }
+    100%{ transform: translateY(0); opacity: 1; }
+  }
+
+  @keyframes fadeDown{
+    0% { transform: translateY(-100px); opacity: 0; }
+    100%{ transform: translateY(0); opacity: 1; }
   }
 }
