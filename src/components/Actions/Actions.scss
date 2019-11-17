@@ -1,6 +1,7 @@
 .scene-actions {
   display: inline-block;
   position: absolute;
+  z-index: 999;
 
   &.bottom-right {
     bottom: 10px;

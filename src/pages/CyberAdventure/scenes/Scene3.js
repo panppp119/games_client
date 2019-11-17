@@ -1,4 +1,5 @@
 import React from 'react'
+import Sound from 'react-sound'
 
 import Actions from 'components/Actions'
 
@@ -49,15 +50,40 @@ import s22_3 from '../imgs/s22-3.png'
 import s22_4 from '../imgs/s22-4.png'
 import s23_1 from '../imgs/s23-1.png'
 import s24_1 from '../imgs/s24-1.png'
-import icon_1 from '../imgs/icon-1.png'
-import icon_2 from '../imgs/icon-2.png'
-import icon_3 from '../imgs/icon-3.png'
-import icon_4 from '../imgs/icon-4.png'
-import icon_5 from '../imgs/icon-5.png'
-import icon_6 from '../imgs/icon-6.png'
-import icon_7 from '../imgs/icon-7.png'
-import icon_7_1 from '../imgs/icon-7-1.png'
-import icon_8 from '../imgs/icon-8.png'
+import icon_g from '../imgs/icon-g.png'
+import icon_g1 from '../imgs/icon-g1.png'
+import icon_1 from '../imgs/icon1.png'
+import icon_2 from '../imgs/icon2.png'
+import icon_3 from '../imgs/icon3.png'
+import icon_4 from '../imgs/icon4.png'
+import icon_5 from '../imgs/icon5.png'
+import icon_6 from '../imgs/icon6.png'
+import icon_7 from '../imgs/icon7.png'
+import icon_8 from '../imgs/icon8.png'
+import audio from '../bg-audio.wav'
+import audio3 from '../audios/3.mp3'
+import audio4 from '../audios/4.mp3'
+import audio5 from '../audios/5.mp3'
+import audio6 from '../audios/6.mp3'
+import audio61 from '../audios/6.1.mp3'
+import audio7 from '../audios/7.mp3'
+import audio8 from '../audios/8.mp3'
+import audio9 from '../audios/9.mp3'
+import audio10 from '../audios/10.mp3'
+import audio11 from '../audios/11.mp3'
+import audio12 from '../audios/12.mp3'
+import audio13 from '../audios/13.mp3'
+import audio14 from '../audios/14.mp3'
+import audio15 from '../audios/15.mp3'
+import audio16 from '../audios/16.mp3'
+import audio17 from '../audios/17.mp3'
+import audio18 from '../audios/18.mp3'
+import audio19 from '../audios/19.mp3'
+import audio20 from '../audios/20.mp3'
+import audio21 from '../audios/21.mp3'
+import audio22 from '../audios/22.mp3'
+import audio23 from '../audios/23.mp3'
+import audio24 from '../audios/24.mp3'
 
 var myInterval
 
@@ -65,22 +91,34 @@ class Scene3 extends React.Component {
   state = {
     page: 1,
     playerName: '',
+    life: 10,
     score: 0,
-    pause: false
+    pause: false,
+    sound: 'PLAYING',
+    icon1: true,
+    icon2: true,
+    icon3: true,
+    icon4: true,
+    icon5: true,
+    icon6: true,
+    icon7: true,
+    icon8: true,
   }
 
   changePage = (page) => {
     this.setState({ page })
 
-    if (page > 2 && page < 13) {
-      (page === 3 || page === 4 || page === 5) && setTimeout(() => {
-        this.changePage(page + 1)
-      }, 5000)
+    if (page > 3 && page <= 25) {
+      this.setState({ sound: Sound.status.PLAYING })
     }
   }
 
   handleChangeName = (name) => {
     this.setState({ playerName: name })
+  }
+
+  handlePause = (status) => {
+    this.setState({ sound: status })
   }
 
   changePause = () => {
@@ -97,12 +135,32 @@ class Scene3 extends React.Component {
   }
 
   playAgain = () => {
-    this.props.changeScene(2)
+    this.changePage(4)
+  }
+
+  finish = (val) => {
+    const { page } = this.state
+    if (page !== 7 && page !== 11 && page !== 15 && page !== 19 && page !== 23) {
+      this.changePage(val || page + 1)
+    }
+    else {
+      this.setState({ sound: 'STOPPED' })
+    }
+  }
+
+  correct = (page, name) => {
+    this.setState({ score: this.state.score + 20, [name]: false, sound: 'PLAYING' })
+    this.changePage(page)
+  }
+
+  incorrect = (page, name) => {
+    this.setState({ life: this.state.life - 2, [name]: false, sound: 'PLAYING' })
+    this.changePage(page)
   }
 
   render () {
     const { changeScene } = this.props
-    const { page, playerName, timer } = this.state
+    const { page, playerName, timer, icon1, icon2, icon3, icon4, icon5, icon6, icon7, icon8, score } = this.state
     const scene = 2
 
     const overlay = (
@@ -123,8 +181,10 @@ class Scene3 extends React.Component {
       </div>
     )
 
-    const page2 = (
-      <div className='gscene-2'>
+    const page2 =  <div className='gscene-2' style={{ backgroundImage:  `url(${icon_g})`}} />
+
+    const page3 = (
+      <div className='gscene-3'>
         <h2>ENTER NAME</h2>
         <input type='text' onChange={(e) => this.handleChangeName(e.target.value)} />
         <button className='submit-name'
@@ -133,76 +193,407 @@ class Scene3 extends React.Component {
       </div>
     )
 
-    const page3 = (
-      <div className='gscene-3'>
+    const page4 = (
+      <div className='gscene-4'>
         <img src={s3_1} alt='char' className='i-1' />
         <img src={s3_2} alt='char' className='i-2' />
         <img src={s3_3} alt='char' className='i-3' />
-      </div>
-    )
-
-    const page4 = (
-      <div className='gscene-4'>
-        <img src={s4_1} alt='char' className='i-1' />
-        <img src={s4_2} alt='char' className='i-2' />
+        <img src={icon_g1} alt='char' className='i-4' />
+        <Sound
+          autoLoad
+          url={audio3}
+          playStatus={this.state.sound}
+          onFinishedPlaying={() => this.finish()}
+        />
       </div>
     )
 
     const page5 = (
       <div className='gscene-5'>
-        <img src={s5_1} alt='char' className='i-1' />
+        <img src={s4_1} alt='char' className='i-1' />
+        <img src={s4_2} alt='char' className='i-2' />
+        <Sound
+          autoLoad
+          url={audio4}
+          playStatus={this.state.sound}
+          onFinishedPlaying={() => this.finish()}
+        />
       </div>
     )
 
     const page6 = (
       <div className='gscene-6'>
-        <img src={s6_1} alt='char' className='i-1' />
+        <img src={s5_1} alt='char' className='i-1' />
+
+        <Sound
+          autoLoad
+          url={audio5}
+          playStatus={this.state.sound}
+          onFinishedPlaying={() => this.finish()}
+        />
       </div>
     )
 
     const page7 = (
       <div className='gscene-7'>
-        <img src={s7_1} alt='char' className='i-1' />
+        <img src={s6_1} alt='char' className='i-1' />
+        <img src={s6_2} alt='char' className='i-2' />
+
+        <img src={icon_1} alt='char' className={`icon1 ${!icon1 && 'unactive'}`} onClick={() => this.incorrect(9, 'icon1')} />
+        <img src={icon_2} alt='char' className={`icon2 ${!icon2 && 'unactive'}`} onClick={() => this.correct(8, 'icon2')} />
+        <img src={icon_3} alt='char' className={`icon3 ${!icon3 && 'unactive'}`} onClick={() => this.incorrect(9, 'icon3')} />
+        <img src={icon_4} alt='char' className={`icon4 ${!icon4 && 'unactive'}`} onClick={() => this.incorrect(9, 'icon4')} />
+        <img src={icon_5} alt='char' className={`icon5 ${!icon5 && 'unactive'}`} onClick={() => this.incorrect(9, 'icon5')} />
+        <img src={icon_6} alt='char' className={`icon6 ${!icon6 && 'unactive'}`} onClick={() => this.incorrect(9, 'icon6')} />
+        <img src={icon_7} alt='char' className={`icon7 ${!icon7 && 'unactive'}`} onClick={() => this.incorrect(9, 'icon7')} />
+        <img src={icon_8} alt='char' className={`icon8 ${!icon8 && 'unactive'}`} onClick={() => this.incorrect(9, 'icon8')} />
+
+        <Sound
+          autoLoad
+          url={audio6}
+          playStatus={this.state.sound}
+          onFinishedPlaying={() => this.finish()}
+        />
       </div>
     )
 
     const page8 = (
       <div className='gscene-8'>
-        <img src={s8_1} alt='char' className='i-1' />
+        <img src={s7_1} alt='char' className='i-1' />
+        <Sound
+          autoLoad
+          url={audio7}
+          playStatus={this.state.sound}
+          onFinishedPlaying={() => this.finish(10)}
+        />
       </div>
     )
 
     const page9 = (
       <div className='gscene-9'>
-        <img src={s9_1} alt='char' className='i-1' />
+        <img src={s8_1} alt='char' className='i-1' style={{ bottom: 0, width: '100%' }} />
+        <Sound
+          autoLoad
+          url={audio8}
+          playStatus={this.state.sound}
+          onFinishedPlaying={() => this.finish(10)}
+        />
       </div>
     )
 
     const page10 = (
       <div className='gscene-10'>
-        <img src={s10_1} alt='char' className='i-1' />
+        <img src={s9_1} alt='char' className='i-1' style={{bottom: 0, right: -10, width: 600}} />
+        <img src={s9_2} alt='char' className='i-2' style={{bottom: 0, left: 0, width: 300}} />
+        <img src={s9_3} alt='char' className='i-3' style={{top: 50, left: 200, width: 300, zIndex: 0}} />
+        <img src={s9_4} alt='char' className='i-4' style={{top: 100, right: 20, width: 150, zIndex: 0}} />
+        <Sound
+          autoLoad
+          url={audio9}
+          playStatus={this.state.sound}
+          onFinishedPlaying={() => this.finish()}
+        />
       </div>
     )
 
     const page11 = (
       <div className='gscene-11'>
-        <img src={s11_1} alt='char' className='i-1' />
+        <img src={s10_1} alt='char' className='i-1' style={{bottom: 150, right: 0, width: 400}} />
+        <img src={s10_2} alt='char' className='i-2' style={{bottom: 150, left: 0, width: '58%'}}/>
+        <img src={s10_3} alt='char' className='i-3' style={{top: 68, right: 0, left:-141, margin: 'auto', width: 250}}/>
+
+        <img src={icon_1} alt='char' className={`icon1 ${!icon1 && 'unactive'}`} onClick={() => icon1 && this.incorrect(13, 'icon1')}
+          style={{bottom: 20, left: 10}} />
+        <img src={icon_2} alt='char' className={`icon2 ${!icon2 && 'unactive'}`} onClick={() => icon2 && this.incorrect(13, 'icon2')}
+          style={{bottom: 20, left: 120}} />
+        <img src={icon_3} alt='char' className={`icon3 ${!icon3 && 'unactive'}`} onClick={() => icon3 && this.incorrect(13, 'icon3')}
+          style={{bottom: 20, left: 220}}/>
+        <img src={icon_4} alt='char' className={`icon4 ${!icon4 && 'unactive'}`} onClick={() => icon4 && this.incorrect(13, 'icon4')}
+          style={{ bottom: 20, left: 320}}/>
+        <img src={icon_5} alt='char' className={`icon5 ${!icon5 && 'unactive'}`} onClick={() => icon5 && this.incorrect(13, 'icon5')}
+          style={{bottom: 20, left: 420}}/>
+        <img src={icon_6} alt='char' className={`icon6 ${!icon6 && 'unactive'}`} onClick={() => icon6 && this.correct(12, 'icon6')}
+          style={{bottom: 20, left: 520}}/>
+        <img src={icon_7} alt='char' className={`icon7 ${!icon7 && 'unactive'}`} onClick={() => icon7 && this.incorrect(13, 'icon7')}
+          style={{bottom: 20, left: 620}}/>
+        <img src={icon_8} alt='char' className={`icon8 ${!icon8 && 'unactive'}`} onClick={() => icon8 && this.incorrect(13, 'icon8')}
+          style={{ bottom: 20, left: 710}}/>
+        <Sound
+          autoLoad
+          url={audio10}
+          playStatus={this.state.sound}
+          onFinishedPlaying={() => this.finish()}
+        />
       </div>
     )
 
     const page12 = (
       <div className='gscene-12'>
-        <img src={s12_1} alt='char' className='i-1' />
+        <img src={s11_1} alt='char' className='i-1' style={{ width: '74%', bottom: 0}} />
+        <Sound
+          autoLoad
+          url={audio11}
+          playStatus={this.state.sound}
+          onFinishedPlaying={() => this.finish()}
+        />
       </div>
     )
 
     const page13 = (
       <div className='gscene-13'>
-        <img src={s12_1} alt='char' className='i-1' />
-        <h2 className='total-score'>{this.state.score}</h2>
-        <button className='play-again' onClick={this.playAgain}>PLAY AGAIN</button>
+        <img src={s12_1} alt='char' className='i-1' style={{ width: '100%', bottom: 0}} />
+        <Sound
+          autoLoad
+          url={audio12}
+          playStatus={this.state.sound}
+          onFinishedPlaying={() => this.finish()}
+        />
       </div>
     )
+
+    const page14 = (
+      <div className='gscene-14'>
+        <img src={s13_1} alt='char' className='i-1' style={{ height: '80%', bottom: 0, left: 0}} />
+        <img src={s13_2} alt='char' className='i-2' style={{ height: '80%', bottom: 50, right: 20}} />
+        <Sound
+          autoLoad
+          url={audio13}
+          playStatus={this.state.sound}
+          onFinishedPlaying={() => this.finish()}
+        />
+      </div>
+    )
+
+    const page15 = (
+      <div className='gscene-15'>
+        <img src={s14_1} alt='char' className='i-1' style={{ width: '80%', bottom: 0, right: 0}} />
+
+        <img src={icon_1} alt='char' className={`icon1 ${!icon1 && 'unactive'}`}
+          onClick={() => icon1 && this.incorrect(9, 'icon1')}
+          style={{ top: 10, left: 10 }}
+        />
+        <img src={icon_2} alt='char' className={`icon2 ${!icon2 && 'unactive'}`}
+          onClick={() => icon2 && this.icorrect(8, 'icon2')}
+          style={{ top: 24, left: 130}}
+        />
+        <img src={icon_3} alt='char' className={`icon3 ${!icon3 && 'unactive'}`}
+          onClick={() => icon3 && this.correct(9, 'icon3')}
+          style={{ top: 24, left: 240}}
+        />
+        <img src={icon_4} alt='char' className={`icon4 ${!icon4 && 'unactive'}`}
+          onClick={() => icon4 && this.incorrect(9, 'icon4')}
+          style={{ top: 24, left: 350}}
+        />
+        <img src={icon_5} alt='char' className={`icon5 ${!icon5 && 'unactive'}`}
+          onClick={() => icon5 && this.incorrect(9, 'icon5')}
+          style={{ top: 150, left: 10}}
+        />
+        <img src={icon_6} alt='char' className={`icon6 ${!icon6 && 'unactive'}`}
+          onClick={() => icon6 && this.incorrect(9, 'icon6')}
+          style={{ top: 150, left: 130}}
+        />
+        <img src={icon_7} alt='char' className={`icon7 ${!icon7 && 'unactive'}`}
+          onClick={() => icon7 && this.incorrect(9, 'icon7')}
+          style={{ top: 150, left: 240}}
+        />
+        <img src={icon_8} alt='char' className={`icon8 ${!icon8 && 'unactive'}`}
+          onClick={() => icon8 && this.incorrect(9, 'icon8')}
+          style={{ top: 150, left: 350}}
+        />
+
+        <Sound
+          autoLoad
+          url={audio14}
+          playStatus={this.state.sound}
+          onFinishedPlaying={() => this.finish()}
+        />
+      </div>
+    )
+
+    const page16 = (
+      <div className='gscene-16'>
+        <img src={s15_1} alt='char' className='i-1' style={{ width: '100%', bottom: 0}} />
+        <Sound
+          autoLoad
+          url={audio15}
+          playStatus={this.state.sound}
+          onFinishedPlaying={() => this.finish()}
+        />
+      </div>
+    )
+
+    const page17 = (
+      <div className='gscene-17'>
+        <img src={s16_1} alt='char' className='i-1' style={{ height: '100%', bottom: 0}} />
+        <Sound
+          autoLoad
+          url={audio16}
+          playStatus={this.state.sound}
+          onFinishedPlaying={() => this.finish()}
+        />
+      </div>
+    )
+
+    const page18 = (
+      <div className='gscene-18'>
+        <img src={s17_1} alt='char' className='i-1' style={{ height: '100%', bottom: 0}} />
+        <Sound
+          autoLoad
+          url={audio17}
+          playStatus={this.state.sound}
+          onFinishedPlaying={() => this.finish()}
+        />
+      </div>
+    )
+
+    const page19 = (
+      <div className='gscene-19'>
+        <img src={s18_1} alt='char' className='i-1' style={{ width: '100%', top: 0}} />
+
+        <img src={icon_1} alt='char' className={`icon1 ${!icon1 && 'unactive'}`} onClick={() => icon1 && this.incorrect(13, 'icon1')}
+          style={{bottom: 20, left: 10}} />
+        <img src={icon_2} alt='char' className={`icon2 ${!icon2 && 'unactive'}`} onClick={() => icon2 && this.incorrect(13, 'icon2')}
+          style={{bottom: 20, left: 120}} />
+        <img src={icon_3} alt='char' className={`icon3 ${!icon3 && 'unactive'}`} onClick={() => icon3 && this.incorrect(13, 'icon3')}
+          style={{bottom: 20, left: 220}}/>
+        <img src={icon_4} alt='char' className={`icon4 ${!icon4 && 'unactive'}`} onClick={() => icon4 && this.incorrect(13, 'icon4')}
+          style={{ bottom: 20, left: 320}}/>
+        <img src={icon_5} alt='char' className={`icon5 ${!icon5 && 'unactive'}`} onClick={() => icon5 && this.incorrect(13, 'icon5')}
+          style={{bottom: 20, left: 420}}/>
+        <img src={icon_6} alt='char' className={`icon6 ${!icon6 && 'unactive'}`} onClick={() => icon6 && this.correct(12, 'icon6')}
+          style={{bottom: 20, left: 520}}/>
+        <img src={icon_7} alt='char' className={`icon7 ${!icon7 && 'unactive'}`} onClick={() => icon7 && this.incorrect(13, 'icon7')}
+          style={{bottom: 20, left: 620}}/>
+        <img src={icon_8} alt='char' className={`icon8 ${!icon8 && 'unactive'}`} onClick={() => icon8 && this.incorrect(13, 'icon8')}
+          style={{bottom: 20, left: 720}}/>
+
+        <Sound
+          autoLoad
+          url={audio18}
+          playStatus={this.state.sound}
+          onFinishedPlaying={() => this.finish()}
+        />
+      </div>
+    )
+
+    const page20 = (
+      <div className='gscene-20'>
+        <img src={s19_1} alt='char' className='i-1' style={{ width: '100%', bottom: 0}} />
+        <Sound
+          autoLoad
+          url={audio19}
+          playStatus={this.state.sound}
+          onFinishedPlaying={() => this.finish()}
+        />
+      </div>
+    )
+
+    const page21 = (
+      <div className='gscene-21'>
+        <img src={s20_1} alt='char' className='i-1' style={{ height: '100%', bottom: 0}} />
+        <Sound
+          autoLoad
+          url={audio20}
+          playStatus={this.state.sound}
+          onFinishedPlaying={() => this.finish()}
+        />
+      </div>
+    )
+
+    const page22 = (
+      <div className='gscene-22'>
+        <img src={s21_1} alt='char' className='i-1' style={{ height: '75%', bottom: 0}} />
+        <Sound
+          autoLoad
+          url={audio21}
+          playStatus={this.state.sound}
+          onFinishedPlaying={() => this.finish()}
+        />
+      </div>
+    )
+
+    const page23 = (
+      <div className='gscene-23'>
+        <img src={s22_1} alt='char' className='i-1' style={{ height: '70%', top: 0, left: 0, right: 0, bottom: 0, margin: 'auto'}} />
+
+        <img src={icon_1} alt='char' className={`icon1 ${!icon1 && 'unactive'}`}
+          onClick={() => icon1 && this.incorrect(9, 'icon1')}
+          style={{ top: 20, left: 50 }}
+        />
+        <img src={icon_2} alt='char' className={`icon2 ${!icon2 && 'unactive'}`}
+          onClick={() => icon2 && this.icorrect(8, 'icon2')}
+          style={{ top: 150, left: 50}}
+        />
+        <img src={icon_3} alt='char' className={`icon3 ${!icon3 && 'unactive'}`}
+          onClick={() => icon3 && this.correct(9, 'icon3')}
+          style={{ top: 300, left: 50}}
+        />
+        <img src={icon_4} alt='char' className={`icon4 ${!icon4 && 'unactive'}`}
+          onClick={() => icon4 && this.incorrect(9, 'icon4')}
+          style={{ top: 450, left: 50}}
+        />
+        <img src={icon_5} alt='char' className={`icon5 ${!icon5 && 'unactive'}`}
+          onClick={() => icon5 && this.incorrect(9, 'icon5')}
+          style={{ top: 20, right: 50}}
+        />
+        <img src={icon_6} alt='char' className={`icon6 ${!icon6 && 'unactive'}`}
+          onClick={() => icon6 && this.incorrect(9, 'icon6')}
+          style={{ top: 150, right: 50}}
+        />
+        <img src={icon_7} alt='char' className={`icon7 ${!icon7 && 'unactive'}`}
+          onClick={() => icon7 && this.incorrect(9, 'icon7')}
+          style={{ top: 300, right: 50}}
+        />
+        <img src={icon_8} alt='char' className={`icon8 ${!icon8 && 'unactive'}`}
+          onClick={() => icon8 && this.incorrect(9, 'icon8')}
+          style={{ top: 450, right: 50}}
+        />
+        <Sound
+          autoLoad
+          url={audio22}
+          playStatus={this.state.sound}
+          onFinishedPlaying={() => this.finish()}
+        />
+      </div>
+    )
+
+    const page24 = (
+      <div className='gscene-24'>
+        <img src={s23_1} alt='char' className='i-1' style={{ height: '80%', bottom: 0}} />
+
+        <h3 style={{top: 50, right: 170, color: 'var(--black)'}}>SCORE</h3>
+        <h2 className="score" style={{top: 120, right: 100, left: 'auto', backgroundColor: 'white', fontSize: 60, width: 230}}>{score}</h2>
+
+        <button className='play-again' onClick={this.playAgain}>PLAY AGAIN</button>
+        <Sound
+          autoLoad
+          url={audio23}
+          playStatus={this.state.sound}
+        />
+      </div>
+    )
+
+    const page25 = (
+      <div className='gscene-25'>
+        <img src={s24_1} alt='char' className='i-1' style={{ height: '100%', bottom: 0, right: 0}} />
+
+        <h3 style={{top: 50, right: 170, color: 'var(--black)'}}>SCORE</h3>
+        <h2 className="score" style={{top: 120, right: 100, left: 'auto', backgroundColor: 'white', fontSize: 60, width: 230}}>{score}</h2>
+
+        <button className='play-again' onClick={this.playAgain} style={{ right: 59 }}>PLAY AGAIN</button>
+        <Sound
+          autoLoad
+          url={audio24}
+          playStatus={this.state.sound}
+        />
+      </div>
+    )
+
+    const controls = {
+      pause: this.state.sound === Sound.status.PLAYING,
+      resume: this.state.sound === Sound.status.PAUSED,
+      stop: this.state.sound !== Sound.status.STOPPED
+    }
 
     return (
       <div className='scene-3'>
@@ -219,21 +610,45 @@ class Scene3 extends React.Component {
         {page === 11 && page11}
         {page === 12 && page12}
         {page === 13 && page13}
+        {page === 14 && page14}
+        {page === 15 && page15}
+        {page === 16 && page16}
+        {page === 17 && page17}
+        {page === 18 && page18}
+        {page === 19 && page19}
+        {page === 20 && page20}
+        {page === 21 && page21}
+        {page === 22 && page22}
+        {page === 23 && page23}
+        {page === 24 && page24}
+        {page === 25 && page25}
 
         <Actions
-          next={page === 1 && page !== 13}
-          prev={page === 1 || page === 2}
+          home={page === 2 ? 'page' : 'scene'}
+          next={(page === 1 || page === 2) && page !== 24}
+          // next
+          prev={page === 1 && page === 2 && page === 3}
           sound
-          pause={page !== 1 && page !== 2}
+          // pause={page !== 1 && page !== 2}
           scene={page === 1 ? 3 : page}
           page={page}
           changePause={this.changePause}
-          changeScene={page === 1 ? changeScene : this.changePage}
+          changeScene={changeScene}
           changePage={this.changePage}
           history={this.props.history}
+          handlePause={this.handlePause}
+          controls={controls}
+          pauseStatus={this.state.pause}
         />
 
         {this.state.pause && overlay}
+
+        <Sound
+          autoLoad
+          loop
+          url={audio}
+          playStatus={this.state.sound}
+        />
       </div>
     )
   }

@@ -213,7 +213,12 @@ $red: #c90000;
     .gscene-1, .gscene-2, .gscene-3,
     .gscene-4, .gscene-5, .gscene-6,
     .gscene-7, .gscene-8, .gscene-9,
-    .gscene-10, .gscene-11, .gscene-12, .gscene-13 {
+    .gscene-10, .gscene-11, .gscene-12,
+    .gscene-13, .gscene-14, .gscene-15,
+    .gscene-16, .gscene-17, .gscene-18,
+    .gscene-19, .gscene-20, .gscene-21,
+    .gscene-22, .gscene-23, .gscene-24,
+    .gscene-25  {
       top: 0;
       left: 0;
       right: 0;
@@ -289,10 +294,10 @@ $red: #c90000;
       }
 
       .play-again {
-        border-color: red;
+        border-color: $yellow;
         color: red;
-        bottom: 150px;
-        right: 50px;
+        top: 250px;
+        right: 80px;
       }
 
       .score {
@@ -369,6 +374,11 @@ $red: #c90000;
   }
 
   .gscene-3 {
+    background-position: center;
+    background-size: cover;
+  }
+
+  .gscene-4 {
     .i-1 {
       height: 100%;
       animation: fadeLeft 1s ease-in-out;
@@ -378,6 +388,8 @@ $red: #c90000;
     .i-2 {
       height: 100%;
       right: 0;
+      top: 0;
+      bottom: 0;
       left: auto;
       animation: fadeLeft 1s ease-in-out;
       z-index: 0;
@@ -387,14 +399,19 @@ $red: #c90000;
       right: auto;
       left: 320px;
       top: 80px;
-      animation: fadeLeft 1s ease-in-out;
+      animation: fadeRight 1s ease-in-out;
       z-index: 1;
       width: 250px;
       height: auto;
     }
+
+    .i-4 {
+      right: 50px;
+      top: 30px;
+    }
   }
 
-  .gscene-4 {
+  .gscene-5 {
     .i-1 {
       height: 100%;
       left: -50px;
@@ -412,23 +429,96 @@ $red: #c90000;
     }
   }
 
-  .gscene-5 {
+  .gscene-6 {
     .i-1 {
-      height: 100%;
-      width: auto;
-      animation: left 5s linear;
+      height: 102%;
+      width: 102%;
       z-index: 0;
     }
   }
 
-  .gscene-6 {
+  .gscene-8 {
+    .i-1 {
+      bottom: 0px;
+      height: 100%;
+      transform: translateX(-156px);
+
+      animation: s81 5s linear;
+    }
+
+    @keyframes s81 {
+      0% { transform: translateX(0); }
+      100%{ transform: translateX(-156px); }
+    }
+  }
+
+  .gscene-11, .gscene-15, .gscene-19, .gscene-23 {
+    .unactive {
+      opacity: 0.5;
+    }
+
+    .icon1 {
+      width: 96px;
+
+      &:hover {
+        width: 98px;
+      }
+    }
+    .icon2, .icon3, .icon5, .icon6, .icon7 {
+      width: 89px;
+      &:hover {
+        width: 91px
+      }
+    }
+
+    .icon4, .icon8 {
+      width: 110px;
+      &:hover {
+        width: 112px;
+      }
+    }
+  }
+
+  .gscene-7 {
     .i-1 {
       bottom: 0;
       height: 550px;
       right: 0;
+      animation: s6Left 5s linear;
+      z-index: 1;
     }
 
-    @keyframes s6-left {
+    .i-2 {
+      right: 20px;
+      top: 20px;
+      height: 100px;
+      animation: left 1s linear;
+    }
+
+    .icon1, .icon2, .icon4, .icon3, .icon5, .icon6, .icon7, .icon8 {
+      left: 20px;
+      width: 100px;
+
+      &:hover {
+        width: 102px;
+      }
+    }
+    .icon1 { top: 10px; width: 110px; &:hover {
+      width: 112px;
+    }}
+    .icon2 { top: 30px; left: 150px; }
+    .icon3 { top: 200px; }
+    .icon4 { top: 190px; left: 150px; width: 125px; &:hover {
+      width: 127px;
+    } }
+    .icon5 { top: 353px; }
+    .icon6 { top: 353px; left: 150px; }
+    .icon7 { top: 526px; }
+    .icon8 { top: 526px; left: 150px; width: 120px; &:hover {
+      width: 122px;
+    } }
+
+    @keyframes s6Left {
       0% { transform: translateX(-200px); opacity: 0; }
       100%{ transform: translateX(0); opacity: 1; }
     }
