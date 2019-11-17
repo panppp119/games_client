@@ -1,5 +1,5 @@
 import React from 'react'
-import socketIOClient from "socket.io-client";
+import socketIOClient from 'socket.io-client';
 
 import Actions from 'components/Actions'
 
@@ -25,16 +25,15 @@ const initial = {
   players: [],
   player: {},
   question: 1,
-  join: false
+  join: false,
+  time: 20,
+  score: 0,
 }
 
 class Scene3 extends React.Component {
   state = {
     page: 1,
-    playerName: '',
-    score: 0,
-    time: 15,
-    timer: 15,
+    timer: 20,
     pause: false,
     ...initial,
   }
@@ -43,17 +42,15 @@ class Scene3 extends React.Component {
     this.setState(initial)
   }
 
-  addPlayer () {
-    var players = this.state.players
+  addPlayer = () => {
     const player = { ...this.state.player, score: 0 }
 
-    players.push(player)
-
-    socket.emit('add player', player, this.state.scene)
-    this.setState({ join: true, players })
+    socket.emit('add player', player, this.state.page)
+    this.setState({ join: true, player })
+    this.changePage(this.state.page + 1)
   }
 
-  removePlayer () {
+  removePlayer = () => {
     const { player, scene } = this.state
 
     socket.emit('remove player', player.name, scene)
@@ -70,7 +67,7 @@ class Scene3 extends React.Component {
   }
 
   handleChangeName = (name) => {
-    this.setState({ playerName: name })
+     this.setState({ player: { name }})
   }
 
   countdown = () => {
@@ -135,17 +132,13 @@ class Scene3 extends React.Component {
     var firstCol = players.slice(0, split)
     var secondCol = players.slice(split)
 
-    socket.on('update players', (players) => {
-      this.setState({ players })
-    })
-
     const page1 = (
       <div className='gscene-1'>
         <h1>HOW TO</h1>
         <p className='c1'>คำถามมีทั้งหมด 10 ข้อ เลือกตอบจากตัวเลือกที่มีภายในเวลา 10 วินาที หากเลือกคำตอบแล้วไม่สามารถเปลี่ยนได้ และต้องรอจนกว่าจะหมดเวลา </p>
         <p className='c2'>หลังจากหมดเวลาจะไปยังหน้าแสดงคะแนนที่จะแสดงผล 3 อันดับผู้เล่นที่มีคะแนนสูงสุด</p>
         <p className='c5'>คะแนนเต็ม 100 คะแนน ข้อละ 10 คะแนน</p>
-        <p className='c6'>ตอบถูก : +คะแนนที่ได้จากเวลาที่เหลือี</p>
+        <p className='c6'>ตอบถูก : + คะแนนที่ได้จากเวลาที่เหลือ</p>
         <p className='c7'>ตอบผิด : ไม่ได้คะแนนเพิ่ม</p>
       </div>
     )
@@ -156,7 +149,7 @@ class Scene3 extends React.Component {
         {!join && <input type='text' onChange={(e) => this.handleChangeName(e.target.value)} />}
         <button className='submit-name'
           disabled={playerName === ''}
-          onClick={() => this.changePage(page + 1)}>ENTER</button>
+          onClick={(e) => this.addPlayer(e.target.value)}>ENTER</button>
       </div>
     )
 
@@ -276,6 +269,7 @@ class Scene3 extends React.Component {
         {page === 12 && page12}
 
         <Actions
+          home={page === 2 ? 'page' : 'scene'}
           next={page === 1 && page !== 13}
           prev={page === 1 || page === 2}
           // sound

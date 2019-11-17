@@ -1,5 +1,5 @@
 import React from 'react'
-// import Sound from 'react-sound'
+import Sound from 'react-sound'
 
 import Actions from 'components/Actions'
 
@@ -20,7 +20,7 @@ import start from '../imgs/start.png'
 import text1 from '../imgs/N1.png'
 import text2 from '../imgs/N2.png'
 import text3 from '../imgs/N3.png'
-// import audio from '../bg-audio.wav'
+import audio from '../bg-audio.wav'
 
 class Scene2 extends React.Component {
   state = {
@@ -32,9 +32,9 @@ class Scene2 extends React.Component {
     this.setState({ page })
   }
 
-  // handlePause = (status) => {
-  //   this.setState({ sound: status })
-  // }
+  handlePause = (status) => {
+    this.setState({ sound: status })
+  }
 
   render () {
     const { scene, changeScene } = this.props
@@ -100,10 +100,10 @@ class Scene2 extends React.Component {
       position = 'bottom-left'
     }
 
-    // const controls = {
-    //   pause: this.state.sound === Sound.status.PLAYING,
-    //   resume: this.state.sound === Sound.status.PAUSED
-    // }
+    const controls = {
+      pause: this.state.sound === Sound.status.PLAYING,
+      resume: this.state.sound === Sound.status.PAUSED
+    }
 
     return (
       <div className='scene-2'>
@@ -126,7 +126,7 @@ class Scene2 extends React.Component {
               home='page'
               next={page !== 12}
               prev
-              // sound
+              sound
               scene={page === 1 ? scene : page}
               page={page}
               changeScene={page === 1 ? changeScene : this.changePage}
@@ -134,17 +134,17 @@ class Scene2 extends React.Component {
               history={this.props.history}
               position={position}
               handlePause={this.handlePause}
-              // controls={controls}
+              controls={controls}
             />
           )
         }
 
-        {/* <Sound
+        <Sound
           autoLoad
           loop
           url={audio}
           playStatus={this.state.sound}
-        /> */}
+        />
       </div>
     )
   }
