@@ -367,6 +367,11 @@
         }
       }
 
+      .char {
+        right: 50px; left: auto; bottom: 100px; width: 150px;
+        animation: fadeRight 1s linear;
+      }
+
       .c1 {
         top: 158px;
       }

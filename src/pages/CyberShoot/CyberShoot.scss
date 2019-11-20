@@ -429,6 +429,11 @@
         top: 517px;
         font-size: 22px;
       }
+
+      .char {
+        right: 50px; bottom: 130px; width: 150px; left: auto;
+        animation: fadeRight 1s linear;
+      }
     }
 
     .gscene-3 {

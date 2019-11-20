@@ -123,6 +123,7 @@ class Scene2 extends React.Component {
     const page1 = (
       <div className='gscene-1'>
         <h1>HOW TO</h1>
+        <img src={char} alt="char" className='char'/>
         <p className='c1'>สถานการณ์ที่จะแสดงมีทั้งหมด 10 สถานการณ์ เลือกคำตอบที่ถูกต้องจากตัวเลือกด้านล่าง ให้สอดคล้องกับสถานการณ์ที่แสดง โดยต้องตอบภายใน 10 วินาที</p>
         <p className='c2'><button>CORRECT</button> คือ การกระทำที่ถูก พรบ.คอมพิวเตอร์ (ฉบับที่ 2) พ.ศ.2560</p>
         <p className='c3'><button>INCORRECT</button> คือ การกระทำที่ผิด พรบ.คอมพิวเตอร์ (ฉบับที่ 2) พ.ศ.2560</p>

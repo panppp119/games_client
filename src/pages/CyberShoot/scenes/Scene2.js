@@ -138,6 +138,7 @@ class Scene2 extends React.Component {
         <img src={heart} alt="heart" style={{ left: 230, top: 337, width: 50 }}/>
         <img src={heart} alt="heart" style={{ left: 290, top: 337, width: 50 }}/>
         <img src={bubble} alt="bubble" style={{ left: 50, top: 407, height: 60 }}/>
+        <img src={char} alt="char" className='char'/>
         <p className='c1'>ตัวละครมีให้เลือก 3 แบบ</p>
         <p className='c2'>ขยับเมาส์ในการเล็งเป้าหมาย แล้วกดยิง</p>
         <p className='c3'>พลังชีวิตมีทั้งหมด 5 ชีวิต</p>
@@ -210,8 +211,8 @@ class Scene2 extends React.Component {
 
         <Actions
           home={page === 0 ? 'scene' : 'page'}
-          next={page < 3 && page !== 0}
-          prev={page <= 3 && page !== 0}
+          next={page < 2 && page !== 0}
+          prev={page <= 2 && page !== 0}
           sound
           scene={scene}
           page={page}
