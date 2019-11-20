@@ -2,13 +2,13 @@ import React from 'react'
 
 import Layout from 'components/Layout'
 
-import { Scene1, Scene2, Scene3 } from './scenes'
+import { Scene1, Scene2 } from './scenes'
 
 import './ADayWithPeePo.scss'
 
 class ADayWithPeePo extends React.Component {
   state = {
-    scene: 2
+    scene: 1
   }
 
   changeScene = (scene) => {
@@ -25,7 +25,6 @@ class ADayWithPeePo extends React.Component {
         <div className='frame a-day-with-peepo'>
           {scene === 1 && <Scene1 changeScene={this.changeScene} scene={scene} {...this.props} />}
           {scene === 2 && <Scene2 changeScene={this.changeScene} scene={scene} {...this.props} />}
-          {scene === 3 && <Scene3 changeScene={this.changeScene} scene={scene} {...this.props} />}
         </div>
       </Layout>
     )

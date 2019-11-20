@@ -194,7 +194,7 @@
       color: var(--white);
     }
 
-    .gscene-1, .gscene-2, .gscene-3,
+    .gscene-0, .gscene-1, .gscene-2, .gscene-3,
     .gscene-4, .gscene-5, .gscene-6,
     .gscene-7, .gscene-8, .gscene-9,
     .gscene-10, .gscene-11, .gscene-12, .gscene-13 {
@@ -325,6 +325,25 @@
       }
     }
 
+    .gscene-0 {
+      .char {
+        bottom: 0;
+        left: 0;
+      }
+
+      .name {
+        right: 50px;
+        top: 50px;
+      }
+
+      .start {
+        border-color: red;
+        bottom: 145px;
+        right: 155px;
+        color: red;
+      }
+    }
+
     .gscene-1 {
       padding: 50px;
 
@@ -337,12 +356,14 @@
         color: var(--white);
         width: 885px;
 
-        span {
+        button {
           margin-right: 10px;
           padding: 5px 10px;
           background-color: var(--white);
           border: 6px solid var(--primary_dark);
           color: var(--primary_dark);
+          width: 165px;
+          font-size: 25px;
         }
       }
 

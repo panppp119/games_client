@@ -232,7 +232,7 @@
       }
     }
 
-    .gscene-1, .gscene-2, .gscene-3,
+    .gscene-0, .gscene-1, .gscene-2, .gscene-3,
     .gscene-4, .gscene-5, .gscene-6,
     .gscene-7, .gscene-8, .gscene-9,
     .gscene-10, .gscene-11, .gscene-12, .gscene-13 {
@@ -344,6 +344,38 @@
       }
     }
 
+    .gscene-0 {
+      background-position: center;
+      background-size: cover;
+
+      .char {
+        width: 300px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        top: 50px;
+        bottom: auto;
+      }
+
+      .name {
+        top: auto;
+        right: 0;
+        left: 0;
+        bottom: 265px;
+        width: 700px;
+        margin: auto;
+      }
+
+      .start {
+        border-color: var(--black);
+        bottom: 135px;
+        right: 0;
+        left: 0;
+        margin: auto;
+        color: var(--black);
+      }
+    }
+
     .gscene-1 {
       padding: 50px;
 
@@ -384,11 +416,18 @@
       }
 
       .c4 {
-        top: 445px;
+        top: 423px;
+        left: 200px;
       }
 
       .c5 {
-        top: 487px;
+        top: 480px;
+        font-size: 22px;
+      }
+
+      .c6 {
+        top: 517px;
+        font-size: 22px;
       }
     }
 

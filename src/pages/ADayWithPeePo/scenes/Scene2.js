@@ -1,112 +1,255 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Sound from 'react-sound'
 
 import Actions from 'components/Actions'
 
 import char from '../imgs/char.png'
 import name from '../imgs/title.png'
-import slide1 from '../imgs/slide1.JPG'
-import slide2 from '../imgs/slide2.JPG'
-import slide3 from '../imgs/slide3.JPG'
-import slide4 from '../imgs/slide4.jpg'
-import slide5 from '../imgs/slide5.JPG'
-import slide6 from '../imgs/slide6.JPG'
-import slide7 from '../imgs/slide7.JPG'
-import slide8 from '../imgs/slide8.JPG'
-import slide9 from '../imgs/slide9.JPG'
-import slide10 from '../imgs/slide10.JPG'
-import slide11 from '../imgs/slide11.JPG'
-import slide12 from '../imgs/slide12.JPG'
-import slide13 from '../imgs/slide13.JPG'
-import slide14 from '../imgs/slide14.JPG'
-import slide15 from '../imgs/slide15.JPG'
-import slide16 from '../imgs/slide16.JPG'
-import slide17 from '../imgs/slide17.JPG'
-import slide18 from '../imgs/slide18.JPG'
-import slide19 from '../imgs/slide19.JPG'
-import slide20 from '../imgs/slide20.JPG'
-import slide21 from '../imgs/slide21.JPG'
-import slide22 from '../imgs/slide22.JPG'
-import text1 from '../imgs/N1.png'
+import txtScore from '../imgs/score.png'
+import char1 from '../imgs/char1.png'
+import char2 from '../imgs/char2.png'
+import char3 from '../imgs/char3.png'
+import char4 from '../imgs/char4.png'
+import char5 from '../imgs/char5.png'
+import char6 from '../imgs/char6.png'
+import char7 from '../imgs/char7.png'
+import char8 from '../imgs/char8.png'
+import char9 from '../imgs/char9.png'
+import char10 from '../imgs/char10.png'
+import char11 from '../imgs/char11.png'
+import item1 from '../imgs/item1.png'
+import item2 from '../imgs/item2.png'
+import item3 from '../imgs/item3.png'
+import item4 from '../imgs/item4.png'
+import item5 from '../imgs/item5.png'
+import item6 from '../imgs/item6.png'
+import item7 from '../imgs/item7.png'
+import item8 from '../imgs/item8.png'
+import item9 from '../imgs/item9.png'
+import item10 from '../imgs/item10.png'
 import audio from '../bg-audio.wav'
+
+var myInterval
 
 class Scene2 extends React.Component {
   state = {
-    page: 1,
+    page: 0,
+    playerName: '',
+    score: 0,
+    time: 10,
+    timer: 10,
+    pause: false,
     sound: 'PLAYING'
   }
 
   changePage = (page) => {
     this.setState({ page })
+
+    if (page > 2 && page < 13) {
+      this.setState({ timer: this.state.time })
+      this.countdown()
+    }
+
+    if (page === 0) {
+      this.setState({ score: 0 })
+    }
+  }
+
+  handleChangeName = (name) => {
+    this.setState({ playerName: name })
   }
 
   handlePause = (status) => {
     this.setState({ sound: status })
   }
 
-  render () {
-    const { scene, changeScene } = this.props
-    const { page } = this.state
+  countdown = () => {
+    myInterval = setInterval(() => {
+      if (this.state.timer > 1 && !this.state.pause) {
+        this.setState({ timer: this.state.timer - 1 })
+      }
+      else {
+        if (this.state.pause) {
+          clearInterval(myInterval)
+        }
+        else {
+          clearInterval(myInterval)
+          this.changePage(this.state.page + 1)
+        }
+      }
+    }, 1000);
+  }
 
-    const actions = (
-      <div className='top-nav'>
-        <button onClick={() => this.changePage(1)}>หน้าแรก</button>
-        <button onClick={() => this.changePage(2)}>แนะนำการใช้งาน</button>
-        <button onClick={() => this.changePage(3)}>จุดประสงค์การเรียนรู้</button>
-        <button onClick={() => this.changePage(4)}>เนื้อหาบทเรียน</button>
+  changePause = () => {
+    this.setState({ pause: !this.state.pause })
+    !this.state.pause && this.countdown()
+  }
+
+  correctAnswer = () => {
+    this.setState({ score: this.state.score + this.state.timer })
+    clearInterval(myInterval)
+    this.changePage(this.state.page + 1)
+  }
+
+  incorrectAnswer = () => {
+    clearInterval(myInterval)
+    this.changePage(this.state.page + 1)
+  }
+
+  playAgain = () => {
+    this.changePage(0)
+  }
+
+  render () {
+    const { changeScene } = this.props
+    const { page, playerName, timer, score } = this.state
+    const scene = 2
+
+    const overlay = (
+      <div className='overlay'>
+        <button onClick={this.changePause}>RESUME</button>
+      </div>
+    )
+
+    const page0 = (
+      <div className='gscene-0'>
+        <img src={char} alt='char' className='char' />
+        <img src={name} alt='name' className='name' />
+
+        <button className='start' onClick={() => this.changePage(page + 1)}>START</button>
       </div>
     )
 
     const page1 = (
-      <div className='page-1 page' style={{ backgroundImage: `url(${slide1})`}}>
-        <button onClick={() => this.changePage(2)}>START</button>
+      <div className='gscene-1'>
+        <h1>HOW TO</h1>
+        <p className='c1'>สถานการณ์ที่จะแสดงมีทั้งหมด 10 สถานการณ์ เลือกคำตอบที่ถูกต้องจากตัวเลือกด้านล่าง ให้สอดคล้องกับสถานการณ์ที่แสดง โดยต้องตอบภายใน 10 วินาที</p>
+        <p className='c2'><button>CORRECT</button> คือ การกระทำที่ถูก พรบ.คอมพิวเตอร์ (ฉบับที่ 2) พ.ศ.2560</p>
+        <p className='c3'><button>INCORRECT</button> คือ การกระทำที่ผิด พรบ.คอมพิวเตอร์ (ฉบับที่ 2) พ.ศ.2560</p>
+        <p className='c4'>กรณีตอบไม่ทันภายใน 10 วินาที จะข้ามไปยังสถานการณ์ต่อไป</p>
+        <p className='c5'>คะแนนเต็ม 10 คะแนน</p>
+        <p className='c6'>ตอบถูก : +1 คะแนน รวมกับเวลาที่เหลือจาก 10 วินาที</p>
+        <p className='c7'>ตอบผิด : ไม่ได้คะแนนและข้ามไปยังสภานการณ์ต่อไปทันที</p>
       </div>
     )
 
     const page2 = (
-      <div className='page-2 page' style={{ backgroundImage: `url(${slide2})`}}>
-        {actions}
+      <div className='gscene-2'>
+        <h2>ENTER NAME</h2>
+        <input type='text' onChange={(e) => this.handleChangeName(e.target.value)} />
+        <button className='submit-name'
+          disabled={playerName === ''}
+          onClick={() => this.changePage(page + 1)}>ENTER</button>
       </div>
     )
 
     const page3 = (
-      <div className='page-3 page' style={{ backgroundImage: `url(${slide3})`}}>
-        {actions}
+      <div className='gscene-3'>
+        <img src={item1} alt='item' className='item' />
+        <img src={char1} alt='char' className='char' />
+        <p className='label'>ปีโป้ต้องการส่งจดหมายอิเล็กทรอนิกส์<br />(E-mail) ไปให้จีจี้</p>
+        <button className='choice' onClick={this.correctAnswer}>CORRECT</button>
+        <button className='choice incorrect' onClick={this.incorrectAnswer}>INCORRECT</button>
       </div>
     )
 
     const page4 = (
-      <div className='page-4 page' style={{ backgroundImage: `url(${slide4})`}}>
-        <img src={text1} alt='text' className='text1' onClick={() => this.changePage(5)} />
-        {actions}
+      <div className='gscene-4'>
+        <img src={item2} alt='item' className='item' />
+        <img src={char2} alt='char' className='char' />
+        <p className='label'>ปีโป้กำลังจะสั่งซื้อก๊อตซิล่าผ่าน<br />เว็บไซต์ออนไลน์ซึ่งกำลังลดราคา 10%</p>
+        <button className='choice' onClick={this.correctAnswer}>CORRECT</button>
+        <button className='choice incorrect' onClick={this.incorrectAnswer}>INCORRECT</button>
       </div>
     )
 
-    const page5 = <div className='page-5 page' style={{ backgroundImage: `url(${slide5})`}} />
-    const page6 = <div className='page-6 page' style={{ backgroundImage: `url(${slide6})`}} />
-    const page7 = <div className='page-7 page' style={{ backgroundImage: `url(${slide7})`}} />
-    const page8 = <div className='page-8 page' style={{ backgroundImage: `url(${slide8})`}} />
-    const page9 = <div className='page-9 page' style={{ backgroundImage: `url(${slide9})`}} />
-    const page10 = <div className='page-10 page' style={{ backgroundImage: `url(${slide10})`}} />
-    const page11 = <div className='page-11 page' style={{ backgroundImage: `url(${slide11})`}} />
-    const page12 = <div className='page-12 page' style={{ backgroundImage: `url(${slide12})`}} />
-    const page13 = <div className='page-13 page' style={{ backgroundImage: `url(${slide13})`}} />
-    const page14 = <div className='page-14 page' style={{ backgroundImage: `url(${slide14})`}} />
-    const page15 = <div className='page-15 page' style={{ backgroundImage: `url(${slide15})`}} />
-    const page16 = <div className='page-16 page' style={{ backgroundImage: `url(${slide16})`}} />
-    const page17 = <div className='page-17 page' style={{ backgroundImage: `url(${slide17})`}} />
-    const page18 = <div className='page-18 page' style={{ backgroundImage: `url(${slide18})`}} />
-    const page19 = <div className='page-19 page' style={{ backgroundImage: `url(${slide19})`}} />
-    const page20 = <div className='page-20 page' style={{ backgroundImage: `url(${slide20})`}} />
-    const page21 = <div className='page-21 page' style={{ backgroundImage: `url(${slide21})`}} />
-    const page22 = <div className='page-22 page' style={{ backgroundImage: `url(${slide22})`}} />
+    const page5 = (
+      <div className='gscene-5'>
+        <img src={item3} alt='item' className='item' />
+        <img src={char3} alt='char' className='char' />
+        <p className='label'>ปีโป้โพสต์ข้อความในเฟซบุ๊ค(Facebook) <br />ว่า เจนนี่นิสัยแบบนี้ต้องเลิกคบ</p>
+        <button className='choice' onClick={this.incorrectAnswer}>CORRECT</button>
+        <button className='choice incorrect' onClick={this.correctAnswer}>INCORRECT</button>
+      </div>
+    )
 
-    const page23 = (
-      <div className='page-23 page'>
-        <img src={char} alt='char' className='char' />
-        <img src={name} alt='name' className='name' />
+    const page6 = (
+      <div className='gscene-6'>
+        <img src={item4} alt='item' className='item' />
+        <img src={char4} alt='char' className='char' />
+        <p className='label'>ปีโป้กำลังเล่นเกมออนไลน์ในโทรศัพท์มือถือ</p>
+        <button className='choice' onClick={this.correctAnswer}>CORRECT</button>
+        <button className='choice incorrect' onClick={this.incorrectAnswer}>INCORRECT</button>
+      </div>
+    )
 
-        <button className='start' onClick={() => changeScene(3)}>START</button>
+    const page7 = (
+      <div className='gscene-7'>
+        <img src={item5} alt='item' className='item' />
+        <img src={char5} alt='char' className='char' />
+        <p className='label'>ปีโป้กำลังจะดาวน์โหลดภาพยนตร์ที่มีลิขสิทธิ์ หรือหนังซูม จากเว็บไซต์หนึ่ง</p>
+        <h2 className='zoom'>ZOOM!</h2>
+        <button className='choice' onClick={this.incorrectAnswer}>CORRECT</button>
+        <button className='choice incorrect' onClick={this.correctAnswer}>INCORRECT</button>
+      </div>
+    )
+
+    const page8 = (
+      <div className='gscene-8'>
+        <img src={item6} alt='item' className='item' />
+        <img src={char6} alt='char' className='char' />
+        <p className='label'>ปีโป้ต้องการจะแฮกข้อมูลผู้ใช้และ<br />รหัสผ่าน(Username and Password) ในการเข้าสู่ระบบของเฟซบุ๊คของแอมมี่เพื่อดูข้อมูลส่วนตัว</p>
+        <button className='choice' onClick={this.incorrectAnswer}>CORRECT</button>
+        <button className='choice incorrect' onClick={this.correctAnswer}>INCORRECT</button>
+      </div>
+    )
+
+    const page9 = (
+      <div className='gscene-9'>
+        <img src={item7} alt='item' className='item' />
+        <img src={char7} alt='char' className='char' />
+        <p className='label'>ปีโป้ได้ทำการตัดต่อรูปภาพในลักษณะ<br />ภาพโป๊ของซูซี่ แล้วนำภาพมาโพสต์ลง<br />อินสตาแกรม(Instagram)</p>
+        <button className='choice' onClick={this.incorrectAnswer}>CORRECT</button>
+        <button className='choice incorrect' onClick={this.correctAnswer}>INCORRECT</button>
+      </div>
+    )
+
+    const page10 = (
+      <div className='gscene-10'>
+        <img src={item8} alt='item' className='item' />
+        <img src={char8} alt='char' className='char' />
+        <p className='label'>ปีโป้เข้าเว็บไซต์ของโรงเรียนเพื่อค้นหาชื่อและนามสกุลของคุณครูที่ปรึกษา</p>
+        <button className='choice' onClick={this.incorrectAnswer}>CORRECT</button>
+        <button className='choice incorrect' onClick={this.correctAnswer}>INCORRECT</button>
+      </div>
+    )
+
+    const page11 = (
+      <div className='gscene-11'>
+        <img src={item9} alt='item' className='item' />
+        <img src={char9} alt='char' className='char' />
+        <p className='label'>ปีโป้โพสต์ฝากร้านค้าในอินสตาแกรม(IG) <br />ของณเดชน์ คูกิมิยะ</p>
+        <button className='choice' onClick={this.incorrectAnswer}>CORRECT</button>
+        <button className='choice incorrect' onClick={this.correctAnswer}>INCORRECT</button>
+      </div>
+    )
+
+    const page12 = (
+      <div className='gscene-12'>
+        <img src={item10} alt='item' className='item' />
+        <img src={char10} alt='char' className='char' />
+        <p className='label'>ปีโป้กดปุ่มแชร์คลิปวิดีโอโป๊ให้เจนนี่</p>
+        <button className='choice' onClick={this.incorrectAnswer}>CORRECT</button>
+        <button className='choice incorrect' onClick={this.correctAnswer}>INCORRECT</button>
+      </div>
+    )
+
+    const page13 = (
+      <div className='gscene-13'>
+        <img src={txtScore} alt='score' className='txt-score' />
+        <img src={char11} alt='char' className='char' />
+        <h2 className='total-score'>{this.state.score}</h2>
+        <button className='play-again' onClick={this.playAgain}>PLAY AGAIN</button>
       </div>
     )
 
@@ -116,7 +259,15 @@ class Scene2 extends React.Component {
     }
 
     return (
-      <div className='scene-2'>
+      <div className='scene-3'>
+        {page > 2 && page < 13 && (
+          <Fragment>
+            <h2 className='countdown'>TIME: {timer}</h2>
+            <h2 className='score'>SCORE: {score}</h2>
+          </Fragment>
+        )}
+
+        {page === 0 && page0}
         {page === 1 && page1}
         {page === 2 && page2}
         {page === 3 && page3}
@@ -130,35 +281,25 @@ class Scene2 extends React.Component {
         {page === 11 && page11}
         {page === 12 && page12}
         {page === 13 && page13}
-        {page === 14 && page14}
-        {page === 15 && page15}
-        {page === 16 && page16}
-        {page === 17 && page17}
-        {page === 18 && page18}
-        {page === 19 && page19}
-        {page === 20 && page20}
-        {page === 21 && page21}
-        {page === 22 && page22}
-        {page === 23 && page23}
 
-        {
-          page > 1 && page <= 23 && (
-            <Actions
-              home='page'
-              sound
-              next={page !== 23}
-              prev
-              scene={page === 1 ? scene : page}
-              page={page}
-              changeScene={page === 1 ? changeScene : this.changePage}
-              changePage={this.changePage}
-              history={this.props.history}
-              handlePause={this.handlePause}
-              controls={controls}
-            />
-          )
-        }
-        
+        <Actions
+          home={page === 0 ? 'scene' : 'page'}
+          next={page < 2 && page !== 0}
+          prev={page <= 2 && page !== 0}
+          sound
+          scene={scene}
+          page={page}
+          changePause={this.changePause}
+          changeScene={changeScene}
+          changePage={this.changePage}
+          history={this.props.history}
+          handlePause={this.handlePause}
+          controls={controls}
+          pauseStatus={this.state.pause}
+        />
+
+        {this.state.pause && overlay}
+
         <Sound
           autoLoad
           loop
