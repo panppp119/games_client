@@ -150,38 +150,6 @@ $red: #c90000;
       }
     }
 
-    .page-13 {
-      > * {
-        position: absolute;
-      }
-
-      .char {
-        bottom: -30px;
-        left: 0;
-        width: 750px;
-      }
-
-      .name {
-        top: auto;
-        right: 20px;
-        bottom: 12px;
-        width: 78%;
-      }
-
-      .fire {
-        top: 108px;
-        right: 5px;
-        width: 400px;
-      }
-
-      .start {
-        border-color: $yellow;
-        bottom: 82px;
-        right: 114px;
-        color: $red;
-      }
-    }
-
     .top-nav {
       display: flex;
       justify-content: space-between;
@@ -210,7 +178,7 @@ $red: #c90000;
       color: var(--black);
     }
 
-    .gscene-1, .gscene-2, .gscene-3,
+    .gscene-0, .gscene-1, .gscene-2, .gscene-3,
     .gscene-4, .gscene-5, .gscene-6,
     .gscene-7, .gscene-8, .gscene-9,
     .gscene-10, .gscene-11, .gscene-12,
@@ -303,6 +271,40 @@ $red: #c90000;
       .score {
         top: 50px;
         right: 50px;
+      }
+    }
+
+    .gscene-0 {
+      > * {
+        position: absolute;
+      }
+
+      .char {
+        bottom: -30px;
+        left: 0;
+        width: 750px;
+      }
+
+      .name {
+        top: auto;
+        right: 20px;
+        bottom: 12px;
+        width: 78%;
+      }
+
+      .fire {
+        top: 108px;
+        right: 5px;
+        width: 400px;
+        opacity: 0;
+        animation: fadeLeft 1s linear forwards;
+      }
+
+      .start {
+        border-color: $yellow;
+        bottom: 82px;
+        right: 114px;
+        color: $red;
       }
     }
 
@@ -427,6 +429,20 @@ $red: #c90000;
       animation: fadeRight 1s ease-in-out;
       z-index: 1;
     }
+
+    .i-3 {
+      top: 150px;
+      right: 2px;
+      width: 508px;
+      z-index: 1;
+      animation: fadeRight 1s ease-in-out;
+    }
+
+    .i-4 {
+      top: 50px;
+      right: 170px;
+      animation: fadeRight 1s ease-in-out;
+    }
   }
 
   .gscene-6 {
@@ -475,6 +491,32 @@ $red: #c90000;
       &:hover {
         width: 112px;
       }
+    }
+  }
+
+  .gscene-9 {
+    .i-1 {
+      bottom: 0; width: 100%;
+      z-index: 1;
+    }
+    .i-2 {
+      top: 170px;
+      left: 200px;
+      width: 50%;
+      z-index: 0;
+      animation: fadeRight 1s linear;
+    }
+    .i-3 {
+      top: 200px;
+      left: 200px;
+      top: 289px;
+      left: 342px;
+      width: 200px;
+      animation: fadeRight 1s linear;
+    }
+    .i-4 {
+      top:20px; left: 20px;
+      animation: fadeLeft 1s linear;
     }
   }
 
@@ -599,6 +641,11 @@ $red: #c90000;
       animation: fadeDown 2s linear forwards;
       animation-delay: 2s;
     }
+    .i-3 {
+      top: 20px;
+      left: 20px;
+      animation: fadeLeft 1s linear;
+    }
   }
 
   .gscene-14 {
@@ -625,6 +672,28 @@ $red: #c90000;
     }
   }
 
+  .gscene-16 {
+    .i-2 {
+      width: 125px;
+      bottom: 167px;
+      left: 400px;
+      animation: fadeLeft 3s linear;
+    }
+    .i-3 {
+      top: 20px;
+      left: 20px;
+      animation: fadeLeft 1s linear;
+    }
+  }
+
+  .gscene-17 {
+    .i-3 {
+      top: 20px;
+      left: 20px;
+      animation: fadeLeft 1s linear;
+    }
+  }
+
   .gscene-18 {
     .i-1 {
       height: 110%;
@@ -638,6 +707,26 @@ $red: #c90000;
     .i-1 {
       width: 100%; top: 0;
       animation: fadeDown 5s linear;
+    }
+  }
+
+  .gscene-20 {
+    .i-2 {
+      top: 220px;
+      left: 330px;
+      width: 100px;
+      animation: fadeLeft 3s linear;
+    }
+    .i-3 {
+      top: 20px; left: 20px;
+      animation: fadeLeft 1s linear;
+    }
+  }
+
+  .gscene-21 {
+    .i-2 {
+      top: 20px; left: 20px;
+      animation: fadeLeft 1s linear;
     }
   }
 

@@ -8,7 +8,7 @@ import './CyberAdventure.scss'
 
 class CyberAdventure extends React.Component {
   state = {
-    scene: 2
+    scene: 1
   }
 
   changeScene = (scene) => {
@@ -25,7 +25,6 @@ class CyberAdventure extends React.Component {
         <div className='frame cyber-adventure'>
           {scene === 1 && <Scene1 changeScene={this.changeScene} scene={scene} {...this.props} />}
           {scene === 2 && <Scene2 changeScene={this.changeScene} scene={scene} {...this.props} />}
-          {scene === 3 && <Scene3 changeScene={this.changeScene} scene={scene} {...this.props} />}
         </div>
       </Layout>
     )
