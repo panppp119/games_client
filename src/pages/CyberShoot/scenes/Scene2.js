@@ -52,6 +52,10 @@ class Scene2 extends React.Component {
       this.setState({ timer: this.state.time })
       this.countdown()
     }
+
+    if (page === 0) {
+      this.setState({ score: 0 })
+    }
   }
 
   handleChangeName = (name) => {
@@ -100,7 +104,7 @@ class Scene2 extends React.Component {
   }
 
   playAgain = () => {
-    this.props.changeScene(2)
+    this.props.changeScene(0)
   }
 
   render () {
@@ -216,6 +220,7 @@ class Scene2 extends React.Component {
           sound
           scene={scene}
           page={page}
+          pause={page > 2 && page !== 4}
           changePause={this.changePause}
           changeScene={changeScene}
           changePage={this.changePage}

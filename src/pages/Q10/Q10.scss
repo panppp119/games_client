@@ -169,10 +169,36 @@
   }
 
   .scene-3 {
-    .gscene-1, .gscene-2, .gscene-3,
+    .timer-left {
+      top: 20px;
+      left: 20px;
+      right: auto;
+      font-size: 70px;
+      background: rgba(0, 0, 0, 0.8);
+      color: var(--white);
+      padding: 10px;
+      z-index: 2;
+      width: 100px;
+      text-align: center;
+    }
+
+    .timer-right {
+      top: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      color: var(--white);
+      left: auto;
+      font-size: 70px;
+      padding: 10px;
+      z-index: 2;
+      width: 100px;
+      text-align: center;
+    }
+
+    .gscene-0, .gscene-1, .gscene-2, .gscene-3,
     .gscene-4, .gscene-5, .gscene-6,
     .gscene-7, .gscene-8, .gscene-9,
-    .gscene-10, .gscene-11, .gscene-12, .gscene-13 {
+    .gscene-10, .gscene-11, .gscene-12, .gscene-13, .gscene-14 {
       top: 0;
       left: 0;
       right: 0;
@@ -226,14 +252,6 @@
         text-align: center;
         color: var(--black);
 
-        &.countdown {
-          top: 20px;
-          left: 20px;
-          width: 150px;
-          right: auto;
-          font-size: 80px;
-        }
-
         &.total-score {
           font-size: 80px;
           width: 400px;
@@ -247,33 +265,126 @@
         }
       }
 
-      .choice {
-        border-color: var(--primary_dark);
-        color: var(--primary_dark);
-        bottom: 190px;
-        right: 80px;
-
-        &.incorrect {
-          bottom: 85px;
-          right: 58px;
-        }
-      }
-
       .play-again {
         border-color: var(--black);
         color: var(--black);
-        bottom: 150px;
-        right: 50px;
+        bottom: 80px;
+        left: 130px;
       }
 
       .score {
         top: 50px;
         right: 50px;
       }
+
+      .char-left {
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        animation: fadeLeft 1s linear;
+      }
+      .char-right {
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+        animation: fadeRight 1s linear;
+      }
+      .char-bottom {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        z-index: 1;
+        animation: fadeBottom 1s linear;
+      }
+
+      .q-1 {
+        top: 20px; width: 930px;
+      }
+      .q-2 {
+        top: 240px; width: 700px;
+        outline: none;
+        opacity: 1;
+        &:hover {
+          width: 705px;
+        }
+        &.unactive {
+          opacity: 0.5;
+        }
+      }
+      .q-3 {
+        top: 340px; width: 700px;
+        outline: none;
+        opacity: 1;
+        &:hover {
+          width: 705px;
+        }
+        &.unactive {
+          opacity: 0.5;
+        }
+      }
+      .q-4 {
+        top: 440px; width: 700px;
+        outline: none;
+        opacity: 1;
+        &:hover {
+          width: 705px;
+        }
+        &.unactive {
+          opacity: 0.5;
+        }
+      }
+      .q-5 {
+        top: 540px; width: 700px;
+        outline: none;
+        opacity: 1;
+        &:hover {
+          width: 705px;
+        }
+        &.unactive {
+          opacity: 0.5;
+        }
+      }
+    }
+
+    .gscene-0 {
+      .char {
+        bottom: 0;
+        right: -1px;
+        left: auto;
+        animation: fadeRight 1s linear;
+      }
+
+      .name {
+        left: 35px;
+        top: 50px;
+        width: 500px;
+      }
+
+      .start {
+        border: none;
+        bottom: 190px;
+        left: 125px;
+        width: 272px;
+        height: 80px;
+
+        &:hover {
+          width: 274px;
+          height: 82px;
+        }
+      }
     }
 
     .gscene-1 {
       padding: 50px;
+
+      .char {
+        right: -1px;
+        left: auto;
+        width: 300px;
+        bottom: 87px;
+        animation: fadeRight 1s linear;
+      }
 
       h1 {
         font-size: 50px;
@@ -322,6 +433,30 @@
       }
     }
 
+    .gscene-11 {
+      .q-2, .q-3 {
+        width: 400px;
+
+        &:hover {
+          width: 405px;
+        }
+      }
+    }
+
+    .gscene-13 {
+      .char-bottom {
+        z-index: 0;
+      }
+      .q-2, .q-3 {
+        width: 400px;
+        top: 240px;
+
+        &:hover {
+          width: 405px;
+        }
+      }
+    }
+
     .overlay {
       z-index: 3;
       top: 0;
@@ -343,12 +478,17 @@
   }
 
   @keyframes fadeRight {
-    0% { transform: translateX(100px); opacity: 0; }
-    100%{ transform: translateX(0); opacity: 1; }
+    0% { transform: translateX(100px); }
+    100%{ transform: translateX(0); }
   }
 
   @keyframes fadeLeft {
-    0% { transform: translateX(-100px); opacity: 0; }
-    60%{ transform: translateX(0); opacity: 1; }
+    0% { transform: translateX(-100px); }
+    60%{ transform: translateX(0); }
+  }
+
+  @keyframes fadeBottom {
+    0% { transform: translateY(100px); }
+    100%{ transform: translateY(0); }
   }
 }

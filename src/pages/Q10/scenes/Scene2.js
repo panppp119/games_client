@@ -1,112 +1,345 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Sound from 'react-sound'
 
 import Actions from 'components/Actions'
 
-import slide1 from '../imgs/Slide1.JPG'
-import slide2 from '../imgs/Slide2.JPG'
-import slide3 from '../imgs/Slide3.JPG'
-import slide4 from '../imgs/Slide4.JPG'
-import slide5 from '../imgs/Slide5.JPG'
-import slide6 from '../imgs/Slide6.JPG'
-import slide7 from '../imgs/Slide7.JPG'
-import slide8 from '../imgs/Slide8.JPG'
-import slide9 from '../imgs/Slide9.JPG'
-import slide10 from '../imgs/Slide10.JPG'
-import slide11 from '../imgs/Slide11.JPG'
 import char from '../imgs/char.png'
 import name from '../imgs/name.png'
 import start from '../imgs/start.png'
-import text1 from '../imgs/N1.png'
-import text2 from '../imgs/N2.png'
-import text3 from '../imgs/N3.png'
+import char1 from '../imgs/char1.png'
+import char2 from '../imgs/char2.png'
+import char3 from '../imgs/char3.png'
+import char4 from '../imgs/char4.png'
+import char5 from '../imgs/char5.png'
+import char6 from '../imgs/char6.png'
+import char7 from '../imgs/char7.png'
+import char8 from '../imgs/char8.png'
+import char9 from '../imgs/char9.png'
+import char10 from '../imgs/char10.png'
+import final from '../imgs/final.png'
+import q1_1 from '../imgs/q1-1.png'
+import q1_2 from '../imgs/q1-2.png'
+import q1_3 from '../imgs/q1-3.png'
+import q1_4 from '../imgs/q1-4.png'
+import q1_5 from '../imgs/q1-5.png'
+import q2_1 from '../imgs/q2-1.png'
+import q2_2 from '../imgs/q2-2.png'
+import q2_3 from '../imgs/q2-3.png'
+import q2_4 from '../imgs/q2-4.png'
+import q2_5 from '../imgs/q2-5.png'
+import q3_1 from '../imgs/q3-1.png'
+import q3_2 from '../imgs/q3-2.png'
+import q3_3 from '../imgs/q3-3.png'
+import q3_4 from '../imgs/q3-4.png'
+import q3_5 from '../imgs/q3-5.png'
+import q4_1 from '../imgs/q4-1.png'
+import q4_2 from '../imgs/q4-2.png'
+import q4_3 from '../imgs/q4-3.png'
+import q4_4 from '../imgs/q4-4.png'
+import q4_5 from '../imgs/q4-5.png'
+import q5_1 from '../imgs/q5-1.png'
+import q5_2 from '../imgs/q5-2.png'
+import q5_3 from '../imgs/q5-3.png'
+import q5_4 from '../imgs/q5-4.png'
+import q5_5 from '../imgs/q5-5.png'
+import q6_1 from '../imgs/q6-1.png'
+import q6_2 from '../imgs/q6-2.png'
+import q6_3 from '../imgs/q6-3.png'
+import q6_4 from '../imgs/q6-4.png'
+import q6_5 from '../imgs/q6-5.png'
+import q7_1 from '../imgs/q7-1.png'
+import q7_2 from '../imgs/q7-2.png'
+import q7_3 from '../imgs/q7-3.png'
+import q7_4 from '../imgs/q7-4.png'
+import q7_5 from '../imgs/q7-5.png'
+import q8_1 from '../imgs/q8-1.png'
+import q8_2 from '../imgs/q8-2.png'
+import q8_3 from '../imgs/q8-3.png'
+import q9_1 from '../imgs/q9-1.png'
+import q9_2 from '../imgs/q9-2.png'
+import q9_3 from '../imgs/q9-3.png'
+import q9_4 from '../imgs/q9-4.png'
+import q9_5 from '../imgs/q9-5.png'
+import q10_1 from '../imgs/q10-1.png'
+import q10_2 from '../imgs/q10-2.png'
+import q10_3 from '../imgs/q10-3.png'
 import audio from '../bg-audio.wav'
+
+var myInterval
 
 class Scene2 extends React.Component {
   state = {
-    page: 1,
-    sound: 'PLAYING'
+    page: 0,
+    playerName: '',
+    score: 0,
+    time: 15,
+    timer: 15,
+    pause: false,
+    sound: 'PLAYING',
+    choice: 0
   }
 
   changePage = (page) => {
-    this.setState({ page })
+    clearInterval(myInterval)
+    this.setState({ page, choice: 0 })
+
+    if (page > 3 && page < 14) {
+      this.setState({ timer: this.state.time })
+      this.countdown()
+    }
+
+    if (page === 0) {
+      this.setState({ score: 0, timer: this.state.time })
+    }
+  }
+
+  handleChangeName = (name) => {
+    this.setState({ playerName: name })
   }
 
   handlePause = (status) => {
     this.setState({ sound: status })
   }
 
-  render () {
-    const { scene, changeScene } = this.props
-    const { page } = this.state
+  countdown = () => {
+    myInterval = setInterval(() => {
+      if (this.state.timer > 1 && !this.state.pause) {
+        this.setState({ timer: this.state.timer - 1 })
+      }
+      else {
+        if (this.state.pause) {
+          clearInterval(myInterval)
+        }
+        else {
+          clearInterval(myInterval)
+          this.changePage(this.state.page + 1)
+        }
+      }
+    }, 1000);
+  }
 
-    const actions = (
-      <div className='top-nav'>
-        <button onClick={() => this.changePage(1)}>หน้าแรก</button>
-        <button onClick={() => this.changePage(2)}>แนะนำการใช้งาน</button>
-        <button onClick={() => this.changePage(3)}>จุดประสงค์การเรียนรู้</button>
-        <button onClick={() => this.changePage(4)}>เนื้อหาบทเรียน</button>
+  changePause = () => {
+    this.setState({ pause: !this.state.pause })
+    !this.state.pause && this.countdown()
+  }
+
+  correct = (choice) => {
+    this.setState({ score: this.state.score + 10, choice })
+  }
+
+  incorrect = (choice) => {
+    this.setState({ score: this.state.score, choice })
+  }
+
+  playAgain = () => {
+    this.changePage(0)
+  }
+
+  render () {
+    const { changeScene } = this.props
+    const { page, playerName, timer, score, choice } = this.state
+    const scene = 2
+
+    const overlay = (
+      <div className='overlay'>
+        <button onClick={this.changePause}>RESUME</button>
+      </div>
+    )
+
+    const page0 = (
+      <div className='gscene-0'>
+        <img src={char} alt='char' className='char' />
+        <img src={name} alt='name' className='name' />
+        <img src={start} alt='start' className='start' onClick={() => this.changePage(page + 1)} />
       </div>
     )
 
     const page1 = (
-      <div className='page-1 page' style={{ backgroundImage: `url(${slide1})`}}>
-        <button onClick={() => this.changePage(2)}>START</button>
+      <div className='gscene-1'>
+        <h1>HOW TO</h1>
+        <img src={char} alt="char" className='char'/>
+        <p className='c1'>คำถามมีทั้งหมด 10 ข้อ เลือกตอบจากตัวเลือกที่มีภายในเวลา 15 วินาที หากเลือกคำตอบแล้วไม่สามารถเปลี่ยนได้ และต้องรอจนกว่าจะหมดเวลา </p>
+        <p className='c2'>หลังจากหมดเวลาจะไปยังข้อต่อไปและเริ่มจับเวลาใหม่อีกครั้ง</p>
+        <p className='c5'>คะแนนเต็ม 100 คะแนน ข้อละ 10 คะแนน</p>
+        <p className='c6'>ตอบถูก : + คะแนนที่ได้จากเวลาที่เหลือ</p>
+        <p className='c7'>ตอบผิด : ไม่ได้คะแนนเพิ่ม</p>
       </div>
     )
 
     const page2 = (
-      <div className='page-2 page' style={{ backgroundImage: `url(${slide2})`}}>
-        {actions}
+      <div className='gscene-2'>
+        <h2>ENTER NAME</h2>
+        <input type='text' onChange={(e) => this.handleChangeName(e.target.value)} />
+        <button className='submit-name'
+          disabled={playerName === ''}
+          onClick={() => this.changePage(page + 1)}>ENTER</button>
       </div>
     )
 
     const page3 = (
-      <div className='page-3 page' style={{ backgroundImage: `url(${slide3})`}}>
-        {actions}
+      <div className='gscene-3'>
+        <h3 style={{ left: 0, right: 0, top: 50, margin: 'auto', textAlign: 'center' }}>รอการเข้าร่วม</h3>
+        <ul style={{ top: 120, left: 100 }}>
+          <li style={{ lineHeight: '70px' }}>1</li>
+          <li style={{ lineHeight: '70px' }}>2</li>
+          <li style={{ lineHeight: '70px' }}>3</li>
+          <li style={{ lineHeight: '70px' }}>4</li>
+          <li style={{ lineHeight: '70px' }}>5</li>
+        </ul>
+        <ul style={{ top: 120, left: 550 }}>
+          <li style={{ lineHeight: '70px' }}>1</li>
+          <li style={{ lineHeight: '70px' }}>2</li>
+          <li style={{ lineHeight: '70px' }}>3</li>
+          <li style={{ lineHeight: '70px' }}>4</li>
+          <li style={{ lineHeight: '70px' }}>5</li>
+        </ul>
       </div>
     )
 
     const page4 = (
-      <div className='page-4 page' style={{ backgroundImage: `url(${slide4})`}}>
-        <img src={text1} alt='text' className='text1' onClick={() => this.changePage(5)} />
-        <img src={text2} alt='text' className='text2' onClick={() => this.changePage(6)} />
-        <img src={text3} alt='text' className='text3' onClick={() => this.changePage(10)} />
-        {actions}
+      <div className='gscene-4'>
+        <img src={char1} alt="char" className='char-right' />
+        <img src={q1_1} alt="char" className='q-1' style={{ left: 20 }} />
+        <img src={q1_2} alt="char" className={`q-2 ${choice !== 1 && choice !== 0 && 'unactive'}`} style={{ left: 20 }} onClick={() => this.correct(1)} />
+        <img src={q1_3} alt="char" className={`q-3 ${choice !== 2 && choice !== 0 && 'unactive'}`} style={{ left: 20 }} onClick={() => this.incorrect(2)} />
+        <img src={q1_4} alt="char" className={`q-4 ${choice !== 3 && choice !== 0 && 'unactive'}`} style={{ left: 20 }} onClick={() => this.incorrect(3)} />
+        <img src={q1_5} alt="char" className={`q-5 ${choice !== 4 && choice !== 0 && 'unactive'}`} style={{ left: 20 }} onClick={() => this.incorrect(4)} />
       </div>
     )
 
-    const page5 = <div className='page-5 page' style={{ backgroundImage: `url(${slide5})`}}/>
-    const page6 = <div className='page-6 page' style={{ backgroundImage: `url(${slide6})`}} />
-    const page7 = <div className='page-7 page' style={{ backgroundImage: `url(${slide7})`}} />
-    const page8 = <div className='page-8 page' style={{ backgroundImage: `url(${slide8})`}} />
-    const page9 = <div className='page-9 page' style={{ backgroundImage: `url(${slide9})`}} />
-    const page10 = <div className='page-10 page' style={{ backgroundImage: `url(${slide10})`}} />
-    const page11 = <div className='page-11 page' style={{ backgroundImage: `url(${slide11})`}} />
+    const page5 = (
+      <div className='gscene-5'>
+        <img src={char2} alt="char" className='char-left' />
+        <img src={q2_1} alt="char" className='q-1' style={{ right: 20 }} />
+        <img src={q2_2} alt="char" className={`q-2 ${choice !== 1 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() => this.incorrect(1)} />
+        <img src={q2_3} alt="char" className={`q-3 ${choice !== 2 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() => this.correct(2)} />
+        <img src={q2_4} alt="char" className={`q-4 ${choice !== 3 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() => this.incorrect(3)} />
+        <img src={q2_5} alt="char" className={`q-5 ${choice !== 4 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() => this.incorrect(4)} />
+      </div>
+    )
+
+    const page6 = (
+      <div className='gscene-6'>
+        <img src={char3} alt="char" className='char-right' style={{ right: -75 }} />
+        <img src={q3_1} alt="char" className='q-1' style={{ left: 20 }} />
+        <img src={q3_2} alt="char" className={`q-2 ${choice !== 1 && choice !== 0 && 'unactive'}`} style={{ left: 20 }} onClick={() => this.incorrect(1)} />
+        <img src={q3_3} alt="char" className={`q-3 ${choice !== 2 && choice !== 0 && 'unactive'}`} style={{ left: 20 }} onClick={() => this.correct(2)} />
+        <img src={q3_4} alt="char" className={`q-4 ${choice !== 3 && choice !== 0 && 'unactive'}`} style={{ left: 20 }} onClick={() => this.incorrect(3)} />
+        <img src={q3_5} alt="char" className={`q-5 ${choice !== 4 && choice !== 0 && 'unactive'}`} style={{ left: 20 }} onClick={() => this.incorrect(4)} />
+      </div>
+    )
+
+    const page7 = (
+      <div className='gscene-7'>
+        <img src={char4} alt="char" className='char-left' style={{ left: -20 }} />
+        <img src={q4_1} alt="char" className='q-1' style={{ right: 20 }} />
+        <img src={q4_2} alt="char" className={`q-2 ${choice !== 1 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() => this.incorrect(1)} />
+        <img src={q4_3} alt="char" className={`q-3 ${choice !== 2 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() => this.correct(2)} />
+        <img src={q4_4} alt="char" className={`q-4 ${choice !== 3 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() => this.incorrect(3)} />
+        <img src={q4_5} alt="char" className={`q-5 ${choice !== 4 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() => this.incorrect(4)} />
+      </div>
+    )
+
+    const page8 = (
+      <div className='gscene-8'>
+        <img src={char5} alt="char" className='char-right' />
+        <img src={q5_1} alt="char" className='q-1' style={{ left: 20 }} />
+        <img src={q5_2} alt="char" className={`q-2 ${choice !== 1 && choice !== 0 && 'unactive'}`} style={{ left: 20 }} onClick={() => this.incorrect(1)} />
+        <img src={q5_3} alt="char" className={`q-3 ${choice !== 2 && choice !== 0 && 'unactive'}`} style={{ left: 20 }} onClick={() => this.incorrect(2)} />
+        <img src={q5_4} alt="char" className={`q-4 ${choice !== 3 && choice !== 0 && 'unactive'}`} style={{ left: 20 }} onClick={() => this.incorrect(3)} />
+        <img src={q5_5} alt="char" className={`q-5 ${choice !== 4 && choice !== 0 && 'unactive'}`} style={{ left: 20 }} onClick={() => this.correct(4)} />
+      </div>
+    )
+
+    const page9 = (
+      <div className='gscene-9'>
+        <img src={char6} alt="char" className='char-left' />
+        <img src={q6_1} alt="char" className='q-1' style={{ right: 20 }} />
+        <img src={q6_2} alt="char" className={`q-2 ${choice !== 1 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() => this.incorrect(1)} />
+        <img src={q6_3} alt="char" className={`q-3 ${choice !== 2 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() => this.incorrect(2)} />
+        <img src={q6_4} alt="char" className={`q-4 ${choice !== 3 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() => this.correct(3)} />
+        <img src={q6_5} alt="char" className={`q-5 ${choice !== 4 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() => this.incorrect(4)} />
+      </div>
+    )
+
+    const page10 = (
+      <div className='gscene-10'>
+        <img src={char7} alt="char" className='char-right' style={{ right: -10, bottom: -10 }} />
+        <img src={q7_1} alt="char" className='q-1' style={{ left: 20 }} />
+        <img src={q7_2} alt="char" className={`q-2 ${choice !== 1 && choice !== 0 && 'unactive'}`} style={{ left: 20 }} onClick={() => this.incorrect(1)} />
+        <img src={q7_3} alt="char" className={`q-3 ${choice !== 2 && choice !== 0 && 'unactive'}`} style={{ left: 20 }} onClick={() => this.incorrect(2)} />
+        <img src={q7_4} alt="char" className={`q-4 ${choice !== 3 && choice !== 0 && 'unactive'}`} style={{ left: 20 }} onClick={() => this.incorrect(3)} />
+        <img src={q7_5} alt="char" className={`q-5 ${choice !== 4 && choice !== 0 && 'unactive'}`} style={{ left: 20 }} onClick={() => this.correct(4)} />
+      </div>
+    )
+
+    const page11 = (
+      <div className='gscene-11'>
+        <img src={char8} alt="char" className='char-left' />
+        <img src={q8_1} alt="char" className='q-1' style={{ right: 20 }} />
+        <img src={q8_2} alt="char" className={`q-2 ${choice !== 1 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() => this.incorrect(1)} />
+        <img src={q8_3} alt="char" className={`q-3 ${choice !== 2 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() => this.correct(2)} />
+      </div>
+    )
 
     const page12 = (
-      <div className='page-12 page'>
-        <img src={char} alt='char' className='char' />
-        <img src={name} alt='name' className='name' />
-        <img src={start} alt='start' className='start' onClick={() => changeScene(3)} />
+      <div className='gscene-12'>
+        <img src={char9} alt="char" className='char-right' style={{ width: 400 }} />
+        <img src={q9_1} alt="char" className='q-1' style={{ left: 20 }} />
+        <img src={q9_2} alt="char" className={`q-2 ${choice !== 1 && choice !== 0 && 'unactive'}`} style={{ left: 20 }} onClick={() => this.incorrect(1)} />
+        <img src={q9_3} alt="char" className={`q-3 ${choice !== 2 && choice !== 0 && 'unactive'}`} style={{ left: 20 }} onClick={() => this.incorrect(2)} />
+        <img src={q9_4} alt="char" className={`q-4 ${choice !== 3 && choice !== 0 && 'unactive'}`} style={{ left: 20 }} onClick={() => this.incorrect(3)} />
+        <img src={q9_5} alt="char" className={`q-5 ${choice !== 4 && choice !== 0 && 'unactive'}`} style={{ left: 20 }} onClick={() => this.correct(4)} />
       </div>
     )
 
-    var position = 'bottom-right'
-    if (page === 6) {
-      position = 'bottom-center'
-    }
-    else if (page === 7 || page === 9 || page === 12) {
-      position = 'bottom-left'
-    }
+    const page13 = (
+      <div className='gscene-13'>
+        <img src={char10} alt="char" className='char-bottom' style={{ width: '100%' }} />
+        <img src={q10_1} alt="char" className='q-1' style={{ right: 20 }} />
+        <img src={q10_2} alt="char" className={`q-2 ${choice !== 1 && choice !== 0 && 'unactive'}`} style={{ left: 20 }} onClick={() => this.correct(1)} />
+        <img src={q10_3} alt="char" className={`q-3 ${choice !== 2 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() => this.incorrect(2)} />
+      </div>
+    )
+
+    const page14 = (
+      <div className='gscene-14'>
+        <img src={final} alt="char" className='char-right' style={{ right: -10 }} />
+        <h1 style={{ left: 50, top: 45, fontSize: 80 }}>FINAL SCORE</h1>
+
+        <h2 style={{ left: 50, top: 200, textAlign: 'left' }}>
+          <span style={{width: 100, textAlign: 'center'}}>1</span>
+          <span style={{marginLeft: 50}}>A</span>
+          <span style={{marginLeft: 50}}>0</span>
+        </h2>
+        <h2 style={{ left: 50, top: 300, textAlign: 'left' }}>
+          <span style={{width: 100, textAlign: 'center'}}>2</span>
+          <span style={{marginLeft: 50}}>A</span>
+          <span style={{marginLeft: 50}}>0</span>
+        </h2>
+        <h2 style={{ left: 50, top: 400, textAlign: 'left' }}>
+          <span style={{width: 100, textAlign: 'center'}}>3</span>
+          <span style={{marginLeft: 50}}>A</span>
+          <span style={{marginLeft: 50}}>0</span>
+        </h2>
+
+        <button className='play-again' onClick={() => this.playAgain()}>PLAY AGAIN</button>
+      </div>
+    )
 
     const controls = {
       pause: this.state.sound === Sound.status.PLAYING,
       resume: this.state.sound === Sound.status.PAUSED
     }
 
+    var position = 'bottom-right'
+    if (page === 0 || page === 5 || page === 7 || page === 9 || page === 14) {
+      position = 'bottom-left'
+    }
+
     return (
-      <div className='scene-2'>
+      <div className='scene-3'>
+        {page === 0 && page0}
         {page === 1 && page1}
         {page === 2 && page2}
         {page === 3 && page3}
@@ -119,25 +352,43 @@ class Scene2 extends React.Component {
         {page === 10 && page10}
         {page === 11 && page11}
         {page === 12 && page12}
+        {page === 13 && page13}
+        {page === 14 && page14}
 
         {
-          page > 1 && page <= 12 && (
+          (page === 5 || page === 7 || page === 9 || page === 11)  && (
+            <h2 className='timer-left'>{timer}</h2>
+          )
+        }
+        {
+          (page === 4 || page === 6 || page === 8 || page === 10 || page === 12 || page === 13)  && (
+            <h2 className='timer-right'>{timer}</h2>
+          )
+        }
+
+        {
+          page !== 14 && (
             <Actions
-              home='page'
-              next={page !== 12}
-              prev
+              home={page === 0 ? 'scene' : 'page'}
+              next={page < 3 && page !== 0}
+              // next
+              prev={page <= 3 && page !== 0}
               sound
-              scene={page === 1 ? scene : page}
+              scene={scene}
               page={page}
-              changeScene={page === 1 ? changeScene : this.changePage}
+              changePause={this.changePause}
+              changeScene={changeScene}
               changePage={this.changePage}
               history={this.props.history}
-              position={position}
               handlePause={this.handlePause}
               controls={controls}
+              pauseStatus={this.state.pause}
+              position={position}
             />
           )
         }
+
+        {this.state.pause && overlay}
 
         <Sound
           autoLoad

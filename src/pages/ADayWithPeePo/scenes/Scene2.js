@@ -116,7 +116,7 @@ class Scene2 extends React.Component {
         <img src={char} alt='char' className='char' />
         <img src={name} alt='name' className='name' />
 
-        <button className='start' onClick={() => this.changePage(page + 1)}>START</button>
+        <button className='start' onClick={() => this.changePage(page + 1)}>PLAY</button>
       </div>
     )
 
@@ -290,6 +290,7 @@ class Scene2 extends React.Component {
           sound
           scene={scene}
           page={page}
+          pause={page > 2 && page !== 13}
           changePause={this.changePause}
           changeScene={changeScene}
           changePage={this.changePage}
