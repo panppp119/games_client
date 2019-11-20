@@ -1,6 +1,7 @@
 .cyber-shoot {
   padding: 0;
   background: radial-gradient(circle, rgba(194,194,194,1) 0%, rgba(99,99,99,1) 100%);
+  position: relative;
 
   .scene-1,
   .scene-2,
@@ -389,6 +390,10 @@
       .c5 {
         top: 487px;
       }
+    }
+
+    .gscene-3 {
+      cursor: none;
     }
 
     .overlay {

@@ -8,7 +8,9 @@ import './CyberShoot.scss'
 
 class CyberShoot extends React.Component {
   state = {
-    scene: 3
+    scene: 2,
+    x: 0,
+    y: 0
   }
 
   changeScene = (scene) => {

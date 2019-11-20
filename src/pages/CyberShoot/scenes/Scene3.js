@@ -31,6 +31,16 @@ class Scene3 extends React.Component {
     life: 5
   }
 
+  componentDidMount() {
+    document.addEventListener('mousemove', e => {
+      this.mousemove(e.x, e.y)
+    })
+  }
+
+  mousemove (x, y) {
+    this.setState({x, y})
+  }
+
   changePage = (page) => {
     this.setState({ page })
 
@@ -91,7 +101,7 @@ class Scene3 extends React.Component {
 
   render () {
     const { changeScene } = this.props
-    const { page, playerName, timer, type, score, life } = this.state
+    const { page, playerName, timer, type, score, life, x, y } = this.state
     const overlay = (
       <div className='overlay'>
         <button onClick={this.changePause}>RESUME</button>
@@ -119,13 +129,13 @@ class Scene3 extends React.Component {
         <input type='text' onChange={(e) => this.handleChangeName(e.target.value)} />
         <div className='actors'>
           <img src={head_w} alt='white'
-            className={type === 'white' && 'active'}
+            className={type === 'white' ? 'active' : ''}
             onClick={() => this.changeType('white')} />
           <img src={head_p} alt='pink'
-            className={type === 'pink' && 'active'}
+            className={type === 'pink' ? 'active' : ''}
             onClick={() => this.changeType('pink')} />
           <img src={head_g} alt='grey'
-            className={type === 'grey' && 'active'}
+            className={type === 'grey' ? 'active' : ''}
             onClick={() => this.changeType('grey')} />
         </div>
         <button className='submit-name'
@@ -133,6 +143,8 @@ class Scene3 extends React.Component {
           onClick={() => this.changePage(page + 1)}>ENTER</button>
       </div>
     )
+
+    var target = this.state.type === 'white' ? target_w : this.state.type === 'pink' ? target_p : target_g
 
     const page3 = (
       <div className='gscene-3'>
@@ -145,6 +157,8 @@ class Scene3 extends React.Component {
           {life >= 4 && <img src={heart} alt='life'/>}
           {life === 5 && <img src={heart} alt='life'/>}
         </div>
+
+        <img src={target} alt="star" id='star' style={{ position: 'absolute', width: 60, height: 60, top: y - 120, left: x - 240 }}/>
       </div>
     )
 

@@ -173,8 +173,6 @@ class Scene3 extends React.Component {
       </div>
     )
 
-    console.log(this.state)
-
     const page4 = (
       <div className='gscene-3'>
         <img src={char1} alt='char' className='char1' />
