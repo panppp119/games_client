@@ -35,9 +35,17 @@ class Actions extends React.Component {
           break
         case 'pause': changePause()
           break
-        case 'next': home === 'page' ? changePage(page + 1) : changeScene(scene + 1)
+        case 'next':
+          if (this.props.start) {
+            this.props.start()
+          }
+          home === 'page' ? changePage(page + 1) : changeScene(scene + 1)
           break
-        case 'prev': home === 'page' ? changePage(page - 1) : changeScene(scene - 1)
+        case 'prev':
+          if (this.props.removePlayer) {
+            this.props.removePlayer()
+          }
+          home === 'page' ? changePage(page - 1) : changeScene(scene - 1)
           break
         default: break
       }

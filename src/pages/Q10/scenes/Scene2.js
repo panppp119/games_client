@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import Sound from 'react-sound'
+import socketIOClient from 'socket.io-client';
 
 import Actions from 'components/Actions'
 
@@ -66,17 +67,22 @@ import q10_3 from '../imgs/q10-3.png'
 import audio from '../bg-audio.wav'
 
 var myInterval
+const server = `${process.env.REACT_APP_SERVER}`
+const socket = socketIOClient(server)
 
 class Scene2 extends React.Component {
   state = {
     page: 0,
     playerName: '',
+    players: [],
     score: 0,
-    time: 15,
-    timer: 15,
+    time: 10,
+    timer: 10,
     pause: false,
     sound: 'PLAYING',
-    choice: 0
+    choice: 0,
+    id: 0,
+    onPlaying: false
   }
 
   changePage = (page) => {
@@ -91,6 +97,18 @@ class Scene2 extends React.Component {
     if (page === 0) {
       this.setState({ score: 0, timer: this.state.time })
     }
+
+    if (page === 3) {
+      socket.on('game start', (bool) => {
+        this.setState({ onPlaying: bool })
+      })
+
+    }
+
+    if (page === 14) {
+      socket.emit('game start', false)
+      this.setState({ onPlaying: false })
+    }
   }
 
   handleChangeName = (name) => {
@@ -99,6 +117,27 @@ class Scene2 extends React.Component {
 
   handlePause = (status) => {
     this.setState({ sound: status })
+  }
+
+  addPlayer = () => {
+    const randomId = Math.floor(100000 + Math.random() * 900000)
+    const player = {
+      name: this.state.playerName,
+      score: this.state.score,
+      id: randomId
+    }
+
+    this.setState({ id: randomId })
+    socket.emit('add player', player)
+    this.changePage(this.state.page + 1)
+  }
+
+  removePlayer = () => {
+    socket.emit('remove player', this.state.id)
+  }
+
+  start = () => {
+    socket.emit('game start', true)
   }
 
   countdown = () => {
@@ -125,10 +164,12 @@ class Scene2 extends React.Component {
 
   correct = (choice) => {
     this.setState({ score: this.state.score + 10, choice })
+    this.state.page === 13 && socket.emit('update score', this.state.score, this.state.id)
   }
 
   incorrect = (choice) => {
     this.setState({ score: this.state.score, choice })
+    this.state.page === 13 && socket.emit('update score', this.state.score, this.state.id)
   }
 
   playAgain = () => {
@@ -137,8 +178,23 @@ class Scene2 extends React.Component {
 
   render () {
     const { changeScene } = this.props
-    const { page, playerName, timer, score, choice } = this.state
+    const { page, playerName, timer, score, choice, players } = this.state
     const scene = 2
+    const split = 5
+
+    console.log(this.state)
+
+    socket.on('update players', (data) => {
+      this.setState({ players: data })
+    })
+
+    socket.on('game start', (bool) => {
+      bool && this.changePage(4)
+      this.setState({ onPlaying: bool })
+    })
+
+    var firstCol = players.slice(0, split)
+    var secondCol = players.slice(split)
 
     const overlay = (
       <div className='overlay'>
@@ -158,7 +214,7 @@ class Scene2 extends React.Component {
       <div className='gscene-1'>
         <h1>HOW TO</h1>
         <img src={char} alt="char" className='char'/>
-        <p className='c1'>คำถามมีทั้งหมด 10 ข้อ เลือกตอบจากตัวเลือกที่มีภายในเวลา 15 วินาที หากเลือกคำตอบแล้วไม่สามารถเปลี่ยนได้ และต้องรอจนกว่าจะหมดเวลา </p>
+        <p className='c1'>คำถามมีทั้งหมด 10 ข้อ เลือกตอบจากตัวเลือกที่มีภายในเวลา 10 วินาที หากเลือกคำตอบแล้วไม่สามารถเปลี่ยนได้ และต้องรอจนกว่าจะหมดเวลา </p>
         <p className='c2'>หลังจากหมดเวลาจะไปยังข้อต่อไปและเริ่มจับเวลาใหม่อีกครั้ง</p>
         <p className='c5'>คะแนนเต็ม 100 คะแนน ข้อละ 10 คะแนน</p>
         <p className='c6'>ตอบถูก : + คะแนนที่ได้จากเวลาที่เหลือ</p>
@@ -168,11 +224,19 @@ class Scene2 extends React.Component {
 
     const page2 = (
       <div className='gscene-2'>
-        <h2>ENTER NAME</h2>
-        <input type='text' onChange={(e) => this.handleChangeName(e.target.value)} />
-        <button className='submit-name'
-          disabled={playerName === ''}
-          onClick={() => this.changePage(page + 1)}>ENTER</button>
+        {
+          this.state.onPlaying ? (
+            <h2>เกมได้เริ่มไปแล้ว กรุณารอรอบถัดไป</h2>
+          ) : (
+            <Fragment>
+              <h2>ENTER NAME</h2>
+              <input type='text' onChange={(e) => this.handleChangeName(e.target.value)} />
+              <button className='submit-name'
+                disabled={playerName === ''}
+                onClick={() => this.addPlayer()}>ENTER</button>
+            </Fragment>
+          )
+        }
       </div>
     )
 
@@ -180,18 +244,26 @@ class Scene2 extends React.Component {
       <div className='gscene-3'>
         <h3 style={{ left: 0, right: 0, top: 50, margin: 'auto', textAlign: 'center' }}>รอการเข้าร่วม</h3>
         <ul style={{ top: 120, left: 100 }}>
-          <li style={{ lineHeight: '70px' }}>1</li>
-          <li style={{ lineHeight: '70px' }}>2</li>
-          <li style={{ lineHeight: '70px' }}>3</li>
-          <li style={{ lineHeight: '70px' }}>4</li>
-          <li style={{ lineHeight: '70px' }}>5</li>
+          {
+            firstCol.map((item, i) => {
+              return (
+                <li style={{ lineHeight: '70px' }} key={i}>
+                  {item.name} {players[0].id === item.id && '[head]'}{item.id === this.state.id && '[me]'}
+                </li>
+              )
+            })
+          }
         </ul>
         <ul style={{ top: 120, left: 550 }}>
-          <li style={{ lineHeight: '70px' }}>1</li>
-          <li style={{ lineHeight: '70px' }}>2</li>
-          <li style={{ lineHeight: '70px' }}>3</li>
-          <li style={{ lineHeight: '70px' }}>4</li>
-          <li style={{ lineHeight: '70px' }}>5</li>
+          {
+            secondCol.map((item, i) => {
+              return (
+                <li style={{ lineHeight: '70px' }} key={i}>
+                  {item.name} {players[0].id === item.id && '[head]'}{item.name === playerName && '[me]'}
+                </li>
+              )
+            })
+          }
         </ul>
       </div>
     )
@@ -307,21 +379,19 @@ class Scene2 extends React.Component {
         <img src={final} alt="char" className='char-right' style={{ right: -10 }} />
         <h1 style={{ left: 50, top: 45, fontSize: 80 }}>FINAL SCORE</h1>
 
-        <h2 style={{ left: 50, top: 200, textAlign: 'left' }}>
-          <span style={{width: 100, textAlign: 'center'}}>1</span>
-          <span style={{marginLeft: 50}}>A</span>
-          <span style={{marginLeft: 50}}>0</span>
-        </h2>
-        <h2 style={{ left: 50, top: 300, textAlign: 'left' }}>
-          <span style={{width: 100, textAlign: 'center'}}>2</span>
-          <span style={{marginLeft: 50}}>A</span>
-          <span style={{marginLeft: 50}}>0</span>
-        </h2>
-        <h2 style={{ left: 50, top: 400, textAlign: 'left' }}>
-          <span style={{width: 100, textAlign: 'center'}}>3</span>
-          <span style={{marginLeft: 50}}>A</span>
-          <span style={{marginLeft: 50}}>0</span>
-        </h2>
+        <ul style={{listStyle: 'none', top: 200, left: 50, paddingLeft: 0}}>
+          {
+            players.slice(0, 3).map((player, i) => {
+              return (
+                <li style={{ textAlign: 'left', fontSize: 60, lineHeight: '80px' }} key={i}>
+                  <span style={{width: 100, textAlign: 'center'}}>{i + 1}</span>
+                  <span style={{marginLeft: 50}}>{player.name}</span>
+                  <span style={{marginLeft: 50}}>{player.score}</span>
+                </li>
+              )
+            })
+          }
+        </ul>
 
         <button className='play-again' onClick={() => this.playAgain()}>PLAY AGAIN</button>
       </div>
@@ -370,7 +440,9 @@ class Scene2 extends React.Component {
           page !== 14 && (
             <Actions
               home={page === 0 ? 'scene' : 'page'}
-              next={page < 3 && page !== 0}
+              next={(page < 3 && page !== 0) || (
+                page === 3 && players.length === 2 && players[0].id === this.state.id
+              )}
               // next
               prev={page <= 3 && page !== 0}
               sound
@@ -383,6 +455,8 @@ class Scene2 extends React.Component {
               handlePause={this.handlePause}
               controls={controls}
               pauseStatus={this.state.pause}
+              removePlayer={this.removePlayer}
+              start={page === 3 && this.start}
               position={position}
             />
           )
