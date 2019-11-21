@@ -292,8 +292,8 @@
         &.total-score {
           font-size: 80px;
           width: 400px;
-          right: 20px;
-          top: 261px;
+          right: 40px;
+          top: 170px;
           left: auto;
           text-align: center;
           border: 6px solid var(--black);
@@ -317,8 +317,8 @@
       .play-again {
         border-color: var(--black);
         color: var(--black);
-        bottom: 150px;
-        right: 50px;
+        bottom: 200px;
+        right: 120px;
       }
 
       .score {
@@ -438,6 +438,20 @@
 
     .gscene-3 {
       cursor: none;
+    }
+
+    .gscene-4 {
+      background-position: center;
+      background-size: cover;
+
+      .char {
+        height: 60%;
+        width: auto;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        left: 80px;
+      }
     }
 
     .overlay {
