@@ -64,11 +64,12 @@ import q9_5 from '../imgs/q9-5.png'
 import q10_1 from '../imgs/q10-1.png'
 import q10_2 from '../imgs/q10-2.png'
 import q10_3 from '../imgs/q10-3.png'
-import audio from '../bg-audio.wav'
+import audio from '../bg-audio.mp3'
 
 var myInterval
 const server = `${process.env.REACT_APP_SERVER}`
-const socket = socketIOClient(server)
+var socket = socketIOClient(server)
+const randomId = Math.floor(100000 + Math.random() * 900000)
 
 class Scene2 extends React.Component {
   state = {
@@ -81,7 +82,6 @@ class Scene2 extends React.Component {
     pause: false,
     sound: 'PLAYING',
     choice: 0,
-    id: 0,
     onPlaying: false
   }
 
@@ -120,20 +120,29 @@ class Scene2 extends React.Component {
   }
 
   addPlayer = () => {
-    const randomId = Math.floor(100000 + Math.random() * 900000)
+    const { players } = this.state
     const player = {
       name: this.state.playerName,
       score: this.state.score,
       id: randomId
     }
 
-    this.setState({ id: randomId })
-    socket.emit('add player', player)
+    const hasPlayer = players.findIndex(player => player.id === randomId) !== -1
+    if (hasPlayer) {
+      const index = players.findIndex(player => player.id === randomId)
+      var plys = players
+      plys[index] = player
+      socket.emit('update players', plys)
+    }
+    else {
+      socket.emit('add player', player)
+    }
+
     this.changePage(this.state.page + 1)
   }
 
   removePlayer = () => {
-    socket.emit('remove player', this.state.id)
+    socket.emit('remove player', randomId)
   }
 
   start = () => {
@@ -164,16 +173,17 @@ class Scene2 extends React.Component {
 
   correct = (choice) => {
     this.setState({ score: this.state.score + 10, choice })
-    this.state.page === 13 && socket.emit('update score', this.state.score, this.state.id)
+    this.state.page === 13 && socket.emit('update score', this.state.score, randomId)
   }
 
   incorrect = (choice) => {
     this.setState({ score: this.state.score, choice })
-    this.state.page === 13 && socket.emit('update score', this.state.score, this.state.id)
+    this.state.page === 13 && socket.emit('update score', this.state.score, randomId)
   }
 
   playAgain = () => {
     this.changePage(0)
+    socket.emit('reset')
   }
 
   render () {
@@ -182,13 +192,11 @@ class Scene2 extends React.Component {
     const scene = 2
     const split = 5
 
-    console.log(this.state)
-
-    socket.on('update players', (data) => {
+    page >= 3 && page <= 14 && socket.on('update players', (data) => {
       this.setState({ players: data })
     })
 
-    socket.on('game start', (bool) => {
+    page >= 3 && page <= 14 &&  socket.on('game start', (bool) => {
       bool && this.changePage(4)
       this.setState({ onPlaying: bool })
     })
@@ -248,7 +256,7 @@ class Scene2 extends React.Component {
             firstCol.map((item, i) => {
               return (
                 <li style={{ lineHeight: '70px' }} key={i}>
-                  {item.name} {players[0].id === item.id && '[head]'}{item.id === this.state.id && '[me]'}
+                  {item.name} {players[0].id === item.id && '[head]'}{item.id === randomId && '[me]'}
                 </li>
               )
             })
@@ -441,7 +449,7 @@ class Scene2 extends React.Component {
             <Actions
               home={page === 0 ? 'scene' : 'page'}
               next={(page < 3 && page !== 0) || (
-                page === 3 && players.length === 2 && players[0].id === this.state.id
+                page === 3 && players.length === 2 && players[0].id === randomId
               )}
               // next
               prev={page <= 3 && page !== 0}

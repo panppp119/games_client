@@ -137,17 +137,117 @@ class Scene2 extends React.Component {
     type: 'white',
     life: 5,
     rd1: Math.floor(Math.random() * 103),
-    rd2: Math.floor(Math.random() * 103),
-    rd3: Math.floor(Math.random() * 103),
-    rd4: Math.floor(Math.random() * 103),
-    rd5: Math.floor(Math.random() * 103),
-    re6: Math.floor(Math.random() * 103),
+    rd2: 0,
+    rd3: 0,
+    rd4: 0,
+    rd5: 0,
+    re6: 0,
   }
 
   componentDidMount() {
     document.addEventListener('mousemove', e => {
       this.mousemove(e.x, e.y)
     })
+
+    this.random()
+  }
+
+  random (name) {
+    var a = 0, b = 0, c = 0, d = 0, e = 0, f = 0
+
+    setInterval(() => {
+      a++
+      if (a < 2 && !this.state.pause) {
+        this.setState({ rd1: Math.floor(Math.random() * 103)})
+      }
+      else {
+        this.setState({ rd1: 0 })
+      }
+
+      if (a === 2) {
+        a = 0
+      }
+    }, 3000)
+
+    setTimeout(() => {
+      setInterval(() => {
+        b++
+        if (b < 2 && !this.state.pause) {
+          this.setState({ rd2: Math.floor(Math.random() * 103)})
+        }
+        else {
+          this.setState({ rd2: 0 })
+        }
+
+        if (b === 2) {
+          b = 0
+        }
+      }, 3000)
+    }, 1000)
+
+    setTimeout(() => {
+      setInterval(() => {
+        c++
+        if (c < 2 && !this.state.pause) {
+          this.setState({ rd3: Math.floor(Math.random() * 103)})
+        }
+        else {
+          this.setState({ rd3: 0 })
+        }
+
+        if (c === 2) {
+          c = 0
+        }
+      }, 3000)
+    }, 2000)
+
+    setTimeout(() => {
+      setInterval(() => {
+        d++
+        if (d < 2 && !this.state.pause) {
+          this.setState({ rd4: Math.floor(Math.random() * 103)})
+        }
+        else {
+          this.setState({ rd4: 0 })
+        }
+
+        if (d === 2) {
+          d = 0
+        }
+      }, 3000)
+    }, 3000)
+
+    setTimeout(() => {
+      setInterval(() => {
+        e++
+        if (e < 2 && !this.state.pause) {
+          this.setState({ rd5: Math.floor(Math.random() * 103)})
+        }
+        else {
+          this.setState({ rd5: 0 })
+        }
+
+        if (e === 2) {
+          e = 0
+        }
+      }, 3000)
+    }, 4000)
+
+    setTimeout(() => {
+      setInterval(() => {
+        f++
+        if (f < 2 && !this.state.pause) {
+          this.setState({ rd6: Math.floor(Math.random() * 103)})
+        }
+        else {
+          this.setState({ rd6: 0 })
+        }
+
+        if (f === 2) {
+          f = 0
+        }
+      }, 3000)
+    }, 5000)
   }
 
   mousemove (x, y) {
@@ -214,6 +314,7 @@ class Scene2 extends React.Component {
 
   playAgain = () => {
     this.changePage(0)
+    this.setState({ score: 0, life: 5 })
   }
 
   handleClickBubble = (name, num) => {
@@ -242,10 +343,11 @@ class Scene2 extends React.Component {
     else {
       if (this.state.life <= 1) {
         this.changePage(4)
+        clearInterval(myInterval)
       }
       else {
         this.setState({
-          score: score - 1,
+          score: score > 0 ? score - 1 : 0,
           life: this.state.life - 1,
           [random]: Math.floor(Math.random() * 103)
         })
@@ -257,7 +359,6 @@ class Scene2 extends React.Component {
     const { changeScene } = this.props
     const { page, playerName, timer, type, score, life, x, y, rd1, rd2, rd3, rd4, rd5, rd6 } = this.state
     const scene = 2
-    console.log(this.state)
     var img1, img2, img3, img4, img5, img6
 
     if (rd1 === 1)  img1 = word1
@@ -946,7 +1047,7 @@ class Scene2 extends React.Component {
     var target = this.state.type === 'white' ? target_w : this.state.type === 'pink' ? target_p : target_g
 
     const page3 = (
-      <div className='gscene-3'>
+      <div className='gscene-3' style={{ cursor: `url('${target}'), default` }}>
         <h2 className='time'>TIME: {timer}</h2>
         <h2 className='score'>SCORE: {score}</h2>
         <div className='life'>
@@ -956,22 +1057,21 @@ class Scene2 extends React.Component {
           {life >= 4 && <img src={heart} alt='life'/>}
           {life === 5 && <img src={heart} alt='life'/>}
         </div>
-        <img src={target} alt="target" id='target' style={{ position: 'absolute', width: 60, height: 60, top: y - 120, left: x - 240 }}/>
+        {/* <img src={target} alt="target" id='target'
+          style={{ position: 'absolute', width: 60, height: 60, top: y - 120, left: x - 240, zIndex:3 }} /> */}
 
-        <img src={img1} alt="word" style={{ top: 180, left: 100 , width: 200}}
-          onClick={() => this.handleClickBubble('img1', rd1)} />
-        <img src={img2} alt="word" style={{ bottom: 120, left: 100, width: 200 }}
-          onClick={() => this.handleClickBubble('img2', rd2)} />
-        <img src={img3} alt="word" style={{ top: 180, right: 100, width: 200 }}
-          onClick={() => this.handleClickBubble('img', rd3)} />
-        <img src={img4} alt="word" style={{ bottom: 120, right: 100, width: 200 }}
-          onClick={() => this.handleClickBubble('img4', rd4)} />
-        <img src={img5} alt="word" style={{ left: 0, right: 0, margin: 'auto', top: 100, width: 200 }}
-          onClick={() => this.handleClickBubble('img5', rd5)} />
-        <img src={img6} alt="word" style={{ left: 0, right: 0, margin: 'auto', bottom: 50, width: 200 }}
-          onClick={() => this.handleClickBubble('img6', rd6)} />
-
-
+        {rd1 !== 0 && <img src={img1} alt="word" style={{ top: 180, left: 100 , width: 200}}
+          onClick={() => this.handleClickBubble('img1', rd1)} />}
+        {rd2 !== 0 && <img src={img2} alt="word" style={{ bottom: 120, left: 100, width: 200 }}
+          onClick={() => this.handleClickBubble('img2', rd2)} />}
+        {rd3 !== 0 && <img src={img3} alt="word" style={{ top: 180, right: 100, width: 200 }}
+          onClick={() => this.handleClickBubble('img', rd3)} />}
+        {rd4 !== 0 && <img src={img4} alt="word" style={{ bottom: 120, right: 100, width: 200 }}
+          onClick={() => this.handleClickBubble('img4', rd4)} />}
+        {rd5 !== 0 && <img src={img5} alt="word" style={{ left: 0, right: 0, margin: 'auto', top: 100, width: 200 }}
+          onClick={() => this.handleClickBubble('img5', rd5)} />}
+        {rd6 !== 0 && <img src={img6} alt="word" style={{ left: 0, right: 0, margin: 'auto', bottom: 50, width: 200 }}
+          onClick={() => this.handleClickBubble('img6', rd6)} />}
       </div>
     )
 
@@ -999,7 +1099,7 @@ class Scene2 extends React.Component {
         {page === 4 && page4}
 
         <Actions
-          home={page === 0 ? 'scene' : 'page'}
+          home={page === 3 ? false : page === 0 ? 'scene' : 'page'}
           next={page < 2 && page !== 0}
           prev={page <= 2 && page !== 0}
           sound

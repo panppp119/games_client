@@ -18,7 +18,7 @@ import char from '../imgs/char.png'
 import text1 from '../imgs/N1.png'
 import text2 from '../imgs/N2.png'
 import text3 from '../imgs/N3.png'
-import audio from '../bg-audio.wav'
+import audio from '../bg-audio.mp3'
 
 class Scene1 extends React.Component {
   state = {
