@@ -15,8 +15,8 @@ import target_w from '../imgs/target_w.png'
 import target_p from '../imgs/target_p.png'
 import target_g from '../imgs/target_g.png'
 import bg from '../imgs/bg.png'
-import gun from '../imgs/gun.png'
 import audio from '../bg-audio.mp3'
+import laser from '../laser.wav'
 import heart from '../imgs/life.png'
 import bubble from '../imgs/bubble.png'
 import word1 from '../imgs/1.png'
@@ -317,8 +317,11 @@ class Scene2 extends React.Component {
     this.setState({ score: 0, life: 5 })
   }
 
-  handleClickBubble = (name, num) => {
+  handleClickBubble = (name, num, audio) => {
     const { score } = this.state
+    
+    var laser = new Audio(audio);
+    laser.play()
 
     var random
     switch (name) {
@@ -337,8 +340,62 @@ class Scene2 extends React.Component {
       default: break
     }
 
-    if (num === 1 || num === 2 || num === 3 || num === 4) {
-      this.setState({ score: score + 2, [random]: Math.floor(Math.random() * 103) })
+    if (
+      num === 2 ||
+      num === 3 ||
+      num === 4 ||
+      num === 5 ||
+      num === 6 ||
+      num === 7 ||
+      num === 8 ||
+      num === 9 ||
+      num === 10 ||
+      num === 11 ||
+      num === 12 ||
+      num === 13 ||
+      num === 14 ||
+      num === 15 ||
+      num === 16 ||
+      num === 17 ||
+      num === 18 ||
+      num === 19 ||
+      num === 20 ||
+      num === 21 ||
+      num === 22 ||
+      num === 23 ||
+      num === 24 ||
+      num === 25 ||
+      num === 26 ||
+      num === 27 ||
+      num === 28 ||
+      num === 29 ||
+      num === 30 ||
+      num === 31 ||
+      num === 32 ||
+      num === 33 ||
+      num === 34 ||
+      num === 36 ||
+      num === 36 ||
+      num === 37 ||
+      num === 69 ||
+      num === 71 ||
+      num === 76 ||
+      num === 77 ||
+      num === 78 ||
+      num === 79 ||
+      num === 80 ||
+      num === 82 ||
+      num === 85 ||
+      num === 89 ||
+      num === 91 ||
+      num === 96 ||
+      num === 97 ||
+      num === 98 ||
+      num === 99 ||
+      num === 100 ||
+      num === 102
+    ) {
+      this.setState({ score: score + 5, [random]: Math.floor(Math.random() * 103) })
     }
     else {
       if (this.state.life <= 1) {
@@ -357,7 +414,7 @@ class Scene2 extends React.Component {
 
   render () {
     const { changeScene } = this.props
-    const { page, playerName, timer, type, score, life, x, y, rd1, rd2, rd3, rd4, rd5, rd6 } = this.state
+    const { page, playerName, timer, type, score, life, rd1, rd2, rd3, rd4, rd5, rd6 } = this.state
     const scene = 2
     var img1, img2, img3, img4, img5, img6
 
@@ -420,6 +477,7 @@ class Scene2 extends React.Component {
     if (rd1 === 57) img1 = word57
     if (rd1 === 58) img1 = word58
     if (rd1 === 59) img1 = word59
+    if (rd1 === 60) img1 = word60
     if (rd1 === 61) img1 = word61
     if (rd1 === 62) img1 = word62
     if (rd1 === 63) img1 = word63
@@ -523,6 +581,7 @@ class Scene2 extends React.Component {
     if (rd2 === 57) img2 = word57
     if (rd2 === 58) img2 = word58
     if (rd2 === 59) img2 = word59
+    if (rd2 === 60) img2 = word60
     if (rd2 === 61) img2 = word61
     if (rd2 === 62) img2 = word62
     if (rd2 === 63) img2 = word63
@@ -626,6 +685,7 @@ class Scene2 extends React.Component {
     if (rd3 === 57) img3 = word57
     if (rd3 === 58) img3 = word58
     if (rd3 === 59) img3 = word59
+    if (rd3 === 60) img3 = word60
     if (rd3 === 61) img3 = word61
     if (rd3 === 62) img3 = word62
     if (rd3 === 63) img3 = word63
@@ -729,6 +789,7 @@ class Scene2 extends React.Component {
     if (rd4 === 57) img4 = word57
     if (rd4 === 58) img4 = word58
     if (rd4 === 59) img4 = word59
+    if (rd4 === 60) img4 = word60
     if (rd4 === 61) img4 = word61
     if (rd4 === 62) img4 = word62
     if (rd4 === 63) img4 = word63
@@ -832,6 +893,7 @@ class Scene2 extends React.Component {
     if (rd5 === 57) img5 = word57
     if (rd5 === 58) img5 = word58
     if (rd5 === 59) img5 = word59
+    if (rd5 === 60) img5 = word60
     if (rd5 === 61) img5 = word61
     if (rd5 === 62) img5 = word62
     if (rd5 === 63) img5 = word63
@@ -935,6 +997,7 @@ class Scene2 extends React.Component {
     if (rd6 === 57) img6 = word57
     if (rd6 === 58) img6 = word58
     if (rd6 === 59) img6 = word59
+    if (rd6 === 60) img6 = word60
     if (rd6 === 61) img6 = word61
     if (rd6 === 62) img6 = word62
     if (rd6 === 63) img6 = word63
@@ -1014,7 +1077,6 @@ class Scene2 extends React.Component {
         <p className='c2'>ขยับเมาส์ในการเล็งเป้าหมาย แล้วกดยิง</p>
         <p className='c3'>พลังชีวิตมีทั้งหมด 5 ชีวิต</p>
         <p className='c4'>จะมีคำต่างๆ อยู่ในเป้าหมาย</p>
-        <p className='c5'>ตอบถูก : +20 คะแนน</p>
         <p className='c6'>
           กดยิงคำไม่สุภาพ คำที่ใช้ผิดตามหลักไวยากรณ์ของภาษาไทย : +5 คะแนน<br/>
 กดยิงคำสุภาพ คำที่ใช้ถูกตามหลักไวยากรณ์ของภาษาไทย : พลังชีวิต -1 <br/>
@@ -1061,17 +1123,17 @@ class Scene2 extends React.Component {
           style={{ position: 'absolute', width: 60, height: 60, top: y - 120, left: x - 240, zIndex:3 }} /> */}
 
         {rd1 !== 0 && <img src={img1} alt="word" style={{ top: 180, left: 100 , width: 200}}
-          onClick={() => this.handleClickBubble('img1', rd1)} />}
+          onClick={() => this.handleClickBubble('img1', rd1, laser)} />}
         {rd2 !== 0 && <img src={img2} alt="word" style={{ bottom: 120, left: 100, width: 200 }}
-          onClick={() => this.handleClickBubble('img2', rd2)} />}
+          onClick={() => this.handleClickBubble('img2', rd2, laser)} />}
         {rd3 !== 0 && <img src={img3} alt="word" style={{ top: 180, right: 100, width: 200 }}
-          onClick={() => this.handleClickBubble('img', rd3)} />}
+          onClick={() => this.handleClickBubble('img', rd3, laser)} />}
         {rd4 !== 0 && <img src={img4} alt="word" style={{ bottom: 120, right: 100, width: 200 }}
-          onClick={() => this.handleClickBubble('img4', rd4)} />}
+          onClick={() => this.handleClickBubble('img4', rd4, laser)} />}
         {rd5 !== 0 && <img src={img5} alt="word" style={{ left: 0, right: 0, margin: 'auto', top: 100, width: 200 }}
-          onClick={() => this.handleClickBubble('img5', rd5)} />}
+          onClick={() => this.handleClickBubble('img5', rd5, laser)} />}
         {rd6 !== 0 && <img src={img6} alt="word" style={{ left: 0, right: 0, margin: 'auto', bottom: 50, width: 200 }}
-          onClick={() => this.handleClickBubble('img6', rd6)} />}
+          onClick={() => this.handleClickBubble('img6', rd6, laser)} />}
       </div>
     )
 

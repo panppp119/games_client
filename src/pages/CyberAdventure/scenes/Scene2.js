@@ -28,7 +28,6 @@ import s9_4 from '../imgs/s9-4.png'
 import s10_1 from '../imgs/s10-1.png'
 import s10_2 from '../imgs/s10-2.png'
 import s10_3 from '../imgs/s10-3.png'
-import s10_4 from '../imgs/s10-4.png'
 import s11_1 from '../imgs/s11-1.png'
 import s11_2 from '../imgs/s11-2.png'
 import s12_1 from '../imgs/s12-1.png'
@@ -40,19 +39,15 @@ import s15_1 from '../imgs/s15-1.png'
 import s15_2 from '../imgs/s15-2.png'
 import s16_1 from '../imgs/s16-1.png'
 import s17_1 from '../imgs/s17-1.png'
-import s17_2 from '../imgs/s17-2.png'
 import s18_1 from '../imgs/s18-1.png'
 import s19_1 from '../imgs/s19-1.png'
 import s19_2 from '../imgs/s19-2.png'
-import s19_3 from '../imgs/s19-3.png'
 import s20_1 from '../imgs/s20-1.png'
 import s21_1 from '../imgs/s21-1.png'
 import s21_2 from '../imgs/s21-2.png'
 import s21_3 from '../imgs/s21-3.png'
 import s22_1 from '../imgs/s22-1.png'
 import s22_2 from '../imgs/s22-2.png'
-import s22_3 from '../imgs/s22-3.png'
-import s22_4 from '../imgs/s22-4.png'
 import s23_1 from '../imgs/s23-1.png'
 import s24_1 from '../imgs/s24-1.png'
 import icon_g from '../imgs/tools.png'
@@ -75,7 +70,6 @@ import audio3 from '../audios/3.mp3'
 import audio4 from '../audios/4.mp3'
 import audio5 from '../audios/5.mp3'
 import audio6 from '../audios/6.mp3'
-import audio61 from '../audios/6.1.mp3'
 import audio7 from '../audios/7.mp3'
 import audio8 from '../audios/8.mp3'
 import audio9 from '../audios/9.mp3'
@@ -94,8 +88,6 @@ import audio21 from '../audios/21.mp3'
 import audio22 from '../audios/22.mp3'
 import audio23 from '../audios/23.mp3'
 import audio24 from '../audios/24.mp3'
-
-var myInterval
 
 class Scene2 extends React.Component {
   state = {
@@ -178,7 +170,7 @@ class Scene2 extends React.Component {
 
   render () {
     const { changeScene } = this.props
-    const { page, playerName, timer, icon1, icon2, icon3, icon4, icon5, icon6, icon7, icon8, score, life } = this.state
+    const { page, playerName, icon1, icon2, icon3, icon4, icon5, icon6, icon7, icon8, score, life } = this.state
     const scene = 2
     var heart
 

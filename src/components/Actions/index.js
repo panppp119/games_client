@@ -19,7 +19,7 @@ class Actions extends React.Component {
   }
 
   handleClick = (type) => {
-    const { scene, changeScene, changePause, stopSound, history, changePage, page, home } = this.props
+    const { scene, changeScene, changePause, history, changePage, page, home } = this.props
 
     if (scene > 1 ) {
       switch (type) {

@@ -2,7 +2,7 @@ import React from 'react'
 
 import Layout from 'components/Layout'
 
-import { Scene1, Scene2, Scene3 } from './scenes'
+import { Scene1, Scene2 } from './scenes'
 
 import './CyberAdventure.scss'
 

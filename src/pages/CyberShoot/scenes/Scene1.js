@@ -3,7 +3,6 @@ import Sound from 'react-sound'
 
 import Actions from 'components/Actions'
 
-import char from '../imgs/gun.png'
 import slide1 from '../imgs/slide1.JPG'
 import slide2 from '../imgs/slide2.JPG'
 import slide3 from '../imgs/slide3.JPG'

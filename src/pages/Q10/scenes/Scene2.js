@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import Sound from 'react-sound'
-import socketIOClient from 'socket.io-client';
+// import socketIOClient from 'socket.io-client';
 
 import Actions from 'components/Actions'
 
@@ -67,8 +67,8 @@ import q10_3 from '../imgs/q10-3.png'
 import audio from '../bg-audio.mp3'
 
 var myInterval
-const server = `${process.env.REACT_APP_SERVER}`
-var socket = socketIOClient(server)
+// const server = `${process.env.REACT_APP_SERVER}`
+// var socket = socketIOClient(server)
 const randomId = Math.floor(100000 + Math.random() * 900000)
 
 class Scene2 extends React.Component {
@@ -98,17 +98,17 @@ class Scene2 extends React.Component {
       this.setState({ score: 0, timer: this.state.time })
     }
 
-    if (page === 3) {
-      socket.on('game start', (bool) => {
-        this.setState({ onPlaying: bool })
-      })
-
-    }
-
-    if (page === 14) {
-      socket.emit('game start', false)
-      this.setState({ onPlaying: false })
-    }
+    // if (page === 3) {
+    //   socket.on('game start', (bool) => {
+    //     this.setState({ onPlaying: bool })
+    //   })
+    //
+    // }
+    //
+    // if (page === 14) {
+    //   socket.emit('game start', false)
+    //   this.setState({ onPlaying: false })
+    // }
   }
 
   handleChangeName = (name) => {
@@ -120,33 +120,33 @@ class Scene2 extends React.Component {
   }
 
   addPlayer = () => {
-    const { players } = this.state
+    // const { players } = this.state
     const player = {
       name: this.state.playerName,
       score: this.state.score,
       id: randomId
     }
 
-    const hasPlayer = players.findIndex(player => player.id === randomId) !== -1
-    if (hasPlayer) {
-      const index = players.findIndex(player => player.id === randomId)
-      var plys = players
-      plys[index] = player
-      socket.emit('update players', plys)
-    }
-    else {
-      socket.emit('add player', player)
-    }
-
-    this.changePage(this.state.page + 1)
+    // const hasPlayer = players.findIndex(player => player.id === randomId) !== -1
+    // if (hasPlayer) {
+    //   const index = players.findIndex(player => player.id === randomId)
+    //   var plys = players
+    //   plys[index] = player
+    //   socket.emit('update players', plys)
+    // }
+    // else {
+    //   socket.emit('add player', player)
+    // }
+    this.setState({ player })
+    this.changePage(4)
   }
 
   removePlayer = () => {
-    socket.emit('remove player', randomId)
+    // socket.emit('remove player', randomId)
   }
 
   start = () => {
-    socket.emit('game start', true)
+    // socket.emit('game start', true)
   }
 
   countdown = () => {
@@ -173,17 +173,17 @@ class Scene2 extends React.Component {
 
   correct = (choice) => {
     this.setState({ score: this.state.score + 10, choice })
-    this.state.page === 13 && socket.emit('update score', this.state.score, randomId)
+    // this.state.page === 13 && socket.emit('update score', this.state.score, randomId)
   }
 
   incorrect = (choice) => {
     this.setState({ score: this.state.score, choice })
-    this.state.page === 13 && socket.emit('update score', this.state.score, randomId)
+    // this.state.page === 13 && socket.emit('update score', this.state.score, randomId)
   }
 
   playAgain = () => {
     this.changePage(0)
-    socket.emit('reset')
+    // socket.emit('reset')
   }
 
   render () {
@@ -192,14 +192,14 @@ class Scene2 extends React.Component {
     const scene = 2
     const split = 5
 
-    page >= 3 && page <= 14 && socket.on('update players', (data) => {
-      this.setState({ players: data })
-    })
-
-    page >= 3 && page <= 14 &&  socket.on('game start', (bool) => {
-      bool && this.changePage(4)
-      this.setState({ onPlaying: bool })
-    })
+    // page >= 3 && page <= 14 && socket.on('update players', (data) => {
+    //   this.setState({ players: data })
+    // })
+    //
+    // page >= 3 && page <= 14 &&  socket.on('game start', (bool) => {
+    //   bool && this.changePage(4)
+    //   this.setState({ onPlaying: bool })
+    // })
 
     var firstCol = players.slice(0, split)
     var secondCol = players.slice(split)
@@ -386,8 +386,9 @@ class Scene2 extends React.Component {
       <div className='gscene-14'>
         <img src={final} alt="char" className='char-right' style={{ right: -10 }} />
         <h1 style={{ left: 50, top: 45, fontSize: 80 }}>FINAL SCORE</h1>
+        <h1 style={{ left: 50, top: 200, fontSize: 60 }}>{score}</h1>
 
-        <ul style={{listStyle: 'none', top: 200, left: 50, paddingLeft: 0}}>
+        {/* <ul style={{listStyle: 'none', top: 200, left: 50, paddingLeft: 0}}>
           {
             players.slice(0, 3).map((player, i) => {
               return (
@@ -399,7 +400,7 @@ class Scene2 extends React.Component {
               )
             })
           }
-        </ul>
+        </ul> */}
 
         <button className='play-again' onClick={() => this.playAgain()}>PLAY AGAIN</button>
       </div>
