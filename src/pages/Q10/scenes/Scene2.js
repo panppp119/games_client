@@ -386,7 +386,7 @@ class Scene2 extends React.Component {
       <div className='gscene-14'>
         <img src={final} alt="char" className='char-right' style={{ right: -10 }} />
         <h1 style={{ left: 50, top: 45, fontSize: 80 }}>FINAL SCORE</h1>
-        <h1 style={{ left: 50, top: 200, fontSize: 60 }}>{score}</h1>
+        <h1 style={{ left: 130, top: 200, fontSize: 60, width: 250, textAlign: 'center', backgroundColor: 'white' }}>{score}</h1>
 
         {/* <ul style={{listStyle: 'none', top: 200, left: 50, paddingLeft: 0}}>
           {
