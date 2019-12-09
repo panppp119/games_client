@@ -284,7 +284,7 @@ class Scene2 extends React.Component {
         {page === 13 && page13}
 
         <Actions
-          home={page === 0 ? 'scene' : 'page'}
+          home={page > 2 ? false : (page === 0 ? 'scene' : 'page')}
           next={page < 2 && page !== 0}
           prev={page <= 2 && page !== 0}
           sound

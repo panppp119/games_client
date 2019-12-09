@@ -462,7 +462,7 @@ class Scene2 extends React.Component {
           (page !== 14 || (page === 3 && !this.state.onPlaying)) && (
             <Actions
               home={page > 3 ? false : (page === 0 ? 'scene' : 'page')}
-              next={(page < 3 && page !== 0) || (
+              next={(page < 2 && page !== 0) || (
                 page === 3 && players.length >= 2
               )}
               prev={page < 3 && page !== 0}
