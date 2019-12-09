@@ -133,17 +133,18 @@ class Scene1 extends React.Component {
         {
           page > 1 && page <= 22 && (
             <Actions
-              home='page'
+              home={page === 22 ? 'scene': 'page'}
               next
               prev
               sound
-              scene={page === 1 ? scene : page}
-              page={page === 22 ? scene : page}
-              changeScene={page === 1 ? changeScene : this.changePage}
-              changePage={page === 22 ? changeScene : this.changePage}
+              scene={scene}
+              page={page}
+              changeScene={changeScene}
+              changePage={this.changePage}
               history={this.props.history}
               handlePause={this.handlePause}
               controls={controls}
+              lastPage={22}
             />
           )
         }

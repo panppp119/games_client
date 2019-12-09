@@ -319,7 +319,7 @@ class Scene2 extends React.Component {
 
   handleClickBubble = (name, num, audio) => {
     const { score } = this.state
-    
+
     var laser = new Audio(audio);
     laser.play()
 
@@ -1175,6 +1175,7 @@ class Scene2 extends React.Component {
           handlePause={this.handlePause}
           controls={controls}
           pauseStatus={this.state.pause}
+          lastPage={4}
         />
 
         {this.state.pause && overlay}

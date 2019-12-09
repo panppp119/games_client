@@ -298,6 +298,7 @@ class Scene2 extends React.Component {
           handlePause={this.handlePause}
           controls={controls}
           pauseStatus={this.state.pause}
+          lastPage={13}
         />
 
         {this.state.pause && overlay}

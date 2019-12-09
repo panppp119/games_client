@@ -19,9 +19,10 @@ class Actions extends React.Component {
   }
 
   handleClick = (type) => {
-    const { scene, changeScene, changePause, history, changePage, page, home } = this.props
+    const { scene, changeScene, changePause, history, changePage, page, home, lastPage } = this.props
+    console.log(scene, page, lastPage)
 
-    if (scene > 1 ) {
+    if (scene >= 1 ) {
       switch (type) {
         case 'home':
           switch (home) {
@@ -39,13 +40,25 @@ class Actions extends React.Component {
           if (this.props.start) {
             this.props.start()
           }
-          home === 'page' ? changePage(page + 1) : changeScene(scene + 1)
+
+          if (page === lastPage) {
+              changeScene(scene + 1)
+          }
+          else {
+              changePage(page + 1)
+          }
           break
         case 'prev':
           if (this.props.removePlayer) {
             this.props.removePlayer()
           }
-          home === 'page' ? changePage(page - 1) : changeScene(scene - 1)
+
+          if (page === lastPage) {
+              changePage(page - 1)
+          }
+          else {
+              changePage(page - 1)
+          }
           break
         default: break
       }
