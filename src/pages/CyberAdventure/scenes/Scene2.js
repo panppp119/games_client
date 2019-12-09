@@ -110,6 +110,10 @@ class Scene2 extends React.Component {
   changePage = (page) => {
     this.setState({ page })
 
+    if (page === 3) {
+        this.setState({ score: 0, life: 10 })
+    }
+
     if (page > 3 && page <= 25) {
       this.setState({ sound: Sound.status.PLAYING })
     }

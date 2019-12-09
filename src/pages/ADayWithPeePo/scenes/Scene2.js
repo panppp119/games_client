@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import Sound from 'react-sound'
+import { FaCheck, FaTimes } from 'react-icons/fa'
 
 import Actions from 'components/Actions'
 
@@ -125,8 +126,8 @@ class Scene2 extends React.Component {
         <h1>HOW TO</h1>
         <img src={char} alt="char" className='char'/>
         <p className='c1'>สถานการณ์ที่จะแสดงมีทั้งหมด 10 สถานการณ์ เลือกคำตอบที่ถูกต้องจากตัวเลือกด้านล่าง ให้สอดคล้องกับสถานการณ์ที่แสดง โดยต้องตอบภายใน 10 วินาที</p>
-        <p className='c2'><button>CORRECT</button> คือ การกระทำที่ถูก พรบ.คอมพิวเตอร์ (ฉบับที่ 2) พ.ศ.2560</p>
-        <p className='c3'><button>INCORRECT</button> คือ การกระทำที่ผิด พรบ.คอมพิวเตอร์ (ฉบับที่ 2) พ.ศ.2560</p>
+        <p className='c2'><button><FaCheck style={{ color: 'green', verticalAlign: 'middle'}} /> CORRECT</button> คือ การกระทำที่ถูก พรบ.คอมพิวเตอร์ (ฉบับที่ 2) พ.ศ.2560</p>
+        <p className='c3'><button><FaTimes style={{ color: 'red', verticalAlign: 'middle' }}/> INCORRECT</button> คือ การกระทำที่ผิด พรบ.คอมพิวเตอร์ (ฉบับที่ 2) พ.ศ.2560</p>
         <p className='c4'>กรณีตอบไม่ทันภายใน 10 วินาที จะข้ามไปยังสถานการณ์ต่อไป</p>
         <p className='c5'>คะแนนเต็ม 10 คะแนน</p>
         <p className='c6'>ตอบถูก : +1 คะแนน รวมกับเวลาที่เหลือจาก 10 วินาที</p>
@@ -149,8 +150,8 @@ class Scene2 extends React.Component {
         <img src={item1} alt='item' className='item' />
         <img src={char1} alt='char' className='char' />
         <p className='label'>ปีโป้ต้องการส่งจดหมายอิเล็กทรอนิกส์<br />(E-mail) ไปให้จีจี้</p>
-        <button className='choice' onClick={this.correctAnswer}>CORRECT</button>
-        <button className='choice incorrect' onClick={this.incorrectAnswer}>INCORRECT</button>
+        <button className='choice' onClick={this.correctAnswer}><FaCheck style={{ color: 'green', verticalAlign: 'middle'}} /> CORRECT</button>
+        <button className='choice incorrect' onClick={this.incorrectAnswer}><FaTimes style={{ color: 'red', verticalAlign: 'middle' }}/> INCORRECT</button>
       </div>
     )
 
@@ -159,8 +160,8 @@ class Scene2 extends React.Component {
         <img src={item2} alt='item' className='item' />
         <img src={char2} alt='char' className='char' />
         <p className='label'>ปีโป้กำลังจะสั่งซื้อก๊อตซิล่าผ่าน<br />เว็บไซต์ออนไลน์ซึ่งกำลังลดราคา 10%</p>
-        <button className='choice' onClick={this.correctAnswer}>CORRECT</button>
-        <button className='choice incorrect' onClick={this.incorrectAnswer}>INCORRECT</button>
+        <button className='choice' onClick={this.correctAnswer}><FaCheck style={{ color: 'green', verticalAlign: 'middle'}} /> CORRECT</button>
+        <button className='choice incorrect' onClick={this.incorrectAnswer}><FaTimes style={{ color: 'red', verticalAlign: 'middle' }}/> INCORRECT</button>
       </div>
     )
 
@@ -169,8 +170,8 @@ class Scene2 extends React.Component {
         <img src={item3} alt='item' className='item' />
         <img src={char3} alt='char' className='char' />
         <p className='label'>ปีโป้โพสต์ข้อความในเฟซบุ๊ค(Facebook) <br />ว่า เจนนี่นิสัยแบบนี้ต้องเลิกคบ</p>
-        <button className='choice' onClick={this.incorrectAnswer}>CORRECT</button>
-        <button className='choice incorrect' onClick={this.correctAnswer}>INCORRECT</button>
+        <button className='choice' onClick={this.incorrectAnswer}><FaCheck style={{ color: 'green', verticalAlign: 'middle'}} /> CORRECT</button>
+        <button className='choice incorrect' onClick={this.correctAnswer}><FaTimes style={{ color: 'red', verticalAlign: 'middle' }}/> INCORRECT</button>
       </div>
     )
 
@@ -179,8 +180,8 @@ class Scene2 extends React.Component {
         <img src={item4} alt='item' className='item' />
         <img src={char4} alt='char' className='char' />
         <p className='label'>ปีโป้กำลังเล่นเกมออนไลน์ในโทรศัพท์มือถือ</p>
-        <button className='choice' onClick={this.correctAnswer}>CORRECT</button>
-        <button className='choice incorrect' onClick={this.incorrectAnswer}>INCORRECT</button>
+        <button className='choice' onClick={this.correctAnswer}><FaCheck style={{ color: 'green', verticalAlign: 'middle'}} /> CORRECT</button>
+        <button className='choice incorrect' onClick={this.incorrectAnswer}><FaTimes style={{ color: 'red', verticalAlign: 'middle' }}/> INCORRECT</button>
       </div>
     )
 
@@ -190,8 +191,8 @@ class Scene2 extends React.Component {
         <img src={char5} alt='char' className='char' />
         <p className='label'>ปีโป้กำลังจะดาวน์โหลดภาพยนตร์ที่มีลิขสิทธิ์ หรือหนังซูม จากเว็บไซต์หนึ่ง</p>
         <h2 className='zoom'>ZOOM!</h2>
-        <button className='choice' onClick={this.incorrectAnswer}>CORRECT</button>
-        <button className='choice incorrect' onClick={this.correctAnswer}>INCORRECT</button>
+        <button className='choice' onClick={this.incorrectAnswer}><FaCheck style={{ color: 'green', verticalAlign: 'middle'}} /> CORRECT</button>
+        <button className='choice incorrect' onClick={this.correctAnswer}><FaTimes style={{ color: 'red', verticalAlign: 'middle' }}/> INCORRECT</button>
       </div>
     )
 
@@ -200,8 +201,8 @@ class Scene2 extends React.Component {
         <img src={item6} alt='item' className='item' />
         <img src={char6} alt='char' className='char' />
         <p className='label'>ปีโป้ต้องการจะแฮกข้อมูลผู้ใช้และ<br />รหัสผ่าน(Username and Password) ในการเข้าสู่ระบบของเฟซบุ๊คของแอมมี่เพื่อดูข้อมูลส่วนตัว</p>
-        <button className='choice' onClick={this.incorrectAnswer}>CORRECT</button>
-        <button className='choice incorrect' onClick={this.correctAnswer}>INCORRECT</button>
+        <button className='choice' onClick={this.incorrectAnswer}><FaCheck style={{ color: 'green', verticalAlign: 'middle'}} /> CORRECT</button>
+        <button className='choice incorrect' onClick={this.correctAnswer}><FaTimes style={{ color: 'red', verticalAlign: 'middle' }}/> INCORRECT</button>
       </div>
     )
 
@@ -210,8 +211,8 @@ class Scene2 extends React.Component {
         <img src={item7} alt='item' className='item' />
         <img src={char7} alt='char' className='char' />
         <p className='label'>ปีโป้ได้ทำการตัดต่อรูปภาพในลักษณะ<br />ภาพโป๊ของซูซี่ แล้วนำภาพมาโพสต์ลง<br />อินสตาแกรม(Instagram)</p>
-        <button className='choice' onClick={this.incorrectAnswer}>CORRECT</button>
-        <button className='choice incorrect' onClick={this.correctAnswer}>INCORRECT</button>
+        <button className='choice' onClick={this.incorrectAnswer}><FaCheck style={{ color: 'green', verticalAlign: 'middle'}} /> CORRECT</button>
+        <button className='choice incorrect' onClick={this.correctAnswer}><FaTimes style={{ color: 'red', verticalAlign: 'middle' }}/> INCORRECT</button>
       </div>
     )
 
@@ -220,8 +221,8 @@ class Scene2 extends React.Component {
         <img src={item8} alt='item' className='item' />
         <img src={char8} alt='char' className='char' />
         <p className='label'>ปีโป้เข้าเว็บไซต์ของโรงเรียนเพื่อค้นหาชื่อและนามสกุลของคุณครูที่ปรึกษา</p>
-        <button className='choice' onClick={this.incorrectAnswer}>CORRECT</button>
-        <button className='choice incorrect' onClick={this.correctAnswer}>INCORRECT</button>
+        <button className='choice' onClick={this.incorrectAnswer}><FaCheck style={{ color: 'green', verticalAlign: 'middle'}} /> CORRECT</button>
+        <button className='choice incorrect' onClick={this.correctAnswer}><FaTimes style={{ color: 'red', verticalAlign: 'middle' }}/> INCORRECT</button>
       </div>
     )
 
@@ -230,8 +231,8 @@ class Scene2 extends React.Component {
         <img src={item9} alt='item' className='item' />
         <img src={char9} alt='char' className='char' />
         <p className='label'>ปีโป้โพสต์ฝากร้านค้าในอินสตาแกรม(IG) <br />ของณเดชน์ คูกิมิยะ</p>
-        <button className='choice' onClick={this.incorrectAnswer}>CORRECT</button>
-        <button className='choice incorrect' onClick={this.correctAnswer}>INCORRECT</button>
+        <button className='choice' onClick={this.incorrectAnswer}><FaCheck style={{ color: 'green', verticalAlign: 'middle'}} /> CORRECT</button>
+        <button className='choice incorrect' onClick={this.correctAnswer}><FaTimes style={{ color: 'red', verticalAlign: 'middle' }}/> INCORRECT</button>
       </div>
     )
 
@@ -240,8 +241,8 @@ class Scene2 extends React.Component {
         <img src={item10} alt='item' className='item' />
         <img src={char10} alt='char' className='char' />
         <p className='label'>ปีโป้กดปุ่มแชร์คลิปวิดีโอโป๊ให้เจนนี่</p>
-        <button className='choice' onClick={this.incorrectAnswer}>CORRECT</button>
-        <button className='choice incorrect' onClick={this.correctAnswer}>INCORRECT</button>
+        <button className='choice' onClick={this.incorrectAnswer}><FaCheck style={{ color: 'green', verticalAlign: 'middle'}} /> CORRECT</button>
+        <button className='choice incorrect' onClick={this.correctAnswer}><FaTimes style={{ color: 'red', verticalAlign: 'middle' }}/> INCORRECT</button>
       </div>
     )
 
