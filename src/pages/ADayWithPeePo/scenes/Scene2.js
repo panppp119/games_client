@@ -221,8 +221,8 @@ class Scene2 extends React.Component {
         <img src={item8} alt='item' className='item' />
         <img src={char8} alt='char' className='char' />
         <p className='label'>ปีโป้เข้าเว็บไซต์ของโรงเรียนเพื่อค้นหาชื่อและนามสกุลของคุณครูที่ปรึกษา</p>
-        <button className='choice' onClick={this.incorrectAnswer}><FaCheck style={{ color: 'green', verticalAlign: 'middle'}} /> CORRECT</button>
-        <button className='choice incorrect' onClick={this.correctAnswer}><FaTimes style={{ color: 'red', verticalAlign: 'middle' }}/> INCORRECT</button>
+        <button className='choice' onClick={this.correctAnswer}><FaCheck style={{ color: 'green', verticalAlign: 'middle'}} /> CORRECT</button>
+        <button className='choice incorrect' onClick={this.incorrectAnswer}><FaTimes style={{ color: 'red', verticalAlign: 'middle' }}/> INCORRECT</button>
       </div>
     )
 
