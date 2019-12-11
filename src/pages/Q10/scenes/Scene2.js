@@ -17,6 +17,7 @@ import char7 from '../imgs/char7.png'
 import char8 from '../imgs/char8.png'
 import char9 from '../imgs/char9.png'
 import char10 from '../imgs/char10.png'
+import char11 from '../imgs/char11.png'
 import final from '../imgs/final.png'
 import q1_1 from '../imgs/q1-1.png'
 import q1_2 from '../imgs/q1-2.png'
@@ -131,7 +132,6 @@ class Scene2 extends React.Component {
       score: this.state.score,
       id: randomId
     }
-    const players = this.state.players || []
 
     if (this.state.player && this.state.player.id) {
         playersRef.child(randomId).update(player)
@@ -139,7 +139,7 @@ class Scene2 extends React.Component {
     }
     else {
         playersRef.child(randomId).update(player)
-        this.setState({ player})
+        this.setState({ player })
     }
 
     playersRef.on('value',(snapshot) => {
@@ -193,13 +193,17 @@ class Scene2 extends React.Component {
   }
 
   correct = (choice) => {
-    this.setState({ score: this.state.score + 10, choice })
-    playersRef.child(randomId).update({ score: this.state.score + 10 })
+    if (this.state.choice === 0) {
+        this.setState({ score: this.state.score + 10, choice })
+        playersRef.child(randomId).update({ score: this.state.score + 10 })
+    }
   }
 
   incorrect = (choice) => {
-    this.setState({ score: this.state.score, choice })
-    playersRef.child(randomId).update({ score: this.state.score })
+    if (this.state.choice === 0) {
+        this.setState({ score: this.state.score, choice })
+        playersRef.child(randomId).update({ score: this.state.score })
+    }
   }
 
   playAgain = () => {
@@ -208,7 +212,7 @@ class Scene2 extends React.Component {
 
   render () {
     const { changeScene } = this.props
-    const { page, playerName, timer, score, choice, players, onPlaying } = this.state
+    const { page, playerName, timer, choice, players, onPlaying } = this.state
     const scene = 2
     const split = 5
 
@@ -399,13 +403,12 @@ class Scene2 extends React.Component {
       <div className='gscene-14'>
         <img src={final} alt="char" className='char-right' style={{ right: -10 }} />
         <h1 style={{ left: 50, top: 45, fontSize: 80 }}>FINAL SCORE</h1>
-        {/* <h1 style={{ left: 130, top: 200, fontSize: 60, width: 250, textAlign: 'center', backgroundColor: 'white' }}>{score}</h1> */}
 
-        <ul style={{listStyle: 'none', top: 200, left: 50, paddingLeft: 0}}>
+        <ul style={{listStyle: 'none', top: 170, left: 50, paddingLeft: 0}}>
           {
             players.sort((a, b) => b.score - a.score).slice(0, 3).map((player, i) => {
               return (
-                <li style={{ textAlign: 'left', fontSize: 60, lineHeight: '80px' }} key={i}>
+                <li style={{ textAlign: 'left', fontSize: 40, lineHeight: '80px' }} key={i}>
                   <span style={{width: 100, textAlign: 'center'}}>{i + 1}</span>
                   <span style={{marginLeft: 50}}>{player.name}</span>
                   <span style={{marginLeft: 50}}>{player.score}</span>
@@ -417,6 +420,27 @@ class Scene2 extends React.Component {
 
         <button className='play-again' onClick={() => this.playAgain()}>PLAY AGAIN</button>
       </div>
+    )
+
+    const page999 = (
+        <div className='gscene-999'>
+          <img src={char11} alt="char11" className='char-right' style={{ left: 0 }} />
+          <h1 style={{ right: 50, top: 45, fontSize: 80 }}>BEST SCORE</h1>
+
+          <ul style={{listStyle: 'none', top: 170, right: 50, paddingLeft: 0}}>
+            {
+              players.sort((a, b) => b.score - a.score).slice(0, 3).map((player, i) => {
+                return (
+                  <li style={{ textAlign: 'left', fontSize: 40, lineHeight: '80px' }} key={i}>
+                    <span style={{width: 100, textAlign: 'center'}}>{i + 1}</span>
+                    <span style={{marginLeft: 50}}>{player.name}</span>
+                    <span style={{marginLeft: 50}}>{player.score}</span>
+                  </li>
+                )
+              })
+            }
+          </ul>
+        </div>
     )
 
     const controls = {
@@ -436,16 +460,25 @@ class Scene2 extends React.Component {
         {page === 2 && page2}
         {page === 3 && page3}
         {page === 4 && page4}
-        {page === 5 && page5}
-        {page === 6 && page6}
-        {page === 7 && page7}
-        {page === 8 && page8}
-        {page === 9 && page9}
-        {page === 10 && page10}
-        {page === 11 && page11}
-        {page === 12 && page12}
-        {page === 13 && page13}
-        {page === 14 && page14}
+        {page === 5 && page999}
+        {page === 6 && page5}
+        {page === 7 && page999}
+        {page === 8 && page6}
+        {page === 9 && page999}
+        {page === 10 && page7}
+        {page === 11 && page999}
+        {page === 12 && page8}
+        {page === 13 && page999}
+        {page === 14 && page9}
+        {page === 15 && page999}
+        {page === 16 && page10}
+        {page === 16 && page999}
+        {page === 18 && page11}
+        {page === 19 && page999}
+        {page === 20 && page12}
+        {page === 21 && page999}
+        {page === 22 && page13}
+        {page === 23 && page14}
 
         {
           (page === 5 || page === 7 || page === 9 || page === 11)  && (

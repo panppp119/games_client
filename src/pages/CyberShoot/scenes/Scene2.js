@@ -58,7 +58,6 @@ import word63 from '../imgs/63.png'
 import word73 from '../imgs/73.png'
 import word83 from '../imgs/83.png'
 import word93 from '../imgs/93.png'
-import word103 from '../imgs/103.png'
 import word14 from '../imgs/14.png'
 import word24 from '../imgs/24.png'
 import word34 from '../imgs/34.png'
@@ -106,7 +105,7 @@ import word88 from '../imgs/88.png'
 import word98 from '../imgs/98.png'
 import word19 from '../imgs/19.png'
 import word29 from '../imgs/29.png'
-import word39 from '../imgs/104.png'
+import word39 from '../imgs/39.png'
 import word49 from '../imgs/49.png'
 import word59 from '../imgs/59.png'
 import word69 from '../imgs/69.png'
@@ -136,7 +135,7 @@ class Scene2 extends React.Component {
     sound: 'PLAYING',
     type: 'white',
     life: 5,
-    rd1: Math.floor(Math.random() * 103),
+    rd1: Math.floor(Math.random() * 102),
     rd2: 0,
     rd3: 0,
     rd4: 0,
@@ -158,7 +157,7 @@ class Scene2 extends React.Component {
     setInterval(() => {
       a++
       if (a < 2 && !this.state.pause) {
-        this.setState({ rd1: Math.floor(Math.random() * 103)})
+        this.setState({ rd1: Math.floor(Math.random() * 102)})
       }
       else {
         this.setState({ rd1: 0 })
@@ -173,7 +172,7 @@ class Scene2 extends React.Component {
       setInterval(() => {
         b++
         if (b < 2 && !this.state.pause) {
-          this.setState({ rd2: Math.floor(Math.random() * 103)})
+          this.setState({ rd2: Math.floor(Math.random() * 102)})
         }
         else {
           this.setState({ rd2: 0 })
@@ -189,7 +188,7 @@ class Scene2 extends React.Component {
       setInterval(() => {
         c++
         if (c < 2 && !this.state.pause) {
-          this.setState({ rd3: Math.floor(Math.random() * 103)})
+          this.setState({ rd3: Math.floor(Math.random() * 102)})
         }
         else {
           this.setState({ rd3: 0 })
@@ -205,7 +204,7 @@ class Scene2 extends React.Component {
       setInterval(() => {
         d++
         if (d < 2 && !this.state.pause) {
-          this.setState({ rd4: Math.floor(Math.random() * 103)})
+          this.setState({ rd4: Math.floor(Math.random() * 102)})
         }
         else {
           this.setState({ rd4: 0 })
@@ -221,7 +220,7 @@ class Scene2 extends React.Component {
       setInterval(() => {
         e++
         if (e < 2 && !this.state.pause) {
-          this.setState({ rd5: Math.floor(Math.random() * 103)})
+          this.setState({ rd5: Math.floor(Math.random() * 102)})
         }
         else {
           this.setState({ rd5: 0 })
@@ -237,7 +236,7 @@ class Scene2 extends React.Component {
       setInterval(() => {
         f++
         if (f < 2 && !this.state.pause) {
-          this.setState({ rd6: Math.floor(Math.random() * 103)})
+          this.setState({ rd6: Math.floor(Math.random() * 102)})
         }
         else {
           this.setState({ rd6: 0 })
@@ -395,7 +394,7 @@ class Scene2 extends React.Component {
       num === 100 ||
       num === 102
     ) {
-      this.setState({ score: score + 5, [random]: Math.floor(Math.random() * 103) })
+      this.setState({ score: score + 5, [random]: Math.floor(Math.random() * 102) })
     }
     else {
       if (this.state.life <= 1) {
@@ -406,7 +405,7 @@ class Scene2 extends React.Component {
         this.setState({
           score: score > 0 ? score - 1 : 0,
           life: this.state.life - 1,
-          [random]: Math.floor(Math.random() * 103)
+          [random]: Math.floor(Math.random() * 102)
         })
       }
     }
@@ -520,7 +519,6 @@ class Scene2 extends React.Component {
     if (rd1 === 100) img1 = word100
     if (rd1 === 101) img1 = word101
     if (rd1 === 102) img1 = word102
-    if (rd1 === 103) img1 = word103
 
     if (rd2 === 1)  img2 = word1
     if (rd2 === 2) img2 = word2
@@ -624,7 +622,6 @@ class Scene2 extends React.Component {
     if (rd2 === 100) img2 = word100
     if (rd2 === 101) img2 = word101
     if (rd2 === 102) img2 = word102
-    if (rd2 === 103) img2 = word103
 
     if (rd3 === 1)  img3 = word1
     if (rd3 === 2) img3 = word2
@@ -728,7 +725,6 @@ class Scene2 extends React.Component {
     if (rd3 === 100) img3 = word100
     if (rd3 === 101) img3 = word101
     if (rd3 === 102) img3 = word102
-    if (rd3 === 103) img3 = word103
 
     if (rd4 === 1)  img4 = word1
     if (rd4 === 2) img4 = word2
@@ -832,7 +828,6 @@ class Scene2 extends React.Component {
     if (rd4 === 100) img4 = word100
     if (rd4 === 101) img4 = word101
     if (rd4 === 102) img4 = word102
-    if (rd4 === 103) img4 = word103
 
     if (rd5 === 1)  img5 = word1
     if (rd5 === 2) img5 = word2
@@ -936,7 +931,6 @@ class Scene2 extends React.Component {
     if (rd5 === 100) img5 = word100
     if (rd5 === 101) img5 = word101
     if (rd5 === 102) img5 = word102
-    if (rd5 === 103) img5 = word103
 
     if (rd6 === 1)  img6 = word1
     if (rd6 === 2) img6 = word2
@@ -1040,7 +1034,6 @@ class Scene2 extends React.Component {
     if (rd6 === 100) img6 = word100
     if (rd6 === 101) img6 = word101
     if (rd6 === 102) img6 = word102
-    if (rd6 === 103) img6 = word103
 
     const overlay = (
       <div className='overlay'>
@@ -1079,8 +1072,7 @@ class Scene2 extends React.Component {
         <p className='c4'>จะมีคำต่างๆ อยู่ในเป้าหมาย</p>
         <p className='c6'>
           กดยิงคำไม่สุภาพ คำที่ใช้ผิดตามหลักไวยากรณ์ของภาษาไทย : +5 คะแนน<br/>
-กดยิงคำสุภาพ คำที่ใช้ถูกตามหลักไวยากรณ์ของภาษาไทย : พลังชีวิต -1 <br/>
-หากไม่มีการยิง เป้าหมายจะหายไป : -2 คะแนน
+กดยิงคำสุภาพ คำที่ใช้ถูกตามหลักไวยากรณ์ของภาษาไทย : พลังชีวิต -1
         </p>
       </div>
     )
@@ -1167,7 +1159,7 @@ class Scene2 extends React.Component {
           sound
           scene={scene}
           page={page}
-          pause={page > 2 && page !== 4}
+          pause={page === 3}
           changePause={this.changePause}
           changeScene={changeScene}
           changePage={this.changePage}

@@ -28,7 +28,7 @@ class Actions extends React.Component {
           switch (home) {
             case 'page': changePage(0)
               break
-            case 'scene': changeScene(1)
+            case 'scene': scene === 1 && lastPage === page ? changePage(0) : changeScene(1)
               break
             default: history.push('/')
               break
