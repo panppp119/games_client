@@ -148,7 +148,15 @@ class Scene2 extends React.Component {
     this.changePage(0)
     this.setState({
       score: 0,
-      life: 10
+      life: 10,
+      icon1: true,
+      icon2: true,
+      icon3: true,
+      icon4: true,
+      icon5: true,
+      icon6: true,
+      icon7: true,
+      icon8: true,
     })
   }
 
@@ -216,7 +224,7 @@ class Scene2 extends React.Component {
         <p className='c2'>ไอเทมที่ได้เลือกไปแล้วจะไม่สามารถเลือกได้อีก</p>
         <p className='c3'>คะแนนเต็ม 100 คะแนน</p>
         <p className='c4'>ตอบถูก : +20 คะแนน</p>
-        <p className='c5'>ตอบผิด : พลังชีวิตลด 1-3 แต้ม</p>
+        <p className='c5'>ตอบผิด : พลังชีวิตลด 2-3 แต้ม</p>
         <img src={s22_1} alt='char' style={{ animation: 'fadeRight 1s ease-in-out' }} />
       </div>
     )

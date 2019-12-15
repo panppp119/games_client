@@ -99,16 +99,16 @@ class Scene2 extends React.Component {
         })
     }
 
-    if (page === 14) {
-        gameRef.child('status').update({ start: false })
+    if (page === 23) {
         this.setState({ onPlaying: false })
         setTimeout(() => {
             this.setState({ page: 0, choice: 0 })
+            gameRef.child('status').update({ start: true })
             playersRef.remove()
-        }, 100000)
+        }, 10000)
     }
 
-    if (page > 3 && page < 14) {
+    if (page > 3 && page < 23) {
       this.setState({ timer: this.state.time })
       this.countdown()
     }
@@ -194,8 +194,8 @@ class Scene2 extends React.Component {
 
   correct = (choice) => {
     if (this.state.choice === 0) {
-        this.setState({ score: this.state.score + 10, choice })
-        playersRef.child(randomId).update({ score: this.state.score + 10 })
+        this.setState({ score: this.state.score + this.state.timer, choice })
+        playersRef.child(randomId).update({ score: this.state.score + this.state.timer })
     }
   }
 
@@ -310,7 +310,7 @@ class Scene2 extends React.Component {
         <img src={q2_1} alt="char" className='q-1' style={{ right: 20 }} />
         <img src={q2_2} alt="char" className={`q-2 ${choice !== 1 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() => this.incorrect(1)} />
         <img src={q2_3} alt="char" className={`q-3 ${choice !== 2 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() => this.correct(2)} />
-        <img src={q2_4} alt="char" className={`q-4 ${choice !== 3 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() => this.incorrect(3)} />
+        <img src={q2_4} alt="char" className={`q-4 ${choice !== 3 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() =>this.correct(3)} />
         <img src={q2_5} alt="char" className={`q-5 ${choice !== 4 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() => this.incorrect(4)} />
       </div>
     )
@@ -423,6 +423,8 @@ class Scene2 extends React.Component {
     )
 
     const page999 = (
+      <>
+        <h2 className='timer-left'>{timer}</h2>
         <div className='gscene-999'>
           <img src={char11} alt="char11" className='char-right' style={{ left: 0 }} />
           <h1 style={{ right: 50, top: 45, fontSize: 80 }}>BEST SCORE</h1>
@@ -441,6 +443,7 @@ class Scene2 extends React.Component {
             }
           </ul>
         </div>
+      </>
     )
 
     const controls = {
@@ -472,7 +475,7 @@ class Scene2 extends React.Component {
         {page === 14 && page9}
         {page === 15 && page999}
         {page === 16 && page10}
-        {page === 16 && page999}
+        {page === 17 && page999}
         {page === 18 && page11}
         {page === 19 && page999}
         {page === 20 && page12}
@@ -481,18 +484,18 @@ class Scene2 extends React.Component {
         {page === 23 && page14}
 
         {
-          (page === 5 || page === 7 || page === 9 || page === 11)  && (
+          (page === 6 || page === 10 || page === 14 || page === 18)  && (
             <h2 className='timer-left'>{timer}</h2>
           )
         }
         {
-          (page === 4 || page === 6 || page === 8 || page === 10 || page === 12 || page === 13)  && (
+          (page === 4 || page === 8 || page === 12 || page === 16 || page === 20 || page === 22)  && (
             <h2 className='timer-right'>{timer}</h2>
           )
         }
 
         {
-          (page !== 14 || (page === 3 && !this.state.onPlaying)) && (
+          (page !== 23 || (page === 3 && !this.state.onPlaying)) && (
             <Actions
               home={page > 3 ? false : (page === 0 ? 'scene' : 'page')}
               next={(page < 2 && page !== 0) || (
@@ -512,7 +515,7 @@ class Scene2 extends React.Component {
               removePlayer={this.removePlayer}
               start={page === 3 && this.start}
               position={position}
-              lastPage={14}
+              lastPage={23}
             />
           )
         }
