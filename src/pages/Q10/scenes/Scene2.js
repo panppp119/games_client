@@ -103,7 +103,7 @@ class Scene2 extends React.Component {
         this.setState({ onPlaying: false })
         setTimeout(() => {
             this.setState({ page: 0, choice: 0 })
-            gameRef.child('status').update({ start: true })
+            gameRef.child('status').update({ start: false })
             playersRef.remove()
         }, 10000)
     }

@@ -176,7 +176,8 @@ class Scene2 extends React.Component {
   }
 
   incorrect = (page, name) => {
-    this.setState({ life: this.state.life - 2, [name]: false, sound: 'PLAYING' })
+    const number = this.state.page === 19 ? 3 : 2
+    this.setState({ life: this.state.life - number, [name]: false, sound: 'PLAYING' })
     this.changePage(page)
   }
 
