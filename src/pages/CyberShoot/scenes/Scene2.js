@@ -397,7 +397,7 @@ class Scene2 extends React.Component {
       this.setState({ score: score + 5, [random]: Math.floor(Math.random() * 102) })
     }
     else {
-      if (this.state.life < 1) {
+      if (this.state.life === 1) {
         this.setState({ score: score > 0 ? score - 1 : 0 })
         this.changePage(4)
         clearInterval(myInterval)
