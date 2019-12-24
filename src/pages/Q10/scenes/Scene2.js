@@ -309,8 +309,8 @@ class Scene2 extends React.Component {
         <img src={char2} alt="char" className='char-left' />
         <img src={q2_1} alt="char" className='q-1' style={{ right: 20 }} />
         <img src={q2_2} alt="char" className={`q-2 ${choice !== 1 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() => this.incorrect(1)} />
-        <img src={q2_3} alt="char" className={`q-3 ${choice !== 2 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() => this.correct(2)} />
-        <img src={q2_4} alt="char" className={`q-4 ${choice !== 3 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() =>this.correct(3)} />
+        <img src={q2_3} alt="char" className={`q-3 ${choice !== 2 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() => this.incorrect(2)} />
+        <img src={q2_4} alt="char" className={`q-4 ${choice !== 3 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() => this.correct(3)} />
         <img src={q2_5} alt="char" className={`q-5 ${choice !== 4 && choice !== 0 && 'unactive'}`} style={{ right: 20 }} onClick={() => this.incorrect(4)} />
       </div>
     )
