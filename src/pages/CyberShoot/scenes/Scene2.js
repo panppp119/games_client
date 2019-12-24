@@ -398,6 +398,7 @@ class Scene2 extends React.Component {
     }
     else {
       if (this.state.life < 1) {
+        this.setState({ score: score > 0 ? score - 1 : 0 })
         this.changePage(4)
         clearInterval(myInterval)
       }

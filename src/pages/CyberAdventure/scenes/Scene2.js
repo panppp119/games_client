@@ -555,7 +555,7 @@ class Scene2 extends React.Component {
     const page21 = (
       <div className='gscene-21'>
         <img src={s20_1} alt='char' className='i-1' style={{ height: '100%', bottom: 0}} />
-        <img src={heart} alt='char' className='i-2' />
+        {/* <img src={heart} alt='char' className='i-2' /> */}
         <Sound
           autoLoad
           url={audio20}
