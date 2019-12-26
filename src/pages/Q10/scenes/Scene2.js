@@ -101,11 +101,11 @@ class Scene2 extends React.Component {
 
     if (page === 23) {
         this.setState({ onPlaying: false })
-        setTimeout(() => {
-            this.setState({ page: 0, choice: 0 })
-            gameRef.child('status').update({ start: false })
-            playersRef.remove()
-        }, 10000)
+        // setTimeout(() => {
+        //     this.setState({ page: 0, choice: 0 })
+        //     gameRef.child('status').update({ start: false })
+        //     playersRef.remove()
+        // }, 10000)
     }
 
     if (page > 3 && page < 23) {
@@ -168,6 +168,9 @@ class Scene2 extends React.Component {
 
   start = () => {
     gameRef.child('status').update({ start: true })
+    setTimeouts(() => {
+      gameRef.child('status').update({ start: false })
+    },10000 * 6 * 3)
   }
 
   countdown = () => {

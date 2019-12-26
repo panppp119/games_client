@@ -692,7 +692,7 @@ class Scene2 extends React.Component {
         {page === 25 && page25}
 
         <Actions
-          home={page < 3 ? false : (page === 0 ? 'scene' : 'page')}
+          home={page < 3}
           next={page < 3 && page !== 0}
           prev={page <= 3 && page !== 0}
           sound
