@@ -149,6 +149,38 @@ class Scene2 extends React.Component {
     })
 
     this.random()
+
+    window.addEventListener("beforeunload", (ev) => {
+        ev.preventDefault();
+        return this.handleWindowClose
+    });
+  }
+
+  componentWillUnmount() {
+    window.addEventListener("beforeunload", (ev) => {
+        ev.preventDefault();
+        return this.handleWindowClose
+    });
+  }
+
+  handleWindowClose() {
+    this.setState({
+      page: 0,
+      playerName: '',
+      score: 0,
+      time: 100,
+      timer: 100,
+      pause: false,
+      sound: 'PLAYING',
+      type: 'white',
+      life: 5,
+      rd1: Math.floor(Math.random() * 102),
+      rd2: 0,
+      rd3: 0,
+      rd4: 0,
+      rd5: 0,
+      re6: 0,
+    })
   }
 
   random (name) {

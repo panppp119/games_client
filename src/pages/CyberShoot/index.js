@@ -19,9 +19,26 @@ class CyberShoot extends React.Component {
 
   render () {
     const { scene } = this.state
+    const initialState = {
+      page: 0,
+      playerName: '',
+      score: 0,
+      time: 100,
+      timer: 100,
+      pause: false,
+      sound: 'PLAYING',
+      type: 'white',
+      life: 5,
+      rd1: Math.floor(Math.random() * 102),
+      rd2: 0,
+      rd3: 0,
+      rd4: 0,
+      rd5: 0,
+      re6: 0,
+    }
 
     return (
-      <Layout>
+      <Layout initialState={initialState}>
         <h1>Cyber Shoot</h1>
 
         <div className='frame cyber-shoot'>

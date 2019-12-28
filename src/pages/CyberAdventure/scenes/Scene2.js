@@ -181,6 +181,35 @@ class Scene2 extends React.Component {
     this.changePage(page)
   }
 
+  componentDidMount() {
+    window.addEventListener("beforeunload", (ev) => {
+        ev.preventDefault();
+        return this.handleWindowClose
+    });
+  }
+
+  componentWillUnmount() {
+    window.addEventListener("beforeunload", (ev) => {
+        ev.preventDefault();
+        return this.handleWindowClose
+    });
+  }
+
+  handleWindowClose() {
+    this.setState({
+      score: 0,
+      life: 10,
+      icon1: true,
+      icon2: true,
+      icon3: true,
+      icon4: true,
+      icon5: true,
+      icon6: true,
+      icon7: true,
+      icon8: true,
+    })
+  }
+
   render () {
     const { changeScene } = this.props
     const { page, playerName, icon1, icon2, icon3, icon4, icon5, icon6, icon7, icon8, score, life } = this.state

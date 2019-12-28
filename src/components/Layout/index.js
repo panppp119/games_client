@@ -5,9 +5,11 @@ import './Layout.css'
 
 class Layout extends React.Component {
   render () {
+    const { initialState } = this.props
+
     return (
       <div className='layout'>
-        <NavBar />
+        <NavBar initialState={initialState} />
 
         <div className="content">
           {this.props.children}

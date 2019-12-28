@@ -17,9 +17,21 @@ class CyberAdventure extends React.Component {
 
   render () {
     const { scene } = this.state
+    const initialState = {
+      score: 0,
+      life: 10,
+      icon1: true,
+      icon2: true,
+      icon3: true,
+      icon4: true,
+      icon5: true,
+      icon6: true,
+      icon7: true,
+      icon8: true,
+    }
 
     return (
-      <Layout>
+      <Layout initialState={initialState}>
         <h1>Cyber Adventure</h1>
 
         <div className='frame cyber-adventure'>

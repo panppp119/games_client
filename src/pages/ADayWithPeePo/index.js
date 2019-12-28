@@ -17,9 +17,18 @@ class ADayWithPeePo extends React.Component {
 
   render () {
     const { scene } = this.state
+    const initialState = {
+      page: 0,
+      playerName: '',
+      score: 0,
+      time: 10,
+      timer: 10,
+      pause: false,
+      sound: 'PLAYING'
+    }
 
     return (
-      <Layout>
+      <Layout initialState={initialState}>
         <h1>A Day With PeePo</h1>
 
         <div className='frame a-day-with-peepo'>

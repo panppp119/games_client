@@ -83,7 +83,9 @@ class Scene2 extends React.Component {
     pause: false,
     sound: 'PLAYING',
     choice: 0,
-    onPlaying: false
+    onPlaying: false,
+    gamePage: 0,
+    gamePlayers: []
   }
 
   changePage = (page) => {
@@ -91,21 +93,24 @@ class Scene2 extends React.Component {
     this.setState({ page, choice: 0 })
 
     if (page === 2 && gameRef.child('status')) {
-        gameRef.on('value',(snapshot) => {
-            let game = snapshot.val()
-            let gameStatus = (game && game.status && game.status.start) || false
+      gameRef.on('value',(snapshot) => {
+          let game = snapshot.val()
+          let gameStatus = (game && game.status && game.status.start) || false
+          let gPage = (game && game.status && game.status.page) || 0
 
-            this.setState({ onPlaying: gameStatus })
-        })
+          this.setState({ onPlaying: gameStatus, gamePage: gPage })
+      })
+
+      playersRef.on('value',(snapshot) => {
+          let players = snapshot.val()
+
+          this.setState({ gamePlayers: players })
+      })
     }
 
     if (page === 23) {
         this.setState({ onPlaying: false })
-        // setTimeout(() => {
-        //     this.setState({ page: 0, choice: 0 })
-        //     gameRef.child('status').update({ start: false })
-        //     playersRef.remove()
-        // }, 10000)
+        gameRef.child('status').update({ start: false })
     }
 
     if (page > 3 && page < 23) {
@@ -167,32 +172,21 @@ class Scene2 extends React.Component {
   }
 
   start = () => {
-    gameRef.child('status').update({ start: true })
-    setTimeouts(() => {
-      gameRef.child('status').update({ start: false })
-    },10000 * 6 * 3)
+    gameRef.child('status').update({ start: true, page: 4 })
   }
 
   countdown = () => {
     myInterval = setInterval(() => {
-      if (this.state.timer > 1 && !this.state.pause) {
+      if (this.state.timer > 1) {
         this.setState({ timer: this.state.timer - 1 })
+        gameRef.child('status').update({ timer: this.state.timer })
       }
       else {
-        if (this.state.pause) {
-          clearInterval(myInterval)
-        }
-        else {
-          clearInterval(myInterval)
-          this.changePage(this.state.page + 1)
-        }
+        clearInterval(myInterval)
+        gameRef.child('status').update({ page: this.state.page + 1 })
+        this.changePage(this.state.page + 1)
       }
     }, 1000);
-  }
-
-  changePause = () => {
-    this.setState({ pause: !this.state.pause })
-    !this.state.pause && this.countdown()
   }
 
   correct = (choice) => {
@@ -219,16 +213,16 @@ class Scene2 extends React.Component {
     const scene = 2
     const split = 5
 
+    if (this.state.gamePlayers !== null && this.state.gamePage === 23 && !onPlaying) {
+      gameRef.child('status').update({ start: false, page: 0, timer: 0 })
+      playersRef.remove()
+      console.log('reset')
+    }
+
     page === 3 && onPlaying && this.changePage(4)
 
     var firstCol = players.slice(0, split)
     var secondCol = players.slice(split)
-
-    const overlay = (
-      <div className='overlay'>
-        <button onClick={this.changePause}>RESUME</button>
-      </div>
-    )
 
     const page0 = (
       <div className='gscene-0'>
@@ -508,7 +502,6 @@ class Scene2 extends React.Component {
               sound
               scene={scene}
               page={page}
-              changePause={this.changePause}
               changeScene={changeScene}
               changePage={this.changePage}
               history={this.props.history}
@@ -522,8 +515,6 @@ class Scene2 extends React.Component {
             />
           )
         }
-
-        {this.state.pause && overlay}
 
         <Sound
           autoLoad

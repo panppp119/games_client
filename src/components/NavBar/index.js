@@ -5,10 +5,12 @@ import './NavBar.css'
 
 class NavBar extends React.Component {
   render () {
+    const { initialState } = this.props
+
     return (
       <div className='nav'>
         <ul>
-          <li><Link to='/'>Home</Link></li>
+          <li><Link to='/' onClick={() => this.setState(initialState)}>Home</Link></li>
           <li><Link to='/q10'>Q10</Link></li>
           <li><Link to='/cyber_shoot'>Cyber Shoot</Link></li>
           <li><Link to='/a_day_with_peepo'>A Day with PeePo</Link></li>

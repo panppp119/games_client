@@ -43,6 +43,32 @@ class Scene2 extends React.Component {
     sound: 'PLAYING'
   }
 
+  componentDidMount() {
+    window.addEventListener("beforeunload", (ev) => {
+        ev.preventDefault();
+        return this.handleWindowClose
+    });
+  }
+
+  componentWillUnmount() {
+    window.addEventListener("beforeunload", (ev) => {
+        ev.preventDefault();
+        return this.handleWindowClose
+    });
+  }
+
+  handleWindowClose() {
+    this.setState({
+      page: 0,
+      playerName: '',
+      score: 0,
+      time: 10,
+      timer: 10,
+      pause: false,
+      sound: 'PLAYING'
+    })
+  }
+
   changePage = (page) => {
     this.setState({ page })
 
