@@ -70,6 +70,7 @@ import audio from '../bg-audio.mp3'
 var myInterval
 const randomId = Math.floor(100000 + Math.random() * 900000)
 const playersRef = database.ref('players');
+const scoreRef = database.ref('score');
 const gameRef = database.ref('game');
 
 class Scene2 extends React.Component {
@@ -85,7 +86,8 @@ class Scene2 extends React.Component {
     choice: 0,
     onPlaying: false,
     gamePage: 0,
-    gamePlayers: []
+    gamePlayers: [],
+    gameScore: []
   }
 
   changePage = (page) => {
@@ -111,6 +113,7 @@ class Scene2 extends React.Component {
     if (page === 23) {
         this.setState({ onPlaying: false })
         gameRef.child('status').update({ start: false })
+        playersRef.remove()
     }
 
     if (page > 3 && page < 23) {
@@ -140,10 +143,12 @@ class Scene2 extends React.Component {
 
     if (this.state.player && this.state.player.id) {
         playersRef.child(randomId).update(player)
+        scoreRef.child(randomId).update(player)
         this.setState({ player })
     }
     else {
         playersRef.child(randomId).update(player)
+        scoreRef.child(randomId).update(player)
         this.setState({ player })
     }
 
@@ -164,11 +169,29 @@ class Scene2 extends React.Component {
         })
     })
 
+    scoreRef.on('value',(snapshot) => {
+        let items = snapshot.val();
+        let newState = [];
+
+        for(let item in items){
+          newState.push({
+              id: item,
+              name: items[item].name,
+              score: items[item].score
+          })
+        }
+
+        this.setState({
+          gameScore: newState
+        })
+    })
+
     this.changePage(3)
   }
 
   removePlayer = () => {
     playersRef.child(randomId).remove()
+    scoreRef.child(randomId).remove()
   }
 
   start = () => {
@@ -193,6 +216,7 @@ class Scene2 extends React.Component {
     if (this.state.choice === 0) {
         this.setState({ score: this.state.score + this.state.timer, choice })
         playersRef.child(randomId).update({ score: this.state.score + this.state.timer })
+        scoreRef.child(randomId).update({ score: this.state.score + this.state.timer })
     }
   }
 
@@ -200,6 +224,7 @@ class Scene2 extends React.Component {
     if (this.state.choice === 0) {
         this.setState({ score: this.state.score, choice })
         playersRef.child(randomId).update({ score: this.state.score })
+        scoreRef.child(randomId).update({ score: this.state.score })
     }
   }
 
@@ -209,13 +234,13 @@ class Scene2 extends React.Component {
 
   render () {
     const { changeScene } = this.props
-    const { page, playerName, timer, choice, players, onPlaying } = this.state
+    const { page, playerName, timer, choice, players, onPlaying, gameScore } = this.state
     const scene = 2
     const split = 5
 
-    if (this.state.gamePlayers !== null && this.state.gamePage === 23 && !onPlaying) {
+    if (page === 2 && this.state.gamePlayers === null && this.state.gamePage === 23 && !onPlaying) {
       gameRef.child('status').update({ start: false, page: 0, timer: 0 })
-      playersRef.remove()
+      scoreRef.remove()
       console.log('reset')
     }
 
@@ -403,7 +428,7 @@ class Scene2 extends React.Component {
 
         <ul style={{listStyle: 'none', top: 170, left: 50, paddingLeft: 0}}>
           {
-            players.sort((a, b) => b.score - a.score).slice(0, 3).map((player, i) => {
+            gameScore.sort((a, b) => b.score - a.score).slice(0, 3).map((player, i) => {
               return (
                 <li style={{ textAlign: 'left', fontSize: 40, lineHeight: '80px' }} key={i}>
                   <span style={{width: 100, textAlign: 'center'}}>{i + 1}</span>
@@ -428,7 +453,7 @@ class Scene2 extends React.Component {
 
           <ul style={{listStyle: 'none', top: 170, right: 50, paddingLeft: 0}}>
             {
-              players.sort((a, b) => b.score - a.score).slice(0, 3).map((player, i) => {
+              gameScore.sort((a, b) => b.score - a.score).slice(0, 3).map((player, i) => {
                 return (
                   <li style={{ textAlign: 'left', fontSize: 40, lineHeight: '80px' }} key={i}>
                     <span style={{width: 100, textAlign: 'center'}}>{i + 1}</span>
